@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>text-img</title>
+      <link href="/2021/10/17/text-img/"/>
+      <url>/2021/10/17/text-img/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2021/10/17/text-img/mvvm.jpg" alt="logo"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mvvm </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/2021/10/15/wen-ti/"/>
       <url>/2021/10/15/wen-ti/</url>
@@ -47,7 +66,7 @@
       <link href="/2021/10/15/mvvm/"/>
       <url>/2021/10/15/mvvm/</url>
       
-        <content type="html"><![CDATA[<h1 id="mvvm详解"><a href="#mvvm详解" class="headerlink" title="mvvm详解"></a>mvvm详解</h1><h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><blockquote><p>mvvm是Model-View-ViewModel的缩写。<br>-model：数据-后端传递的数据<br>-view：视图-代表 UI 组件，它负责将数据模型转化成 UI 展现出来<br>-ViewModel:视图模型-是一个同步View 和 Model的对象。MVVM模式的核心，它是连接Model和View的桥梁。<br><img src="/.io//mvvm-1.jpg" alt="mvvm"></p></blockquote><h2 id="为什么出现mvvm？"><a href="#为什么出现mvvm？" class="headerlink" title="为什么出现mvvm？"></a>为什么出现mvvm？</h2><blockquote><p>一直以来前端开发暴露的问题：<br>1.开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护。<br>2.用户大量交互，导致dom操作过于频繁，效率低下，影响用户体验<br>3.当 Model 频繁发生变化，开发者需要主动更新到 View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到 Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。<br>早期 jquery 的出现就是为了前端能更简洁的操作 DOM 而设计的，但它只解决了第一个问题，另外两个问题始终伴随着前端一直存在。</p></blockquote><h2 id="mvvm优势？"><a href="#mvvm优势？" class="headerlink" title="mvvm优势？"></a>mvvm优势？</h2><p>1.视图与数据分离，耦合性低，互不影响。<br>2.数据视图双向绑定，有mvvm框架自动绑定。<br>3.前端开发更灵活。</p><pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;&lt;title&gt;Document&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;body&gt;&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="mvvm详解"><a href="#mvvm详解" class="headerlink" title="mvvm详解"></a>mvvm详解</h1><h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><blockquote><p>mvvm是Model-View-ViewModel的缩写。<br>-model：数据-后端传递的数据<br>-view：视图-代表 UI 组件，它负责将数据模型转化成 UI 展现出来<br>-ViewModel:视图模型-是一个同步View 和 Model的对象。MVVM模式的核心，它是连接Model和View的桥梁。<br><img src="/2021/10/15/mvvm/mvvm-1.jpg" alt="mvvm"></p></blockquote><h2 id="为什么出现mvvm？"><a href="#为什么出现mvvm？" class="headerlink" title="为什么出现mvvm？"></a>为什么出现mvvm？</h2><blockquote><p>一直以来前端开发暴露的问题：<br>1.开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护。<br>2.用户大量交互，导致dom操作过于频繁，效率低下，影响用户体验<br>3.当 Model 频繁发生变化，开发者需要主动更新到 View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到 Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。<br>早期 jquery 的出现就是为了前端能更简洁的操作 DOM 而设计的，但它只解决了第一个问题，另外两个问题始终伴随着前端一直存在。</p></blockquote><h2 id="mvvm优势？"><a href="#mvvm优势？" class="headerlink" title="mvvm优势？"></a>mvvm优势？</h2><p>1.视图与数据分离，耦合性低，互不影响。<br>2.数据视图双向绑定，有mvvm框架自动绑定。<br>3.前端开发更灵活。</p><pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;&lt;title&gt;Document&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;body&gt;&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       <categories>
