@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="centos7搭建本地yum源, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="centos+keepalived+nginx实现节点漂移, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>centos7搭建本地yum源 | ZwqBlog</title>
+    <title>centos+keepalived+nginx实现节点漂移 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">centos7搭建本地yum源</h1>
+                    <h1 class="description center-align post-title">centos+keepalived+nginx实现节点漂移</h1>
                 </div>
             </div>
         </div>
@@ -303,10 +303,104 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -340,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-13
+                    2021-09-18
                 </div>
                 
 
@@ -349,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    249
+                    669
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -379,36 +473,132 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="centos7搭建本地yum源"><a href="#centos7搭建本地yum源" class="headerlink" title="centos7搭建本地yum源"></a>centos7搭建本地yum源</h1><h2 id="安装启动httpd服务器"><a href="#安装启动httpd服务器" class="headerlink" title="安装启动httpd服务器"></a>安装启动httpd服务器</h2><pre class="line-numbers language-none"><code class="language-none">yum -y install httpd yum
-systemctl start httpd
-#设置开机启动http服务
-systemctl enable httpd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>浏览器输入ip:80查看是否开启成功</p>
-<h2 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h2><pre class="line-numbers language-none"><code class="language-none">#创建挂载目录
-mkdir -p &#x2F;mnt&#x2F;cdrom
-#挂载
-mount &#x2F;dev&#x2F;cdrom &#x2F;mnt&#x2F;cdrom
-#编译此文件
-vi &#x2F;etc&#x2F;fstab
-#在文件最后一行增加以下内容：(挂载的镜像)
-&#x2F;dev&#x2F;cdrom &#x2F;mnt&#x2F;cdrom iso9660 defaults 0 0
-#开启目录阅览
-vi &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;welcome.conf
-#将Options -Indexes修改为Options +Indexes
-#旧文件复制
-mv &#x2F;var&#x2F;www&#x2F;html &#x2F;var&#x2F;www&#x2F;html_old
-#做挂载目录 的软链接
-ln -s &#x2F;mnt&#x2F;cdrom&#x2F; &#x2F;var&#x2F;www&#x2F;html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后重启httpd</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class="line-numbers language-none"><code class="language-none">vi &#x2F;etc&#x2F;yum.repos.d&#x2F;zhsx-lan.repo
-#修改：(根据网络设置)
-[ZHSX-LAN-YUM]
-name&#x3D;CentOS7
-baseurl&#x3D;http:&#x2F;&#x2F;192.168.0.200:8000
-gpgcheck&#x3D;1
-gpgkey&#x3D;http:&#x2F;&#x2F;192.168.0.200:8000&#x2F;RPM-GPG-KEY-CentOS-7
-#测试是否能下载
-yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="centos-keepalived-nginx实现节点漂移"><a href="#centos-keepalived-nginx实现节点漂移" class="headerlink" title="centos+keepalived+nginx实现节点漂移"></a>centos+keepalived+nginx实现节点漂移</h1><h2 id="Keepalived-简要介绍"><a href="#Keepalived-简要介绍" class="headerlink" title="Keepalived 简要介绍"></a>Keepalived 简要介绍</h2><blockquote>
+<p>Keepalived 是一种高性能的服务器高可用或热备解决方案， Keepalived 可以用来防止服务器单点故障的发生，通过配合 Nginx 可以实现 web 前端服务的高可用。</p>
+</blockquote>
+<h2 id="方案规划"><a href="#方案规划" class="headerlink" title="方案规划"></a>方案规划</h2><blockquote>
+<p>两台虚拟机分别装好nginx、keepalived<br>一台主机，一台从机。主节点提供服务，之后断掉主节点，观察备用节点是否启用</p>
+</blockquote>
+<h2 id="安装配置nginx"><a href="#安装配置nginx" class="headerlink" title="安装配置nginx"></a>安装配置nginx</h2><blockquote>
+<pre class="line-numbers language-none"><code class="language-none">#安装nginx
+yum install nginx
+#关闭防火墙和selinux
+systemctl stop firewalld.service
+setenfore 0
+#启动 Nginx
+systemctl start nginx
+#设置 Nginx 开机启动
+systemctl enable nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>分别访问两个nginx查看是否启动</p>
+</blockquote>
+<h2 id="安装-Keepalived"><a href="#安装-Keepalived" class="headerlink" title="安装 Keepalived"></a>安装 Keepalived</h2><blockquote>
+<pre class="line-numbers language-none"><code class="language-none">#解压安装
+yum install keepalived -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>主节点配置:（注意网卡，vip，主从ip等配置）<br>vi /etc/keepalived/keepalived.conf<br>内容如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">! Configuration File for keepalived
+global_defs &#123;
+   #一个没重复的名字即可
+   router_id keepalived_master
+&#125;
+# 检测nginx是否运行
+vrrp_script chk_nginx &#123;
+       script &quot;&#x2F;etc&#x2F;keepalived&#x2F;nginx_check.sh&quot;
+       interval 2
+       weight -20
+&#125;
+vrrp_instance VI_1 &#123;
+   # 此处不设置为MASTER，通过priority来竞争master
+   state BACKUP
+   # 网卡名字
+   interface ens33
+   # 同一个keepalived集群的virtual_router_id相同
+   virtual_router_id 51
+   # 权重，master要大于slave
+   priority 100
+   # 主备通讯时间间隔
+   advert_int 1
+   # 如果两节点的上联交换机禁用了组播，则采用vrrp单播通告的方式
+   # 本机即主节点ip
+   unicast_src_ip 192.168.0.200
+   unicast_peer &#123;
+               192.168.0.201   # 备节点ip
+   &#125;
+   # 设置nopreempt防止抢占资源
+   nopreempt
+   # 主备保持一致
+   authentication &#123;
+       auth_type PASS
+       auth_pass 1111
+   &#125;
+   # 与上方nginx运行状况检测呼应
+   track_script &#123;
+       chk_nginx
+   &#125;
+   virtual_ipaddress &#123;
+       # 虚拟ip地址（VIP，一个尚未占用的内网ip即可）
+       192.168.0.18
+   &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;<br>从节点配置:（注意网卡，vip，主从ip等配置）</p>
+<pre class="line-numbers language-none"><code class="language-none">! Configuration File for keepalived
+
+global_defs &#123;
+   #一个没重复的名字即可
+   router_id keepalived_slave
+&#125;
+
+# 检测nginx是否运行
+vrrp_script chk_nginx &#123;
+       script &quot;&#x2F;etc&#x2F;keepalived&#x2F;nginx_check.sh&quot;
+       interval 2
+       weight -20
+&#125;
+
+vrrp_instance VI_1 &#123;
+
+   # 此处不设置为MASTER，通过priority来竞争master
+   state BACKUP
+
+   # 网卡名字
+   interface ens33
+
+   # 同一个keepalived集群的virtual_router_id相同
+   virtual_router_id 51
+
+   # 权重，master要大于slave
+   priority 90
+
+   # 主备通讯时间间隔
+   advert_int 1
+
+   # 如果两节点的上联交换机禁用了组播，则采用vrrp单播通告的方式
+   # 本机即主节点ip
+   unicast_src_ip 192.168.0.201
+   unicast_peer &#123;
+               192.168.0.200   # 备节点ip
+   &#125;
+
+   # 设置nopreempt防止抢占资源
+   nopreempt
+
+   # 主备保持一致
+   authentication &#123;
+       auth_type PASS
+       auth_pass 1111
+   &#125;
+
+   # 与上方nginx运行状况检测呼应
+   track_script &#123;
+       chk_nginx
+   &#125;
+
+   virtual_ipaddress &#123;
+       # 虚拟ip地址（VIP，一个尚未占用的内网ip即可）
+       192.168.0.18
+   &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>启动nginx,keepalive<br>systemctl start keepalived<br>配置好输入vip:注意加端口号，我的nginx端口是8089</p>
+</blockquote>
 
                 
             </div>
@@ -472,31 +662,31 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/09/13/linux-ftp-login-error/">
+                <a href="/2021/10/15/mvvm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="useradd -s /nologin创建用户后ftp无法登录">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="理解mvvm">
                         
-                        <span class="card-title">useradd -s /nologin创建用户后ftp无法登录</span>
+                        <span class="card-title">理解mvvm</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            为什么一定是mvvm
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-13
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/mvvm/" class="post-category">
+                                    mvvm
                                 </a>
                             
                             
@@ -506,8 +696,12 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/mvvm/">
+                        <span class="chip bg-color">mvvm</span>
                     </a>
                     
                 </div>
@@ -518,22 +712,22 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/13/linux-create-yum/">
+                <a href="/2021/09/13/linux-nginx-tomcat2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="centos7搭建本地yum源">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="nginx+tomcat*2实现负载均衡">
                         
-                        <span class="card-title">centos7搭建本地yum源</span>
+                        <span class="card-title">nginx+tomcat*2实现负载均衡</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本地yum源搭建
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -552,7 +746,6 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -589,6 +782,100 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 

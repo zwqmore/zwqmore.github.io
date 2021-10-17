@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2021/10/17/new-file/"/>
+      <url>/2021/10/17/new-file/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>springboot注解篇</title>
       <link href="/2021/10/15/springboot-note/"/>
       <url>/2021/10/15/springboot-note/</url>
@@ -162,6 +175,31 @@
     
     
     <entry>
+      <title>centos+keepalived+nginx实现节点漂移</title>
+      <link href="/2021/09/18/linux-keepalived-nginx/"/>
+      <url>/2021/09/18/linux-keepalived-nginx/</url>
+      
+        <content type="html"><![CDATA[<h1 id="centos-keepalived-nginx实现节点漂移"><a href="#centos-keepalived-nginx实现节点漂移" class="headerlink" title="centos+keepalived+nginx实现节点漂移"></a>centos+keepalived+nginx实现节点漂移</h1><h2 id="Keepalived-简要介绍"><a href="#Keepalived-简要介绍" class="headerlink" title="Keepalived 简要介绍"></a>Keepalived 简要介绍</h2><blockquote><p>Keepalived 是一种高性能的服务器高可用或热备解决方案， Keepalived 可以用来防止服务器单点故障的发生，通过配合 Nginx 可以实现 web 前端服务的高可用。</p></blockquote><h2 id="方案规划"><a href="#方案规划" class="headerlink" title="方案规划"></a>方案规划</h2><blockquote><p>两台虚拟机分别装好nginx、keepalived<br>一台主机，一台从机。主节点提供服务，之后断掉主节点，观察备用节点是否启用</p></blockquote><h2 id="安装配置nginx"><a href="#安装配置nginx" class="headerlink" title="安装配置nginx"></a>安装配置nginx</h2><blockquote><pre class="line-numbers language-none"><code class="language-none">#安装nginxyum install nginx#关闭防火墙和selinuxsystemctl stop firewalld.servicesetenfore 0#启动 Nginxsystemctl start nginx#设置 Nginx 开机启动systemctl enable nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>分别访问两个nginx查看是否启动</p></blockquote><h2 id="安装-Keepalived"><a href="#安装-Keepalived" class="headerlink" title="安装 Keepalived"></a>安装 Keepalived</h2><blockquote><pre class="line-numbers language-none"><code class="language-none">#解压安装yum install keepalived -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>主节点配置:（注意网卡，vip，主从ip等配置）<br>vi /etc/keepalived/keepalived.conf<br>内容如下：</p><pre class="line-numbers language-none"><code class="language-none">! Configuration File for keepalivedglobal_defs &#123;   #一个没重复的名字即可   router_id keepalived_master&#125;# 检测nginx是否运行vrrp_script chk_nginx &#123;       script &quot;&#x2F;etc&#x2F;keepalived&#x2F;nginx_check.sh&quot;       interval 2       weight -20&#125;vrrp_instance VI_1 &#123;   # 此处不设置为MASTER，通过priority来竞争master   state BACKUP   # 网卡名字   interface ens33   # 同一个keepalived集群的virtual_router_id相同   virtual_router_id 51   # 权重，master要大于slave   priority 100   # 主备通讯时间间隔   advert_int 1   # 如果两节点的上联交换机禁用了组播，则采用vrrp单播通告的方式   # 本机即主节点ip   unicast_src_ip 192.168.0.200   unicast_peer &#123;               192.168.0.201   # 备节点ip   &#125;   # 设置nopreempt防止抢占资源   nopreempt   # 主备保持一致   authentication &#123;       auth_type PASS       auth_pass 1111   &#125;   # 与上方nginx运行状况检测呼应   track_script &#123;       chk_nginx   &#125;   virtual_ipaddress &#123;       # 虚拟ip地址（VIP，一个尚未占用的内网ip即可）       192.168.0.18   &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>&emsp;<br>从节点配置:（注意网卡，vip，主从ip等配置）</p><pre class="line-numbers language-none"><code class="language-none">! Configuration File for keepalivedglobal_defs &#123;   #一个没重复的名字即可   router_id keepalived_slave&#125;# 检测nginx是否运行vrrp_script chk_nginx &#123;       script &quot;&#x2F;etc&#x2F;keepalived&#x2F;nginx_check.sh&quot;       interval 2       weight -20&#125;vrrp_instance VI_1 &#123;   # 此处不设置为MASTER，通过priority来竞争master   state BACKUP   # 网卡名字   interface ens33   # 同一个keepalived集群的virtual_router_id相同   virtual_router_id 51   # 权重，master要大于slave   priority 90   # 主备通讯时间间隔   advert_int 1   # 如果两节点的上联交换机禁用了组播，则采用vrrp单播通告的方式   # 本机即主节点ip   unicast_src_ip 192.168.0.201   unicast_peer &#123;               192.168.0.200   # 备节点ip   &#125;   # 设置nopreempt防止抢占资源   nopreempt   # 主备保持一致   authentication &#123;       auth_type PASS       auth_pass 1111   &#125;   # 与上方nginx运行状况检测呼应   track_script &#123;       chk_nginx   &#125;   virtual_ipaddress &#123;       # 虚拟ip地址（VIP，一个尚未占用的内网ip即可）       192.168.0.18   &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>启动nginx,keepalive<br>systemctl start keepalived<br>配置好输入vip:注意加端口号，我的nginx端口是8089</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>nginx+tomcat*2实现负载均衡</title>
       <link href="/2021/09/13/linux-nginx-tomcat2/"/>
       <url>/2021/09/13/linux-nginx-tomcat2/</url>
@@ -191,7 +229,7 @@
       <link href="/2021/09/13/linux-tomcat-service-autostart/"/>
       <url>/2021/09/13/linux-tomcat-service-autostart/</url>
       
-        <content type="html"><![CDATA[<h1 id="centos下添加tomcat服务并自启动"><a href="#centos下添加tomcat服务并自启动" class="headerlink" title="centos下添加tomcat服务并自启动"></a>centos下添加tomcat服务并自启动</h1><h2 id="为Tomcat添加启动参数"><a href="#为Tomcat添加启动参数" class="headerlink" title="为Tomcat添加启动参数"></a>为Tomcat添加启动参数</h2><blockquote><p>catalina.sh在执行的时候会调用同级路径下的setenv.sh来设置额外的环境变量，<br>因此在/usr/local/tomcat/apache-tomcat-9.0.31/bin（安装路径）下创建setenv.sh文件，内容如下：(根据安装路径设置)</p><pre class="line-numbers language-none"><code class="language-none">export CATALINA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31export CATALINA_BASE&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31#设置Tomcat的PID文件CATALINA_PID&#x3D;&quot;$CATALINA_BASE&#x2F;tomcat.pid&quot;#添加JVM选项JAVA_OPTS&#x3D;&quot;-server -XX:PermSize&#x3D;256M -XX:MaxPermSize&#x3D;1024m -Xms512M -Xmx1024M -XX:MaxNewSize&#x3D;256m&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote><h2 id="编写tomcat-service文件"><a href="#编写tomcat-service文件" class="headerlink" title="编写tomcat.service文件"></a>编写tomcat.service文件</h2><blockquote><p>在/usr/lib/systemd/system路径下添加tomcat.service</p><pre class="line-numbers language-none"><code class="language-none">[Unit]Description&#x3D;TomcatAfter&#x3D;syslog.target network.target remote-fs.target nss-lookup.target[Service]Type&#x3D;forkingPIDFile&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31&#x2F;tomcat.pidExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31&#x2F;bin&#x2F;startup.shExecReload&#x3D;&#x2F;bin&#x2F;kill -s HUP $MAINPIDExecStop&#x3D;&#x2F;bin&#x2F;kill -s QUIT $MAINPIDPrivateTmp&#x3D;true[Install]WantedBy&#x3D;multi-user.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>[unit]配置了服务的描述，规定了在network启动之后执行，<br>[service]配置服务的pid，服务的启动，停止，重启<br>[install]配置了使用用户</p></blockquote><h2 id="将Tomcat加入服务管理"><a href="#将Tomcat加入服务管理" class="headerlink" title="将Tomcat加入服务管理"></a>将Tomcat加入服务管理</h2><blockquote><p>systemctl enable tomcat.service<br>systemctl disable tomcat.service<br>systemctl start tomcat.service<br>systemctl stop tomcat.service<br>systemctl restart tomcat.service</p></blockquote><p>原文链接：<a href="https://blog.csdn.net/u012351661/article/details/76254268">https://blog.csdn.net/u012351661/article/details/76254268</a></p>]]></content>
+        <content type="html"><![CDATA[<p>&emsp;</p><h1 id="centos下添加tomcat服务并自启动"><a href="#centos下添加tomcat服务并自启动" class="headerlink" title="centos下添加tomcat服务并自启动"></a>centos下添加tomcat服务并自启动</h1><h2 id="为Tomcat添加启动参数"><a href="#为Tomcat添加启动参数" class="headerlink" title="为Tomcat添加启动参数"></a>为Tomcat添加启动参数</h2><blockquote><p>catalina.sh在执行的时候会调用同级路径下的setenv.sh来设置额外的环境变量，<br>因此在/usr/local/tomcat/apache-tomcat-9.0.31/bin（安装路径）下创建setenv.sh文件，内容如下：(根据安装路径设置)</p><pre class="line-numbers language-none"><code class="language-none">export CATALINA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31export CATALINA_BASE&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31#设置Tomcat的PID文件CATALINA_PID&#x3D;&quot;$CATALINA_BASE&#x2F;tomcat.pid&quot;#添加JVM选项JAVA_OPTS&#x3D;&quot;-server -XX:PermSize&#x3D;256M -XX:MaxPermSize&#x3D;1024m -Xms512M -Xmx1024M -XX:MaxNewSize&#x3D;256m&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote><h2 id="编写tomcat-service文件"><a href="#编写tomcat-service文件" class="headerlink" title="编写tomcat.service文件"></a>编写tomcat.service文件</h2><blockquote><p>在/usr/lib/systemd/system路径下添加tomcat.service</p><pre class="line-numbers language-none"><code class="language-none">[Unit]Description&#x3D;TomcatAfter&#x3D;syslog.target network.target remote-fs.target nss-lookup.target[Service]Type&#x3D;forkingPIDFile&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31&#x2F;tomcat.pidExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31&#x2F;bin&#x2F;startup.shExecReload&#x3D;&#x2F;bin&#x2F;kill -s HUP $MAINPIDExecStop&#x3D;&#x2F;bin&#x2F;kill -s QUIT $MAINPIDPrivateTmp&#x3D;true[Install]WantedBy&#x3D;multi-user.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>[unit]配置了服务的描述，规定了在network启动之后执行，<br>[service]配置服务的pid，服务的启动，停止，重启<br>[install]配置了使用用户</p></blockquote><h2 id="将Tomcat加入服务管理"><a href="#将Tomcat加入服务管理" class="headerlink" title="将Tomcat加入服务管理"></a>将Tomcat加入服务管理</h2><blockquote><p>systemctl enable tomcat.service<br>systemctl disable tomcat.service<br>systemctl start tomcat.service<br>systemctl stop tomcat.service<br>systemctl restart tomcat.service</p></blockquote><p>原文链接：<a href="https://blog.csdn.net/u012351661/article/details/76254268">https://blog.csdn.net/u012351661/article/details/76254268</a></p>]]></content>
       
       
       <categories>
