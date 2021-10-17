@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="text-img, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="python使用socket编程, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>text-img | ZwqBlog</title>
+    <title>python使用socket编程 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">text-img</h1>
+                    <h1 class="description center-align post-title">python使用socket编程</h1>
                 </div>
             </div>
         </div>
@@ -407,9 +407,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                                <span class="chip bg-color">网络编程</span>
+                            </a>
+                        
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -417,8 +425,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/mvvm/" class="post-category">
-                                mvvm
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-category">
+                                网络编程
                             </a>
                         
                     </div>
@@ -430,7 +438,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-17
+                    2021-10-15
                 </div>
                 
 
@@ -439,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    921
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -469,8 +477,82 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/2021/10/17/text-img/mvvm.jpg" alt="logo"></p>
-
+                <h1 id="python使用socket编程"><a href="#python使用socket编程" class="headerlink" title="python使用socket编程"></a>python使用socket编程</h1><h2 id="什么是socket"><a href="#什么是socket" class="headerlink" title="什么是socket?"></a>什么是socket?</h2><blockquote>
+<p>Socket接口是TCP/IP网络的API（Application Programming Interface,应用程序编程接口），Socket接口定义了许多函数或例程，程序员可以用它们来开发 TCP/IP网络上的应用程序。<br>socket不是具体的网络协议，属于存在于tcp、udp协议之上的一个抽象层。是对TCP/IP的封装。</p>
+</blockquote>
+<h2 id="具体使用socket"><a href="#具体使用socket" class="headerlink" title="具体使用socket"></a>具体使用socket</h2><p>首先需要导入socket库:import socket<br>打开一个Socket需要知道目标计算机的IP地址和端口号，再指定协议类型即可，以下是相关操作：</p>
+<pre class="line-numbers language-none"><code class="language-none">s.bind()：绑定（主机名称、端口到一个套接字上）
+s.listen()：设置并启动TCP监听
+s.accept()：等待客户端连接
+s.connect()：连接指定服务器
+s.recv()：接受TCP消息
+s.send()：发送TCP消息
+s.recvfrom()：接受UDP消息
+s.sendto()：发送UDP消息
+s.close()：关闭套接字对象<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+创建一个socket:
+<pre class="line-numbers language-none"><code class="language-none">s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)# 建立连接:
+s.connect((&#39;www.sina.com.cn&#39;, 80))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<br>
+AF_INET指定使用IPv4协议，如果要用更先进的IPv6，就指定为AF_INET6。SOCK_STREAM指定使用面向流的TCP协议
+建立TCP连接后，我们就可以向新浪服务器发送请求
+<pre class="line-numbers language-none"><code class="language-none"># 发送数据:
+s.send(b&#39;GET &#x2F; HTTP&#x2F;1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<br>
+TCP连接创建的是双向通道，双方都可以同时给对方发数据。但是谁先发谁后发，怎么协调，要根据具体的协议来决定。例如，HTTP协议规定客户端必须先发请求给服务器，服务器收到后才发数据给客户端
+<pre class="line-numbers language-none"><code class="language-none"># 接收数据:
+buffer &#x3D; []while True:
+    # 每次最多接收1k字节:
+    d &#x3D; s.recv(1024)
+    if d:
+        buffer.append(d)
+    else:
+        break
+data &#x3D; b&#39;&#39;.join(buffer)
+s.close()
+header, html &#x3D; data.split(b&#39;\r\n\r\n&#39;, 1)
+print(header.decode(&#39;utf-8&#39;))# 把接收的数据写入文件:with open(&#39;sina.html&#39;, &#39;wb&#39;) as f:
+    f.write(html)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+服务器的编程：
+<pre class="line-numbers language-none"><code class="language-none">s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 监听端口:
+s.bind((&#39;127.0.0.1&#39;, 9999))
+#调用listen()方法开始监听端口，传入的参数指定等待连接的最大数量：
+s.listen(5)print(&#39;Waiting for connection...&#39;)
+while True:
+    # 接受一个新连接:
+    sock, addr &#x3D; s.accept()
+    # 创建新线程来处理TCP连接:
+    t &#x3D; threading.Thread(target&#x3D;tcplink, args&#x3D;(sock, addr))
+    t.start()
+#每个连接都必须创建新线程（或进程）来处理，否则，单线程在处理连接的过程中，无法接受其他客户端的连接：
+def tcplink(sock, addr):
+    print(&#39;Accept new connection from %s:%s...&#39; % addr)
+    sock.send(b&#39;Welcome!&#39;)
+    while True:
+        data &#x3D; sock.recv(1024)
+        time.sleep(1)
+        if not data or data.decode(&#39;utf-8&#39;) &#x3D;&#x3D; &#39;exit&#39;:
+            break
+        sock.send((&#39;Hello, %s!&#39; % data.decode(&#39;utf-8&#39;)).encode(&#39;utf-8&#39;))
+    sock.close()
+    print(&#39;Connection from %s:%s closed.&#39; % addr)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+连接建立后，服务器首先发一条欢迎消息，然后等待客户端数据，并加上Hello再发送给客户端。如果客户端发送了exit字符串，就直接关闭连接。
+要测试这个服务器程序，我们还需要编写一个客户端程序：
+<pre class="line-numbers language-none"><code class="language-none">s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)# 建立连接:
+s.connect((&#39;127.0.0.1&#39;, 9999))# 接收欢迎消息:
+print(s.recv(1024).decode(&#39;utf-8&#39;))for data in [b&#39;Michael&#39;, b&#39;Tracy&#39;, b&#39;Sarah&#39;]:
+    # 发送数据:
+    s.send(data)
+    print(s.recv(1024).decode(&#39;utf-8&#39;))
+s.send(b&#39;exit&#39;)
+s.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br>
+需要打开两个命令行窗口，一个运行服务器程序，另一个运行客户端程序，就可以看到效果了。
+(以上内容来自廖雪峰python教程)
                 
             </div>
             <hr/>
@@ -483,7 +565,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                                    <span class="chip bg-color">网络编程</span>
+                                </a>
+                            
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -525,18 +615,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/17/text-img/">
+                <a href="/2021/10/15/sql-nf/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="text-img">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="数据库范式设计">
                         
-                        <span class="card-title">text-img</span>
+                        <span class="card-title">数据库范式设计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -546,22 +635,29 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/mvvm/" class="post-category">
-                                    mvvm
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -572,13 +668,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/15/wen-ti/">
+                <a href="/2021/10/15/data-sort/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="数据结构排序">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">数据结构排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -593,11 +689,27 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            zwq
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">计算机基础</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -745,7 +857,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">841</span>&nbsp;字
+                class="white-color">7k</span>&nbsp;字
             
             
             

@@ -4,58 +4,131 @@
   
     
     <entry>
-      <title>text-img</title>
-      <link href="/2021/10/17/text-img/"/>
-      <url>/2021/10/17/text-img/</url>
+      <title>springboot注解篇</title>
+      <link href="/2021/10/15/springboot-note/"/>
+      <url>/2021/10/15/springboot-note/</url>
       
-        <content type="html"><![CDATA[<p><img src="/2021/10/17/text-img/mvvm.jpg" alt="logo"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="springboot注解篇"><a href="#springboot注解篇" class="headerlink" title="springboot注解篇"></a>springboot注解篇</h1><h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><blockquote><p>@Configuration、@EnableAutoConfiguration、@ComponentScan 注解的集合</p></blockquote><h2 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h2><blockquote><p>启用 SpringBoot 的自动配置机制</p></blockquote><h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><blockquote><p>扫描被@Component (@Service,@Controller)注解的 bean，注解默认会扫描该类所在的包下所有的类</p></blockquote><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><blockquote><p>允许在 Spring 上下文中注册额外的 bean 或导入其他配置类</p></blockquote><h2 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h2><blockquote><p>通用的注解，可标注任意类为 Spring 组件。如果一个 Bean 不知道属于哪个层，可以使用@Component 注解标注。</p></blockquote><h2 id="Repository"><a href="#Repository" class="headerlink" title="@Repository"></a>@Repository</h2><blockquote><p>对应持久层即 Dao 层，主要用于数据库相关操作。</p></blockquote><h2 id="Service"><a href="#Service" class="headerlink" title="@Service"></a>@Service</h2><blockquote><p>对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。</p></blockquote><h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><blockquote><p>对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面</p></blockquote><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><blockquote><p>@Controller和@ResponseBody的合集,表示这是个控制器 bean,并且是将函数的返回值直 接填入 HTTP 响应体中,是 REST 风格的控制器<br>单独使用 @Controller 的话一般使用在要返回一个视图的情况，这种情况属于比较传统的 Spring MVC 的应用，对应于前后端不分离的情况</p></blockquote><h2 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h2><blockquote><p>声明 Spring Bean 的作用域，使用方法:</p><pre class="line-numbers language-none"><code class="language-none">@Bean@Scope(&quot;singleton&quot;)public Person personSingleton() &#123;...&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>四种常见的 Spring Bean 的作用域：<br>singleton : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。<br>prototype : 每次请求都会创建一个新的 bean 实例。<br>request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。<br>session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</p></blockquote><h2 id="PathVariable、-RequestParam"><a href="#PathVariable、-RequestParam" class="headerlink" title="@PathVariable、@RequestParam"></a>@PathVariable、@RequestParam</h2><blockquote><p>@PathVariable用于获取路径参数，@RequestParam用于获取查询参数,举例：</p><pre class="line-numbers language-none"><code class="language-none">public List&lt;Teacher&gt; getKlassRelatedTeachers(        @PathVariable(&quot;klassId&quot;) Long klassId,        @RequestParam(value &#x3D; &quot;type&quot;, required &#x3D; false) String type )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></blockquote><h2 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h2><blockquote><p>body 部分并且Content-Type 为 application/json 格式的数据，接收到数据之后会自动将数据绑定到 Java 对象上<br>系统会使用HttpMessageConverter或者自定义的HttpMessageConverter将请求的 body 中的 json 字符串转换为 java 对象。</p></blockquote><h2 id="value、-ConfigurationProperties"><a href="#value、-ConfigurationProperties" class="headerlink" title="@value、@ConfigurationProperties"></a>@value、@ConfigurationProperties</h2><blockquote><ol><li>使用 @Value(“${property}”) 读取比较简单的配置信息：<pre class="line-numbers language-none"><code class="language-none">@Value(&quot;$&#123;wuhan2020&#125;&quot;)String wuhan2020;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li><li>通过@ConfigurationProperties读取配置信息并与 bean 绑定:<pre class="line-numbers language-none"><code class="language-none">配置文件：library: location: 湖北武汉加油中国加油 books:   - name: 你的名字    description: 描述读取：@Component@ConfigurationProperties(prefix &#x3D; &quot;library&quot;)class LibraryProperties &#123;   @NotEmpty   private String location;   private List&lt;Book&gt; books;   @Setter   @Getter   @ToString   static class Book &#123;       String name;       String description;   &#125; 省略getter&#x2F;setter ......&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ol></blockquote><h2 id="参数校验"><a href="#参数校验" class="headerlink" title="参数校验"></a>参数校验</h2><h3 id="NotNull"><a href="#NotNull" class="headerlink" title="@NotNull"></a>@NotNull</h3><blockquote><pre class="line-numbers language-none"><code class="language-none">@NotNull(message &#x3D; &quot;classId 不能为空&quot;)   private String classId;   @Size(max &#x3D; 33)   @NotNull(message &#x3D; &quot;name 不能为空&quot;)private String name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote><h3 id="Valid"><a href="#Valid" class="headerlink" title="@Valid"></a>@Valid</h3><blockquote><pre class="line-numbers language-none"><code class="language-none">@PostMapping(&quot;&#x2F;person&quot;)   public ResponseEntity&lt;Person&gt; getPerson(@RequestBody @Valid Person person) &#123;       return ResponseEntity.ok().body(person);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>在类上加上 Validated 注解，这个参数可以告诉 Spring 去校验方法参数</p></blockquote><h2 id="全局处理-Controller-层异常"><a href="#全局处理-Controller-层异常" class="headerlink" title="全局处理 Controller 层异常"></a>全局处理 Controller 层异常</h2><blockquote><p>@ControllerAdvice :注解定义全局异常处理类<br>@ExceptionHandler :注解声明异常处理方法<br>举例：</p><pre class="line-numbers language-none"><code class="language-none">@ControllerAdvice@ResponseBodypublic class GlobalExceptionHandler &#123;   &#x2F;**    * 请求参数异常处理    *&#x2F;   @ExceptionHandler(MethodArgumentNotValidException.class)public ResponseEntity&lt;?&gt; handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, HttpServletRequest request) &#123;...&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote><h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><blockquote><p>@Entity 声明一个类对应一个数据库实体。<br>@Table 设置表明<br>@Id 声明一个字段为主键<br>@GeneratedValue 指定主键生成策略<br>四种常见的主键生成策略<br>1.TABLE, 使用一个特定的数据库表格来保存主键<br>2.SEQUENCE,某些数据库中,不支持主键自增长,比如Oracle、PostgreSQL其提供了一种叫做”序列(sequence)”的机制生成主键<br>3.IDENTITY,主键自增长<br>4.AUTO把主键生成策略交给持久化引擎(persistence engine)（默认auto）<br>&emsp;<br>@Column(name = “user_name”, nullable = false, length=32)<br>设置属性 userName 对应的数据库字段名为 user_name，长度为 32，非空<br>&emsp;<br>@Transient 声明不需要与数据库映射的字段，在保存的时候不需要保存进数据库</p></blockquote><h2 id="json数据处理"><a href="#json数据处理" class="headerlink" title="json数据处理"></a>json数据处理</h2><blockquote><p>@JsonIgnoreProperties 作用在类上用于过滤掉特定字段不返回或者不解析<br>举例：</p><pre class="line-numbers language-none"><code class="language-none">@JsonIgnoreProperties(&#123;&quot;userRoles&quot;&#125;public class User &#123;   private String userName;   private String fullName;   private String password;   @JsonIgnoreprivate List&lt;UserRole&gt; userRoles &#x3D; new ArrayList&lt;&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>&emsp;<br>@JsonFormat一般用来格式化 json 数据<br>举例：</p><pre class="line-numbers language-none"><code class="language-none">@JsonFormat(shape&#x3D;JsonFormat.Shape.STRING, pattern&#x3D;&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&quot;, timezone&#x3D;&quot;GMT&quot;)private Date date;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>&emsp;<br>@JsonUnwrapped 扁平对象</p></blockquote>]]></content>
       
       
       <categories>
           
-          <category> mvvm </category>
+          <category> springboot </category>
           
       </categories>
       
       
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/2021/10/15/wen-ti/"/>
-      <url>/2021/10/15/wen-ti/</url>
-      
-        <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul><li><input disabled type="checkbox"> 同账户多登录，一系列操作    </li><li><input disabled type="checkbox"> 加入房间满人    </li><li><input disabled type="checkbox"> ingame退出，没处理    </li><li><input disabled type="checkbox"> 删除user清空other    </li><li><input disabled type="checkbox"> 后台分页查user返回数据过滤    </li><li><input disabled type="checkbox"> 服务器文件路径：接口上传图标，上传头像，    </li><li><input disabled type="checkbox"> 显示解析    </li><li><input disabled type="checkbox"> 房间内LIAO,</li><li><input disabled type="checkbox"> 限制图片大小</li></ul><h2 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h2><blockquote><p>AdminActionMapper修改<br>AdminMapper修改<br>创添加objectmap-&gt;webservice-&gt;createRom-&gt;1310;asyncservice-&gt;matchGetQuestions-&gt;169<br>删除objectmap-&gt;webservice-&gt;redisUtil.hdel(“QuestionRoms”<br>doMatch-&gt;修改同步时将Rom rom1两行移出来L</p></blockquote><h2 id="UI："><a href="#UI：" class="headerlink" title="UI："></a>UI：</h2><h3 id="头部："><a href="#头部：" class="headerlink" title="头部："></a>头部：</h3><blockquote><p>积分<br>胜率<br>称号<br>排名</p></blockquote><h3 id="创作中心："><a href="#创作中心：" class="headerlink" title="创作中心："></a>创作中心：</h3><blockquote><p>我要出题<br>我的创作<br>出题榜    </p></blockquote><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><blockquote><p>战绩<br>称号<br>头像框<br>商店</p></blockquote><h3 id="更多服务"><a href="#更多服务" class="headerlink" title="更多服务"></a>更多服务</h3><blockquote><p>钱包<br>收益<br>签到<br>帮助反馈</p></blockquote><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><h3 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h3><blockquote><p>访问数<br>消息<br>答题数<br>消费</p></blockquote><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><blockquote><p>称号<br>头像框<br>商店<br>创作题<br>管理改密码<br>保存资料、注册样式<br>答题，点击，访问进入统计，每天统计计入表<br>peoples-&gt;addOnlineCount():连接websocket时<br>exercises-&gt;checkAnswer1():单人双人比较答案时<br>点击题目类型increase:prepareQues单人-》questionsService.increase(typeId);<br>prepareQuess多人</p></blockquote><h2 id="管理员接口权限"><a href="#管理员接口权限" class="headerlink" title="管理员接口权限"></a>管理员接口权限</h2><h3 id="AdminAction"><a href="#AdminAction" class="headerlink" title="AdminAction"></a>AdminAction</h3><blockquote><p>查询管理员所有操作(6editadmin)<br>查询自己操作（不需要）</p></blockquote><h3 id="Admin"><a href="#Admin" class="headerlink" title="Admin"></a>Admin</h3><blockquote><p>登录、获取信息、注销（不需要）</p></blockquote><h3 id="Census"><a href="#Census" class="headerlink" title="Census"></a>Census</h3><blockquote><p>主页统计（不需要）</p></blockquote><h3 id="ManageAdmin"><a href="#ManageAdmin" class="headerlink" title="ManageAdmin"></a>ManageAdmin</h3><blockquote><p>增删改查管理等全部(6editadmin)</p></blockquote><h3 id="ManageAudit"><a href="#ManageAudit" class="headerlink" title="ManageAudit"></a>ManageAudit</h3><blockquote><p>审核，通过淘汰，删除（7auditquestion）</p></blockquote><h3 id="ManageQuestion"><a href="#ManageQuestion" class="headerlink" title="ManageQuestion"></a>ManageQuestion</h3><blockquote><p>修改查看问题库（3editquestion）</p></blockquote><h3 id="ManageQuestionTypes"><a href="#ManageQuestionTypes" class="headerlink" title="ManageQuestionTypes"></a>ManageQuestionTypes</h3><blockquote><p>修改查看问题类型（3editquestion）<br>类型点击量（不需要）</p></blockquote><h3 id="ManageUser"><a href="#ManageUser" class="headerlink" title="ManageUser"></a>ManageUser</h3><blockquote><p>查看修改用户等（2edituser）</p></blockquote><h3 id="Public"><a href="#Public" class="headerlink" title="Public"></a>Public</h3><blockquote><p>公共</p></blockquote><h3 id="QuestionType"><a href="#QuestionType" class="headerlink" title="QuestionType"></a>QuestionType</h3><blockquote><p>所有问题类型接口（不需要）</p></blockquote><h3 id="Role"><a href="#Role" class="headerlink" title="Role"></a>Role</h3><blockquote><p>角色编辑权限操作（4permission）</p></blockquote>]]></content>
-      
-      
+        <tags>
+            
+            <tag> springboot </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>article title</title>
-      <link href="/2021/10/15/article-title/"/>
-      <url>/2021/10/15/article-title/</url>
+      <title>数据库范式设计</title>
+      <link href="/2021/10/15/sql-nf/"/>
+      <url>/2021/10/15/sql-nf/</url>
       
-        <content type="html"><![CDATA[<p>#first markdown</p><blockquote><p>2021-10-15</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<h1 id="数据库范式设计"><a href="#数据库范式设计" class="headerlink" title="数据库范式设计"></a>数据库范式设计</h1><h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h2><blockquote><p>确保每列保持原子性<br>举例：<br>地址这个属性可以分出为省份和城市，那么地址和省份就不能共同存在，需要分出来。</p></blockquote><h2 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h2><blockquote><p>确保数据库表中的每一列都和主键相关，而不能只与主键的某一部分相关(主要针对联合主键而言)<br>举例:<br><img src="/2021/10/15/sql-nf/sql-nf1.png"><br>订单金额和订单时间仅与“订单号”相关，与“产品号”无关，不满足2nf<br>更改：（分出来）<br><img src="/2021/10/15/sql-nf/sql-nf2.png"></p></blockquote><h2 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h2><blockquote><p>确保数据表中的每一列数据都和主键直接相关，而不能间接相关<br>举例:<br><img src="/2021/10/15/sql-nf/sql-nf3.png"><br>班主任性别，年龄与 姓名 相关，不满足3nf<br>更改：（分出来）<br><img src="/2021/10/15/sql-nf/sql-nf4.png"></p></blockquote>]]></content>
       
       
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2021/10/15/hello-world/"/>
-      <url>/2021/10/15/hello-world/</url>
+      <title>python使用socket编程</title>
+      <link href="/2021/10/15/python-socket/"/>
+      <url>/2021/10/15/python-socket/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new &quot;My New Post&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="python使用socket编程"><a href="#python使用socket编程" class="headerlink" title="python使用socket编程"></a>python使用socket编程</h1><h2 id="什么是socket"><a href="#什么是socket" class="headerlink" title="什么是socket?"></a>什么是socket?</h2><blockquote><p>Socket接口是TCP/IP网络的API（Application Programming Interface,应用程序编程接口），Socket接口定义了许多函数或例程，程序员可以用它们来开发 TCP/IP网络上的应用程序。<br>socket不是具体的网络协议，属于存在于tcp、udp协议之上的一个抽象层。是对TCP/IP的封装。</p></blockquote><h2 id="具体使用socket"><a href="#具体使用socket" class="headerlink" title="具体使用socket"></a>具体使用socket</h2><p>首先需要导入socket库:import socket<br>打开一个Socket需要知道目标计算机的IP地址和端口号，再指定协议类型即可，以下是相关操作：</p><pre class="line-numbers language-none"><code class="language-none">s.bind()：绑定（主机名称、端口到一个套接字上）s.listen()：设置并启动TCP监听s.accept()：等待客户端连接s.connect()：连接指定服务器s.recv()：接受TCP消息s.send()：发送TCP消息s.recvfrom()：接受UDP消息s.sendto()：发送UDP消息s.close()：关闭套接字对象<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>创建一个socket:<pre class="line-numbers language-none"><code class="language-none">s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)# 建立连接:s.connect((&#39;www.sina.com.cn&#39;, 80))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><br>AF_INET指定使用IPv4协议，如果要用更先进的IPv6，就指定为AF_INET6。SOCK_STREAM指定使用面向流的TCP协议建立TCP连接后，我们就可以向新浪服务器发送请求<pre class="line-numbers language-none"><code class="language-none"># 发送数据:s.send(b&#39;GET &#x2F; HTTP&#x2F;1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><br>TCP连接创建的是双向通道，双方都可以同时给对方发数据。但是谁先发谁后发，怎么协调，要根据具体的协议来决定。例如，HTTP协议规定客户端必须先发请求给服务器，服务器收到后才发数据给客户端<pre class="line-numbers language-none"><code class="language-none"># 接收数据:buffer &#x3D; []while True:    # 每次最多接收1k字节:    d &#x3D; s.recv(1024)    if d:        buffer.append(d)    else:        breakdata &#x3D; b&#39;&#39;.join(buffer)s.close()header, html &#x3D; data.split(b&#39;\r\n\r\n&#39;, 1)print(header.decode(&#39;utf-8&#39;))# 把接收的数据写入文件:with open(&#39;sina.html&#39;, &#39;wb&#39;) as f:    f.write(html)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>服务器的编程：<pre class="line-numbers language-none"><code class="language-none">s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)# 监听端口:s.bind((&#39;127.0.0.1&#39;, 9999))#调用listen()方法开始监听端口，传入的参数指定等待连接的最大数量：s.listen(5)print(&#39;Waiting for connection...&#39;)while True:    # 接受一个新连接:    sock, addr &#x3D; s.accept()    # 创建新线程来处理TCP连接:    t &#x3D; threading.Thread(target&#x3D;tcplink, args&#x3D;(sock, addr))    t.start()#每个连接都必须创建新线程（或进程）来处理，否则，单线程在处理连接的过程中，无法接受其他客户端的连接：def tcplink(sock, addr):    print(&#39;Accept new connection from %s:%s...&#39; % addr)    sock.send(b&#39;Welcome!&#39;)    while True:        data &#x3D; sock.recv(1024)        time.sleep(1)        if not data or data.decode(&#39;utf-8&#39;) &#x3D;&#x3D; &#39;exit&#39;:            break        sock.send((&#39;Hello, %s!&#39; % data.decode(&#39;utf-8&#39;)).encode(&#39;utf-8&#39;))    sock.close()    print(&#39;Connection from %s:%s closed.&#39; % addr)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>连接建立后，服务器首先发一条欢迎消息，然后等待客户端数据，并加上Hello再发送给客户端。如果客户端发送了exit字符串，就直接关闭连接。要测试这个服务器程序，我们还需要编写一个客户端程序：<pre class="line-numbers language-none"><code class="language-none">s &#x3D; socket.socket(socket.AF_INET, socket.SOCK_STREAM)# 建立连接:s.connect((&#39;127.0.0.1&#39;, 9999))# 接收欢迎消息:print(s.recv(1024).decode(&#39;utf-8&#39;))for data in [b&#39;Michael&#39;, b&#39;Tracy&#39;, b&#39;Sarah&#39;]:    # 发送数据:    s.send(data)    print(s.recv(1024).decode(&#39;utf-8&#39;))s.send(b&#39;exit&#39;)s.close()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>需要打开两个命令行窗口，一个运行服务器程序，另一个运行客户端程序，就可以看到效果了。(以上内容来自廖雪峰python教程)]]></content>
       
       
+      <categories>
+          
+          <category> 网络编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络编程 </tag>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据结构排序</title>
+      <link href="/2021/10/15/data-sort/"/>
+      <url>/2021/10/15/data-sort/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据结构排序"><a href="#数据结构排序" class="headerlink" title="数据结构排序"></a>数据结构排序</h1><p><img src="/2021/10/15/data-sort/data-sort.png" alt="排序"></p><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><p>把待排序的数据插入到已经排好序的数据中，直到所有的数据插入完成.<br>例子：<br><img src="/2021/10/15/data-sort/sort1.png" alt="直接插入排序"></p><h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序就是在前面直接插入排序的基础上进行改进的一种排序。直接插入排序的变量 i 其实就是一个间隔，而希尔排序的间隔不是 1，它的间隔逐渐缩小直到为 1 的一种排序，因此又叫缩小增量法。它是对直接插入排序算法的优化，当间隔不为 1 的时候，都是预排序。第一次的间隔是 数据长度的三分之一再加一。即 gap = size / 3 + 1（间隔几个进行比较，）<br>例子：<br><img src="/2021/10/15/data-sort/sort2.png" alt="希尔排序"></p><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="直接选择排序"><a href="#直接选择排序" class="headerlink" title="直接选择排序"></a>直接选择排序</h3><p>直接选择排序就是在待排序的数据中选择一个最大的或者最小的放在带待排序数据的末尾<br>例子：<br><img src="/2021/10/15/data-sort/sort3.png" alt="直接选择排序"></p><h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>从第一个数开始，和第二个数比较，满足条件就进行交换，然后第二个数和第三个数进行比较满足进行交换，直到最后一个数，这是一个“泡”已经冒出。现在有从开始比较，这个时候总的比较的数减少一个，因为“泡”已经冒出了。冒泡排序一共会进行 size - 1次冒泡，每次的比较次数为size - i，i是比较的第几次。<br>例子：<br><img src="/2021/10/15/data-sort/sort4.png" alt="冒泡排序"><br>java代码实现：</p><pre class="line-numbers language-none"><code class="language-none">public class demo_sort &#123;    public static void main(String[] args) &#123;        &#x2F;&#x2F;冒泡排序算法        int[] numbers&#x3D;new int[]&#123;1,5,8,2,3,9,4&#125;;        &#x2F;&#x2F;需进行length-1次冒泡        for(int i&#x3D;0;i&lt;numbers.length-1;i++)        &#123;            for(int j&#x3D;0;j&lt;numbers.length-1-i;j++)            &#123;                if(numbers[j]&gt;numbers[j+1])                &#123;                    int temp&#x3D;numbers[j];                    numbers[j]&#x3D;numbers[j+1];                    numbers[j+1]&#x3D;temp;                &#125;            &#125;        &#125;        System.out.println(&quot;从小到大排序后的结果是:&quot;);        for(int i&#x3D;0;i&lt;numbers.length;i++)            System.out.print(numbers[i]+&quot; &quot;);    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序：</p><ol><li>选择一个基准元素,通常选择第一个元素或者最后一个元素,</li><li>通过一趟排序讲待排序的记录分割成独立的两部分，其中一部分记录的元素值均比基准元素值小。另一部分记录的 元素值比基准值大。</li><li>此时基准元素在其排好序后的正确位置</li><li>然后分别对这两部分记录用同样的方法继续进行排序，直到整个序列有序<br>例子：<br><img src="/2021/10/15/data-sort/sort5.png" alt="快速排序"><br>以上完成第一次比较，左右两边还要进行比较<br>java代码实现：<pre class="line-numbers language-none"><code class="language-none">public static void quickSort(int[] arr)&#123;    qsort(arr, 0, arr.length-1);&#125;private static void qsort(int[] arr, int low, int high)&#123;    if (low &lt; high)&#123;        int pivot&#x3D;partition(arr, low, high);        &#x2F;&#x2F;将数组分为两部分        qsort(arr, low, pivot-1);                   &#x2F;&#x2F;递归排序左子数组        qsort(arr, pivot+1, high);                  &#x2F;&#x2F;递归排序右子数组    &#125;&#125;private static int partition(int[] arr, int low, int high)&#123;    int pivot &#x3D; arr[low];     &#x2F;&#x2F;枢轴记录    while (low&lt;high)&#123;        while (low&lt;high &amp;&amp; arr[high]&gt;&#x3D;pivot) --high;        arr[low]&#x3D;arr[high];             &#x2F;&#x2F;交换比枢轴小的记录到左端        while (low&lt;high &amp;&amp; arr[low]&lt;&#x3D;pivot) ++low;        arr[high] &#x3D; arr[low];           &#x2F;&#x2F;交换比枢轴小的记录到右端    &#125;    &#x2F;&#x2F;扫描完成，枢轴到位    arr[low] &#x3D; pivot;    &#x2F;&#x2F;返回的是枢轴的位置    return low;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 计算机基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据结构总汇</title>
+      <link href="/2021/10/15/data-structure/"/>
+      <url>/2021/10/15/data-structure/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据结构总汇"><a href="#数据结构总汇" class="headerlink" title="数据结构总汇"></a>数据结构总汇</h1><h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><blockquote><p>分为顺序表和链式表：<br>顺序表（按照顺序结构存储，就是逻辑相邻元素在内存也相邻）<br>链式表（按链式存储结构存储，就是元素在内存中随机存储，因此各节点存放值，还有下一个节点的地址）</p></blockquote><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><blockquote><p>数组是可以再内存中连续存储多个元素的结构，在内存中的分配也是连续的<br>优点：<br>1、按照索引查询元素速度快<br>2、按照索引遍历数组方便<br>缺点：<br>1、数组的大小固定后就无法扩容了<br>2、数组只能存储一种类型的数据<br>3、添加，删除的操作慢，因为要移动其他的元素。<br>适用场景：<br>频繁查询，对存储空间要求不大，很少增加和删除的情况。    </p></blockquote><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><blockquote><p>栈是一种特殊的线性表，仅能在线性表的一端操作，栈顶允许操作，栈底不允许操作。<br>栈的特点是：先进后出。<br>栈常应用于实现递归功能方面的场景，例如斐波那契数列。</p></blockquote><h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><blockquote><p>队列与栈一样，也是一种线性表。<br>不同的是，队列可以在一端添加元素，在另一端取出元素，也就是：先进先出。<br>使用场景：因为队列先进先出的特点，在多线程阻塞队列管理中非常适用。    </p></blockquote><h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><blockquote><p>链表是物理存储单元上非连续的、非顺序的存储结构。<br>数据元素的逻辑顺序是通过链表的指针地址实现，每个元素包含两个结点，一个是存储元素的数据域 (内存空间)，另一个是指向下一个结点地址的指针域。<br>根据指针的指向，链表能形成不同的结构，例如单链表，双向链表，循环链表等。<br>循环链表：最后一个节点的指针域指向头结点，形成循环<br>双链表：每个节点有下一个节点地址，也有上一个节点地址<br>链表的优点：<br>链表是不需要初始化容量，可以任意加减元素；<br>添加或者删除元素时只需要改变前后两个元素结点的指针域指向地址即可，所以添加，删除很快；<br>缺点：<br>因为含有大量的指针域，占用空间较大；<br>查找元素需要遍历链表来查找，非常耗时。<br>适用场景：数据量较小，需要频繁增加，删除操作的场景    </p></blockquote><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><blockquote><p>树是一种数据结构，它是由n（n&gt;=1）个有限节点组成一个具有层次关系的集合。<br>把它叫做 “树” 是因为它看起来像一棵倒挂的树，。它具有以下的特点：    </p><ol><li>每个节点有零个或多个子节点；    </li><li>没有父节点的节点称为根节点；    </li><li>每一个非根节点有且只有一个父节点；<br>除了根节点外，每个子节点可以分为多个不相交的子树；    </li></ol><p>在日常的应用中，我们讨论和用的更多的是树的其中一种结构，就是二叉树。<br>二叉树是树的特殊一种，具有如下特点：<br>1、每个结点最多有两颗子树，结点的度最大为2。<br>2、左子树和右子树是有顺序的，次序不能颠倒。<br>3、即使某结点只有一个子树，也要区分左右子树。    </p><p>二叉树是一种比较有用的折中方案，它添加，删除元素都很快，并且在查找方面也有很多的算法优化。<br>所以，二叉树既有链表的好处，也有数组的好处，是两者的优化方案，在处理大批量的动态数据方面非常有用。    </p></blockquote><h2 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h2><blockquote><p>散列表，也叫哈希表，是根据关键码和值 (key和value) 直接进行访问的数据结构，<br>通过key和value来映射到集合中的一个位置，这样就可以很快找到集合中的对应元素。<br>记录的存储位置=f(key)<br>这里的对应关系 f 成为散列函数，又称为哈希 (hash函数)，而散列表就是把Key通过一个固定的算法函数既所谓的哈希函数转换成一个整型数字，    然后就将该数字对数组长度进行取余，取余结果就当作数组的下标，将value存储在以该数字为下标的数组空间里，这种存储空间可以充分利用数组的查找优势来查找元素，所以查找的速度很快。<br>哈希表在应用中也是比较常见的，就如Java中有些集合类就是借鉴了哈希原理构造的，例如HashMap，HashTable等，利用hash表的优势，对于集合的查找元素时非常方便的，然而，因为哈希表是基于数组衍生的数据结构，在添加删除元素方面是比较慢的，所以很多时候需要用到一种数组链表来做，也就是拉链法。拉链法是数组结合链表的一种结构，较早前的hashMap底层的存储就是采用这种结构，直到jdk1.8之后才换成了数组加红黑树的结构<br>哈希表的应用场景很多，当然也有很多问题要考虑，比如哈希冲突的问题，如果处理的不好会浪费大量的时间，导致应用崩溃。</p></blockquote><h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><blockquote><p>堆是一种比较特殊的数据结构，可以被看做一棵树的数组对象，具有以下的性质：<br>堆中某个节点的值总是不大于或不小于其父节点的值；<br>堆总是一棵完全二叉树。<br>将根节点最大的堆叫做最大堆或大根堆，根节点最小的堆叫做最小堆或小根堆。常见的堆有二叉堆、斐波那契堆等。<br>堆的定义如下：n个元素的序列{k1,k2,ki,…,kn}当且仅当满足下关系时，称之为堆。<br>(ki &lt;= k2i,ki &lt;= k2i+1)或者(ki &gt;= k2i,ki &gt;= k2i+1), (i = 1,2,3,4…n/2)，满足前者的表达式的成为小顶堆，满足后者表达式的为大顶堆，这两者的结构图可以用完全二叉树排列出来，示例图如下：<br>因为堆有序的特点，一般用来做数组中的排序，称为堆排序。</p></blockquote><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><blockquote><p>图是由结点的有穷集合V和边的集合E组成。<br>其中，为了与树形结构加以区别，在图结构中常常将结点称为顶点，边是顶点的有序偶对，若两个顶点之间存在一条边，就表示这两个顶点具有相邻关系。<br>按照顶点指向的方向可分为无向图和有向图。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 计算机基础 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -66,7 +139,7 @@
       <link href="/2021/10/15/mvvm/"/>
       <url>/2021/10/15/mvvm/</url>
       
-        <content type="html"><![CDATA[<h1 id="mvvm详解"><a href="#mvvm详解" class="headerlink" title="mvvm详解"></a>mvvm详解</h1><h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><blockquote><p>mvvm是Model-View-ViewModel的缩写。<br>-model：数据-后端传递的数据<br>-view：视图-代表 UI 组件，它负责将数据模型转化成 UI 展现出来<br>-ViewModel:视图模型-是一个同步View 和 Model的对象。MVVM模式的核心，它是连接Model和View的桥梁。<br><img src="/2021/10/15/mvvm/mvvm-1.jpg" alt="mvvm"></p></blockquote><h2 id="为什么出现mvvm？"><a href="#为什么出现mvvm？" class="headerlink" title="为什么出现mvvm？"></a>为什么出现mvvm？</h2><blockquote><p>一直以来前端开发暴露的问题：<br>1.开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护。<br>2.用户大量交互，导致dom操作过于频繁，效率低下，影响用户体验<br>3.当 Model 频繁发生变化，开发者需要主动更新到 View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到 Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。<br>早期 jquery 的出现就是为了前端能更简洁的操作 DOM 而设计的，但它只解决了第一个问题，另外两个问题始终伴随着前端一直存在。</p></blockquote><h2 id="mvvm优势？"><a href="#mvvm优势？" class="headerlink" title="mvvm优势？"></a>mvvm优势？</h2><p>1.视图与数据分离，耦合性低，互不影响。<br>2.数据视图双向绑定，有mvvm框架自动绑定。<br>3.前端开发更灵活。</p><pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;&lt;title&gt;Document&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;body&gt;&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="mvvm详解"><a href="#mvvm详解" class="headerlink" title="mvvm详解"></a>mvvm详解</h1><h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><blockquote><p>mvvm是Model-View-ViewModel的缩写。<br>-model：数据-后端传递的数据-data数据<br>-view：视图-代表 UI 组件，它负责将数据模型转化成 UI 展现出来-template<br>-ViewModel:视图模型-是一个同步View 和 Model的对象。MVVM模式的核心，它是连接Model和View的桥梁。<br>MVVM的设计思想：关注Model的变化，让MVVM框架去自动更新DOM的状态，从而把开发者从操作DOM的繁琐步骤中解脱出来！<br><img src="/2021/10/15/mvvm/mvvm-1.jpg" alt="mvvm"></p></blockquote><h2 id="为什么出现mvvm？"><a href="#为什么出现mvvm？" class="headerlink" title="为什么出现mvvm？"></a>为什么出现mvvm？</h2><blockquote><p>一直以来前端开发暴露的问题：<br>1.开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护。<br>2.用户大量交互，导致dom操作过于频繁，效率低下，影响用户体验<br>3.当 Model 频繁发生变化，开发者需要主动更新到 View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到 Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。<br>早期 jquery 的出现就是为了前端能更简洁的操作 DOM 而设计的，但它只解决了第一个问题，另外两个问题始终伴随着前端一直存在。</p></blockquote><h2 id="mvvm优势？"><a href="#mvvm优势？" class="headerlink" title="mvvm优势？"></a>mvvm优势？</h2><blockquote><p>1.视图与数据分离，耦合性低，互不影响。<br>2.数据视图双向绑定，有mvvm框架自动绑定。<br>3.前端开发更灵活。</p></blockquote><h2 id="具体来看前端发展过程"><a href="#具体来看前端发展过程" class="headerlink" title="具体来看前端发展过程"></a>具体来看前端发展过程</h2><p>1.直接使用js操作dom节点，使用浏览器提供的原生API：</p><pre class="line-numbers language-none"><code class="language-none">var dom &#x3D; document.getElementById(&#39;xxx&#39;);dom.innerHTML &#x3D; &#39;xxx&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>开发者需要调用dom api进行操作<br>&emsp;<br>2.使用jQuery，简洁的API使用起来很方便</p><pre class="line-numbers language-none"><code class="language-none">$(&#39;#xxx&#39;).text(&#39;xxx&#39;).css(&#39;color&#39;, &#39;green&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>&emsp;<br>3.使用mvvm框架（这里举个例子与jquery对比）<br>修改下面name和age：</p><pre class="line-numbers language-none"><code class="language-none">&lt;!-- HTML --&gt;&lt;p&gt;Hello, &lt;span id&#x3D;&quot;name&quot;&gt;Bart&lt;&#x2F;span&gt;!&lt;&#x2F;p&gt;&lt;p&gt;You are &lt;span id&#x3D;&quot;age&quot;&gt;12&lt;&#x2F;span&gt;.&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>&emsp;<br>使用jquery修改两个dom节点：</p><pre class="line-numbers language-none"><code class="language-none">var name &#x3D; &#39;Homer&#39;;var age &#x3D; 51;$(&#39;#name&#39;).text(name);$(&#39;#age&#39;).text(age);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>&emsp;<br>使用mvvm实现：</p><pre class="line-numbers language-none"><code class="language-none">var person &#x3D; &#123;    name: &#39;Bart&#39;,    age: 12&#125;;person.name &#x3D; &#39;Homer&#39;;person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>（以上例子来自廖雪峰js教程)<br>&emsp;<br>可以发现我们只需要修改数据，不需要关心怎么操作dom节点,而是直接修改js的对象。<br>剩下的由mvvm框架帮我们实现了(数据绑定)</p>]]></content>
       
       
       <categories>
@@ -81,6 +154,106 @@
             <tag> 前端 </tag>
             
             <tag> mvvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>centos下添加tomcat服务并自启动</title>
+      <link href="/2021/09/13/linux-tomcat-service-autostart/"/>
+      <url>/2021/09/13/linux-tomcat-service-autostart/</url>
+      
+        <content type="html"><![CDATA[<h1 id="centos下添加tomcat服务并自启动"><a href="#centos下添加tomcat服务并自启动" class="headerlink" title="centos下添加tomcat服务并自启动"></a>centos下添加tomcat服务并自启动</h1><h2 id="为Tomcat添加启动参数"><a href="#为Tomcat添加启动参数" class="headerlink" title="为Tomcat添加启动参数"></a>为Tomcat添加启动参数</h2><blockquote><p>catalina.sh在执行的时候会调用同级路径下的setenv.sh来设置额外的环境变量，<br>因此在/usr/local/tomcat/apache-tomcat-9.0.31/bin（安装路径）下创建setenv.sh文件，内容如下：(根据安装路径设置)</p><pre class="line-numbers language-none"><code class="language-none">export CATALINA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31export CATALINA_BASE&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31#设置Tomcat的PID文件CATALINA_PID&#x3D;&quot;$CATALINA_BASE&#x2F;tomcat.pid&quot;#添加JVM选项JAVA_OPTS&#x3D;&quot;-server -XX:PermSize&#x3D;256M -XX:MaxPermSize&#x3D;1024m -Xms512M -Xmx1024M -XX:MaxNewSize&#x3D;256m&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote><h2 id="编写tomcat-service文件"><a href="#编写tomcat-service文件" class="headerlink" title="编写tomcat.service文件"></a>编写tomcat.service文件</h2><blockquote><p>在/usr/lib/systemd/system路径下添加tomcat.service</p><pre class="line-numbers language-none"><code class="language-none">[Unit]Description&#x3D;TomcatAfter&#x3D;syslog.target network.target remote-fs.target nss-lookup.target[Service]Type&#x3D;forkingPIDFile&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31&#x2F;tomcat.pidExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;tomcat&#x2F;apache-tomcat-9.0.31&#x2F;bin&#x2F;startup.shExecReload&#x3D;&#x2F;bin&#x2F;kill -s HUP $MAINPIDExecStop&#x3D;&#x2F;bin&#x2F;kill -s QUIT $MAINPIDPrivateTmp&#x3D;true[Install]WantedBy&#x3D;multi-user.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>[unit]配置了服务的描述，规定了在network启动之后执行，<br>[service]配置服务的pid，服务的启动，停止，重启<br>[install]配置了使用用户</p></blockquote><h2 id="将Tomcat加入服务管理"><a href="#将Tomcat加入服务管理" class="headerlink" title="将Tomcat加入服务管理"></a>将Tomcat加入服务管理</h2><blockquote><p>systemctl enable tomcat.service<br>systemctl disable tomcat.service<br>systemctl start tomcat.service<br>systemctl stop tomcat.service<br>systemctl restart tomcat.service</p></blockquote><p>原文链接：<a href="https://blog.csdn.net/u012351661/article/details/76254268">https://blog.csdn.net/u012351661/article/details/76254268</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nginx+tomcat*2实现负载均衡</title>
+      <link href="/2021/09/13/linux-nginx-tomcat2/"/>
+      <url>/2021/09/13/linux-nginx-tomcat2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="nginx-tomcat-2实现负载均衡"><a href="#nginx-tomcat-2实现负载均衡" class="headerlink" title="nginx+tomcat*2实现负载均衡"></a>nginx+tomcat*2实现负载均衡</h1><h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><blockquote><p>安装tomcat<br>安装gcc<br>安装make<br>yum -y install gcc automake autoconf libtool make<br>安装pcre和zlib这两个包：<br>yum install -y pcre-devel<br>yum install -y zlib-devel<br>安装nginx1.12.2<br>去官网下载nginx的tar.gz的包：<a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a><br>下载后解压安装</p></blockquote><pre class="line-numbers language-none"><code class="language-none">tar -xvzf nginx-1.12.2.tar.gzcd nginx-1.12.2.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx   #执行配置的命令make &amp;&amp; make install   #当前位置代码编译<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>vi /usr/local/nginx/conf/nginx.conf   #更改端口</p><pre class="line-numbers language-none"><code class="language-none">server&#123;    listen:  8089    server_name   localhost&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>启动nginx<br>方式一：/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br>方式二：/usr/local/nginx/sbin/nginx -t</p><p>配置:<br>vi /usr/local/nginx/conf/nginx.conf<br>第一个server前面加：(根据配置)</p><pre class="line-numbers language-none"><code class="language-none">upstream tomcat_test  &#123;      server localhost:8080 weight&#x3D;1;      server localhost:8082 weight&#x3D;1;   &#125;    server &#123;        listen       8089;        server_name  localhost;        #charset koi8-r;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>注释Local:</p><pre class="line-numbers language-none"><code class="language-none">#location &#x2F; &#123;       #access_log  logs&#x2F;host.access.log  main;       #location &#x2F; &#123;        #   root   html;        #   index  index.html index.htm;       #&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>添加location</p><pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;   proxy_pass http:&#x2F;&#x2F;tomcat_test;   proxy_redirect     off;   proxy_set_header   Host             $host:$server_port;   proxy_set_header   X-Real-IP        $remote_addr;   proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;   proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;   proxy_max_temp_file_size 0;   proxy_connect_timeout      90; #连接前面的服务器超时时间   proxy_send_timeout         90;#请求转发数据报文的超时时间   proxy_read_timeout         90;#读取超时时间   proxy_buffer_size          4k; # 缓冲区的大小   proxy_buffers              4 32k; #   proxy_busy_buffers_size    64k; # #proxy_buffers缓冲区，网页平均在32k以下的   proxy_temp_file_write_size 64k; ##高负荷下缓冲大小（proxy_buffers*2）&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>location:详解：</p><pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;   proxy_pass http:&#x2F;&#x2F;tomcat_pool;    #转向tomcat处理   proxy_redirect     off;#是否跳转   proxy_set_header   Host             $host; #请求要转发的host   proxy_set_header   X-Real-IP        $remote_addr;#请求的远程地址    这些在浏览器的header都可看，不一一解释   proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;   proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;   proxy_max_temp_file_size 0;   proxy_connect_timeout      90; #连接前面的服务器超时时间   proxy_send_timeout         90;#请求转发数据报文的超时时间   proxy_read_timeout         90;#读取超时时间   proxy_buffer_size          4k; # 缓冲区的大小   proxy_buffers              4 32k; #   proxy_busy_buffers_size    64k; # #proxy_buffers缓冲区，网页平均在32k以下的   proxy_temp_file_write_size 64k; ##高负荷下缓冲大小（proxy_buffers*2）&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="加入服务"><a href="#加入服务" class="headerlink" title="加入服务"></a>加入服务</h2><p>vi /usr/lib/systemd/system/nginx.service<br>创建nginx.service加入以下内容:</p><pre class="line-numbers language-none"><code class="language-none">[Unit]Description&#x3D;nginx -  web serverAfter&#x3D;network.target remote-fs.target nss-lookup.target  [Service]Type&#x3D;forkingPIDFile&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pidExecStartPre&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -t -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.confExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.confExecReload&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reloadExecStop&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s stopExecQuit&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s quitPrivateTmp&#x3D;true  [Install]WantedBy&#x3D;multi-user.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>相关操作：</p><pre class="line-numbers language-none"><code class="language-none">systemctl start  nginx.servicesystemctl stop  nginx.servicesystemctl  enable nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>useradd -s /nologin创建用户后ftp无法登录</title>
+      <link href="/2021/09/13/linux-ftp-login-error/"/>
+      <url>/2021/09/13/linux-ftp-login-error/</url>
+      
+        <content type="html"><![CDATA[<h1 id="useradd-s-nologin创建用户后ftp无法登录"><a href="#useradd-s-nologin创建用户后ftp无法登录" class="headerlink" title="useradd -s /nologin创建用户后ftp无法登录"></a>useradd -s /nologin创建用户后ftp无法登录</h1><h2 id="530-Login-incorrect"><a href="#530-Login-incorrect" class="headerlink" title="530 Login incorrect"></a>530 Login incorrect</h2><blockquote><p>服务器中useradd -s /sbin/nologin xxx创建用户后客户端发现竟然不能登录，报530错误<br>检查本地配置没有问题，使用正常用户也可以登录。<br>原因：vsftpd默认会检查用户的shell，如果用户的shell在/etc/shells没有记录，则无法登陆ftp</p></blockquote><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><blockquote><p>在/etc/shells文件里面添加用户的shell解释器<br>vim /etc/shells<br>解释：/etc/shells文件的作用<br>1.系统某些服务在运行过程中，回去检查用户使用的shells，而这些shell查询就是借助/etc/shells这个文件。<br>2.修改该文件不会影响用户登陆服务器主机的权限，该文件提供给解释器给系统的某些服务判断一个用户是否是有效用户，<br>例如我创建的ftp用户解释器为/sbin/nologin，我系统的/etc/shells文件里面没有添加/sbin/nologin，<br>所以我创建的ftp用户登陆不了ftp服务，后面将/sbin/nologin添加进/etc/shells文件，则问题解决。<br>&emsp;<br>原文链接：<a href="https://blog.csdn.net/sunnySe/article/details/116023901">https://blog.csdn.net/sunnySe/article/details/116023901</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>centos7搭建本地yum源</title>
+      <link href="/2021/09/13/linux-create-yum/"/>
+      <url>/2021/09/13/linux-create-yum/</url>
+      
+        <content type="html"><![CDATA[<h1 id="centos7搭建本地yum源"><a href="#centos7搭建本地yum源" class="headerlink" title="centos7搭建本地yum源"></a>centos7搭建本地yum源</h1><h2 id="安装启动httpd服务器"><a href="#安装启动httpd服务器" class="headerlink" title="安装启动httpd服务器"></a>安装启动httpd服务器</h2><pre class="line-numbers language-none"><code class="language-none">yum -y install httpd yumsystemctl start httpd#设置开机启动http服务systemctl enable httpd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>浏览器输入ip:80查看是否开启成功</p><h2 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h2><pre class="line-numbers language-none"><code class="language-none">#创建挂载目录mkdir -p &#x2F;mnt&#x2F;cdrom#挂载mount &#x2F;dev&#x2F;cdrom &#x2F;mnt&#x2F;cdrom#编译此文件vi &#x2F;etc&#x2F;fstab#在文件最后一行增加以下内容：(挂载的镜像)&#x2F;dev&#x2F;cdrom &#x2F;mnt&#x2F;cdrom iso9660 defaults 0 0#开启目录阅览vi &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;welcome.conf#将Options -Indexes修改为Options +Indexes#旧文件复制mv &#x2F;var&#x2F;www&#x2F;html &#x2F;var&#x2F;www&#x2F;html_old#做挂载目录 的软链接ln -s &#x2F;mnt&#x2F;cdrom&#x2F; &#x2F;var&#x2F;www&#x2F;html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>然后重启httpd</p><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class="line-numbers language-none"><code class="language-none">vi &#x2F;etc&#x2F;yum.repos.d&#x2F;zhsx-lan.repo#修改：(根据网络设置)[ZHSX-LAN-YUM]name&#x3D;CentOS7baseurl&#x3D;http:&#x2F;&#x2F;192.168.0.200:8000gpgcheck&#x3D;1gpgkey&#x3D;http:&#x2F;&#x2F;192.168.0.200:8000&#x2F;RPM-GPG-KEY-CentOS-7#测试是否能下载yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
             
         </tags>
       

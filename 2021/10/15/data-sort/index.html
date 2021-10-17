@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Hello World, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="数据结构排序, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | ZwqBlog</title>
+    <title>数据结构排序 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">数据结构排序</h1>
                 </div>
             </div>
         </div>
@@ -407,12 +407,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">计算机基础</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -430,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    75
+                    875
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -460,19 +477,63 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new &quot;My New Post&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h1 id="数据结构排序"><a href="#数据结构排序" class="headerlink" title="数据结构排序"></a>数据结构排序</h1><p><img src="/2021/10/15/data-sort/data-sort.png" alt="排序"></p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><p>把待排序的数据插入到已经排好序的数据中，直到所有的数据插入完成.<br>例子：<br><img src="/2021/10/15/data-sort/sort1.png" alt="直接插入排序"></p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序就是在前面直接插入排序的基础上进行改进的一种排序。直接插入排序的变量 i 其实就是一个间隔，而希尔排序的间隔不是 1，它的间隔逐渐缩小直到为 1 的一种排序，因此又叫缩小增量法。它是对直接插入排序算法的优化，当间隔不为 1 的时候，都是预排序。第一次的间隔是 数据长度的三分之一再加一。即 gap = size / 3 + 1（间隔几个进行比较，）<br>例子：<br><img src="/2021/10/15/data-sort/sort2.png" alt="希尔排序"></p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="直接选择排序"><a href="#直接选择排序" class="headerlink" title="直接选择排序"></a>直接选择排序</h3><p>直接选择排序就是在待排序的数据中选择一个最大的或者最小的放在带待排序数据的末尾<br>例子：<br><img src="/2021/10/15/data-sort/sort3.png" alt="直接选择排序"></p>
+<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>从第一个数开始，和第二个数比较，满足条件就进行交换，然后第二个数和第三个数进行比较满足进行交换，直到最后一个数，这是一个“泡”已经冒出。现在有从开始比较，这个时候总的比较的数减少一个，因为“泡”已经冒出了。冒泡排序一共会进行 size - 1次冒泡，每次的比较次数为size - i，i是比较的第几次。<br>例子：<br><img src="/2021/10/15/data-sort/sort4.png" alt="冒泡排序"><br>java代码实现：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class demo_sort &#123;
+    public static void main(String[] args) &#123;
+        &#x2F;&#x2F;冒泡排序算法
+        int[] numbers&#x3D;new int[]&#123;1,5,8,2,3,9,4&#125;;
+        &#x2F;&#x2F;需进行length-1次冒泡
+        for(int i&#x3D;0;i&lt;numbers.length-1;i++)
+        &#123;
+            for(int j&#x3D;0;j&lt;numbers.length-1-i;j++)
+            &#123;
+                if(numbers[j]&gt;numbers[j+1])
+                &#123;
+                    int temp&#x3D;numbers[j];
+                    numbers[j]&#x3D;numbers[j+1];
+                    numbers[j+1]&#x3D;temp;
+                &#125;
+            &#125;
+        &#125;
+        System.out.println(&quot;从小到大排序后的结果是:&quot;);
+        for(int i&#x3D;0;i&lt;numbers.length;i++)
+            System.out.print(numbers[i]+&quot; &quot;);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序：</p>
+<ol>
+<li>选择一个基准元素,通常选择第一个元素或者最后一个元素,</li>
+<li>通过一趟排序讲待排序的记录分割成独立的两部分，其中一部分记录的元素值均比基准元素值小。另一部分记录的 元素值比基准值大。</li>
+<li>此时基准元素在其排好序后的正确位置</li>
+<li>然后分别对这两部分记录用同样的方法继续进行排序，直到整个序列有序<br>例子：<br><img src="/2021/10/15/data-sort/sort5.png" alt="快速排序"><br>以上完成第一次比较，左右两边还要进行比较<br>java代码实现：<pre class="line-numbers language-none"><code class="language-none">public static void quickSort(int[] arr)&#123;
+    qsort(arr, 0, arr.length-1);
+&#125;
+private static void qsort(int[] arr, int low, int high)&#123;
+    if (low &lt; high)&#123;
+        int pivot&#x3D;partition(arr, low, high);        &#x2F;&#x2F;将数组分为两部分
+        qsort(arr, low, pivot-1);                   &#x2F;&#x2F;递归排序左子数组
+        qsort(arr, pivot+1, high);                  &#x2F;&#x2F;递归排序右子数组
+    &#125;
+&#125;
+private static int partition(int[] arr, int low, int high)&#123;
+    int pivot &#x3D; arr[low];     &#x2F;&#x2F;枢轴记录
+    while (low&lt;high)&#123;
+        while (low&lt;high &amp;&amp; arr[high]&gt;&#x3D;pivot) --high;
+        arr[low]&#x3D;arr[high];             &#x2F;&#x2F;交换比枢轴小的记录到左端
+        while (low&lt;high &amp;&amp; arr[low]&lt;&#x3D;pivot) ++low;
+        arr[high] &#x3D; arr[low];           &#x2F;&#x2F;交换比枢轴小的记录到右端
+    &#125;
+    &#x2F;&#x2F;扫描完成，枢轴到位
+    arr[low] &#x3D; pivot;
+    &#x2F;&#x2F;返回的是枢轴的位置
+    return low;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 
                 
             </div>
@@ -486,7 +547,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">计算机基础</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -532,13 +601,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/15/article-title/">
+                <a href="/2021/10/15/python-socket/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="article title">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="python使用socket编程">
                         
-                        <span class="card-title">article title</span>
+                        <span class="card-title">python使用socket编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -553,11 +622,27 @@
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            zwq
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-category">
+                                    网络编程
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                        <span class="chip bg-color">网络编程</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -569,19 +654,19 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/15/mvvm/">
+                <a href="/2021/10/15/data-structure/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="理解mvvm">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="数据结构总汇">
                         
-                        <span class="card-title">理解mvvm</span>
+                        <span class="card-title">数据结构总汇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            为什么一定是mvvm
+                            
                         
                     </div>
                     <div class="publish-info">
@@ -592,8 +677,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/mvvm/" class="post-category">
-                                    mvvm
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
@@ -603,12 +688,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
                     </a>
                     
-                    <a href="/tags/mvvm/">
-                        <span class="chip bg-color">mvvm</span>
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">计算机基础</span>
                     </a>
                     
                 </div>
@@ -758,7 +843,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">841</span>&nbsp;字
+                class="white-color">7k</span>&nbsp;字
             
             
             

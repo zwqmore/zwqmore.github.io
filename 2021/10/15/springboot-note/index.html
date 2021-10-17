@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="理解mvvm, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="springboot注解篇, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>理解mvvm | ZwqBlog</title>
+    <title>springboot注解篇 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">理解mvvm</h1>
+                    <h1 class="description center-align post-title">springboot注解篇</h1>
                 </div>
             </div>
         </div>
@@ -409,12 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                                <span class="chip bg-color">前端</span>
-                            </a>
-                        
-                            <a href="/tags/mvvm/">
-                                <span class="chip bg-color">mvvm</span>
+                            <a href="/tags/springboot/">
+                                <span class="chip bg-color">springboot</span>
                             </a>
                         
                     </div>
@@ -425,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/mvvm/" class="post-category">
-                                mvvm
+                            <a href="/categories/springboot/" class="post-category">
+                                springboot
                             </a>
                         
                     </div>
@@ -447,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    654
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -477,37 +473,126 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="mvvm详解"><a href="#mvvm详解" class="headerlink" title="mvvm详解"></a>mvvm详解</h1><h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><blockquote>
-<p>mvvm是Model-View-ViewModel的缩写。<br>-model：数据-后端传递的数据-data数据<br>-view：视图-代表 UI 组件，它负责将数据模型转化成 UI 展现出来-template<br>-ViewModel:视图模型-是一个同步View 和 Model的对象。MVVM模式的核心，它是连接Model和View的桥梁。<br>MVVM的设计思想：关注Model的变化，让MVVM框架去自动更新DOM的状态，从而把开发者从操作DOM的繁琐步骤中解脱出来！<br><img src="/2021/10/15/mvvm/mvvm-1.jpg" alt="mvvm"></p>
+                <h1 id="springboot注解篇"><a href="#springboot注解篇" class="headerlink" title="springboot注解篇"></a>springboot注解篇</h1><h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><blockquote>
+<p>@Configuration、@EnableAutoConfiguration、@ComponentScan 注解的集合</p>
 </blockquote>
-<h2 id="为什么出现mvvm？"><a href="#为什么出现mvvm？" class="headerlink" title="为什么出现mvvm？"></a>为什么出现mvvm？</h2><blockquote>
-<p>一直以来前端开发暴露的问题：<br>1.开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护。<br>2.用户大量交互，导致dom操作过于频繁，效率低下，影响用户体验<br>3.当 Model 频繁发生变化，开发者需要主动更新到 View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到 Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。<br>早期 jquery 的出现就是为了前端能更简洁的操作 DOM 而设计的，但它只解决了第一个问题，另外两个问题始终伴随着前端一直存在。</p>
+<h2 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h2><blockquote>
+<p>启用 SpringBoot 的自动配置机制</p>
 </blockquote>
-<h2 id="mvvm优势？"><a href="#mvvm优势？" class="headerlink" title="mvvm优势？"></a>mvvm优势？</h2><blockquote>
-<p>1.视图与数据分离，耦合性低，互不影响。<br>2.数据视图双向绑定，有mvvm框架自动绑定。<br>3.前端开发更灵活。</p>
+<h2 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h2><blockquote>
+<p>扫描被@Component (@Service,@Controller)注解的 bean，注解默认会扫描该类所在的包下所有的类</p>
 </blockquote>
-<h2 id="具体来看前端发展过程"><a href="#具体来看前端发展过程" class="headerlink" title="具体来看前端发展过程"></a>具体来看前端发展过程</h2><p>1.直接使用js操作dom节点，使用浏览器提供的原生API：</p>
-<pre class="line-numbers language-none"><code class="language-none">var dom &#x3D; document.getElementById(&#39;xxx&#39;);
-dom.innerHTML &#x3D; &#39;xxx&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>开发者需要调用dom api进行操作<br>&emsp;<br>2.使用jQuery，简洁的API使用起来很方便</p>
-<pre class="line-numbers language-none"><code class="language-none">$(&#39;#xxx&#39;).text(&#39;xxx&#39;).css(&#39;color&#39;, &#39;green&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>&emsp;<br>3.使用mvvm框架（这里举个例子与jquery对比）<br>修改下面name和age：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;!-- HTML --&gt;
-&lt;p&gt;Hello, &lt;span id&#x3D;&quot;name&quot;&gt;Bart&lt;&#x2F;span&gt;!&lt;&#x2F;p&gt;
-&lt;p&gt;You are &lt;span id&#x3D;&quot;age&quot;&gt;12&lt;&#x2F;span&gt;.&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;<br>使用jquery修改两个dom节点：</p>
-<pre class="line-numbers language-none"><code class="language-none">var name &#x3D; &#39;Homer&#39;;
-var age &#x3D; 51;
-$(&#39;#name&#39;).text(name);
-$(&#39;#age&#39;).text(age);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;<br>使用mvvm实现：</p>
-<pre class="line-numbers language-none"><code class="language-none">var person &#x3D; &#123;
-    name: &#39;Bart&#39;,
-    age: 12
-&#125;;
-person.name &#x3D; &#39;Homer&#39;;
-person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>（以上例子来自廖雪峰js教程)<br>&emsp;<br>可以发现我们只需要修改数据，不需要关心怎么操作dom节点,而是直接修改js的对象。<br>剩下的由mvvm框架帮我们实现了(数据绑定)</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h2><blockquote>
+<p>允许在 Spring 上下文中注册额外的 bean 或导入其他配置类</p>
+</blockquote>
+<h2 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h2><blockquote>
+<p>通用的注解，可标注任意类为 Spring 组件。如果一个 Bean 不知道属于哪个层，可以使用@Component 注解标注。</p>
+</blockquote>
+<h2 id="Repository"><a href="#Repository" class="headerlink" title="@Repository"></a>@Repository</h2><blockquote>
+<p>对应持久层即 Dao 层，主要用于数据库相关操作。</p>
+</blockquote>
+<h2 id="Service"><a href="#Service" class="headerlink" title="@Service"></a>@Service</h2><blockquote>
+<p>对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。</p>
+</blockquote>
+<h2 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a>@Controller</h2><blockquote>
+<p>对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面</p>
+</blockquote>
+<h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><blockquote>
+<p>@Controller和@ResponseBody的合集,表示这是个控制器 bean,并且是将函数的返回值直 接填入 HTTP 响应体中,是 REST 风格的控制器<br>单独使用 @Controller 的话一般使用在要返回一个视图的情况，这种情况属于比较传统的 Spring MVC 的应用，对应于前后端不分离的情况</p>
+</blockquote>
+<h2 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h2><blockquote>
+<p>声明 Spring Bean 的作用域，使用方法:</p>
+<pre class="line-numbers language-none"><code class="language-none">@Bean
+@Scope(&quot;singleton&quot;)
+public Person personSingleton() &#123;
+...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>四种常见的 Spring Bean 的作用域：<br>singleton : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。<br>prototype : 每次请求都会创建一个新的 bean 实例。<br>request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。<br>session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</p>
+</blockquote>
+<h2 id="PathVariable、-RequestParam"><a href="#PathVariable、-RequestParam" class="headerlink" title="@PathVariable、@RequestParam"></a>@PathVariable、@RequestParam</h2><blockquote>
+<p>@PathVariable用于获取路径参数，@RequestParam用于获取查询参数,举例：</p>
+<pre class="line-numbers language-none"><code class="language-none">public List&lt;Teacher&gt; getKlassRelatedTeachers(
+        @PathVariable(&quot;klassId&quot;) Long klassId,
+        @RequestParam(value &#x3D; &quot;type&quot;, required &#x3D; false) String type )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h2><blockquote>
+<p>body 部分并且Content-Type 为 application/json 格式的数据，接收到数据之后会自动将数据绑定到 Java 对象上<br>系统会使用HttpMessageConverter或者自定义的HttpMessageConverter将请求的 body 中的 json 字符串转换为 java 对象。</p>
+</blockquote>
+<h2 id="value、-ConfigurationProperties"><a href="#value、-ConfigurationProperties" class="headerlink" title="@value、@ConfigurationProperties"></a>@value、@ConfigurationProperties</h2><blockquote>
+<ol>
+<li>使用 @Value(“${property}”) 读取比较简单的配置信息：<pre class="line-numbers language-none"><code class="language-none">@Value(&quot;$&#123;wuhan2020&#125;&quot;)
+String wuhan2020;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>通过@ConfigurationProperties读取配置信息并与 bean 绑定:<pre class="line-numbers language-none"><code class="language-none">配置文件：
+library:
+ location: 湖北武汉加油中国加油
+ books:
+   - name: 你的名字
+    description: 描述
+
+读取：
+@Component
+@ConfigurationProperties(prefix &#x3D; &quot;library&quot;)
+class LibraryProperties &#123;
+   @NotEmpty
+   private String location;
+   private List&lt;Book&gt; books;
+
+   @Setter
+   @Getter
+   @ToString
+   static class Book &#123;
+       String name;
+       String description;
+   &#125;
+ 省略getter&#x2F;setter
+ ......
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+</blockquote>
+<h2 id="参数校验"><a href="#参数校验" class="headerlink" title="参数校验"></a>参数校验</h2><h3 id="NotNull"><a href="#NotNull" class="headerlink" title="@NotNull"></a>@NotNull</h3><blockquote>
+<pre class="line-numbers language-none"><code class="language-none">@NotNull(message &#x3D; &quot;classId 不能为空&quot;)
+   private String classId;
+   @Size(max &#x3D; 33)
+   @NotNull(message &#x3D; &quot;name 不能为空&quot;)
+private String name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="Valid"><a href="#Valid" class="headerlink" title="@Valid"></a>@Valid</h3><blockquote>
+<pre class="line-numbers language-none"><code class="language-none">@PostMapping(&quot;&#x2F;person&quot;)
+   public ResponseEntity&lt;Person&gt; getPerson(@RequestBody @Valid Person person) &#123;
+       return ResponseEntity.ok().body(person);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在类上加上 Validated 注解，这个参数可以告诉 Spring 去校验方法参数</p>
+</blockquote>
+<h2 id="全局处理-Controller-层异常"><a href="#全局处理-Controller-层异常" class="headerlink" title="全局处理 Controller 层异常"></a>全局处理 Controller 层异常</h2><blockquote>
+<p>@ControllerAdvice :注解定义全局异常处理类<br>@ExceptionHandler :注解声明异常处理方法<br>举例：</p>
+<pre class="line-numbers language-none"><code class="language-none">@ControllerAdvice
+@ResponseBody
+public class GlobalExceptionHandler &#123;
+   &#x2F;**
+    * 请求参数异常处理
+    *&#x2F;
+   @ExceptionHandler(MethodArgumentNotValidException.class)
+public ResponseEntity&lt;?&gt; handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, 
+HttpServletRequest request) &#123;
+	...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><blockquote>
+<p>@Entity 声明一个类对应一个数据库实体。<br>@Table 设置表明<br>@Id 声明一个字段为主键<br>@GeneratedValue 指定主键生成策略<br>四种常见的主键生成策略<br>1.TABLE, 使用一个特定的数据库表格来保存主键<br>2.SEQUENCE,某些数据库中,不支持主键自增长,比如Oracle、PostgreSQL其提供了一种叫做”序列(sequence)”的机制生成主键<br>3.IDENTITY,主键自增长<br>4.AUTO把主键生成策略交给持久化引擎(persistence engine)（默认auto）<br>&emsp;<br>@Column(name = “user_name”, nullable = false, length=32)<br>设置属性 userName 对应的数据库字段名为 user_name，长度为 32，非空<br>&emsp;<br>@Transient 声明不需要与数据库映射的字段，在保存的时候不需要保存进数据库</p>
+</blockquote>
+<h2 id="json数据处理"><a href="#json数据处理" class="headerlink" title="json数据处理"></a>json数据处理</h2><blockquote>
+<p>@JsonIgnoreProperties 作用在类上用于过滤掉特定字段不返回或者不解析<br>举例：</p>
+<pre class="line-numbers language-none"><code class="language-none">@JsonIgnoreProperties(&#123;&quot;userRoles&quot;&#125;
+public class User &#123;
+   private String userName;
+   private String fullName;
+   private String password;
+   @JsonIgnore
+private List&lt;UserRole&gt; userRoles &#x3D; new ArrayList&lt;&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;<br>@JsonFormat一般用来格式化 json 数据<br>举例：</p>
+<pre class="line-numbers language-none"><code class="language-none">@JsonFormat(shape&#x3D;JsonFormat.Shape.STRING, pattern&#x3D;&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;&quot;, timezone&#x3D;&quot;GMT&quot;)
+private Date date;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>&emsp;<br>@JsonUnwrapped 扁平对象</p>
+</blockquote>
 
                 
             </div>
@@ -522,12 +607,8 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                                    <span class="chip bg-color">前端</span>
-                                </a>
-                            
-                                <a href="/tags/mvvm/">
-                                    <span class="chip bg-color">mvvm</span>
+                                <a href="/tags/springboot/">
+                                    <span class="chip bg-color">springboot</span>
                                 </a>
                             
                         </div>
@@ -571,17 +652,18 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/15/data-structure/">
+                <a href="/2021/10/15/springboot-note/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="数据结构总汇">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="springboot注解篇">
                         
-                        <span class="card-title">数据结构总汇</span>
+                        <span class="card-title">springboot注解篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -591,30 +673,27 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
+                            <a href="/categories/springboot/" class="post-category">
+                                    springboot
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">计算机基础</span>
+                    <a href="/tags/springboot/">
+                        <span class="chip bg-color">springboot</span>
                     </a>
                     
                 </div>
@@ -628,13 +707,13 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/13/linux-tomcat-service-autostart/">
+                <a href="/2021/10/15/sql-nf/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="centos下添加tomcat服务并自启动">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="数据库范式设计">
                         
-                        <span class="card-title">centos下添加tomcat服务并自启动</span>
+                        <span class="card-title">数据库范式设计</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -645,14 +724,14 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
                                 </a>
                             
                             
@@ -662,8 +741,8 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
