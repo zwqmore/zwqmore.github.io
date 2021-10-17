@@ -443,7 +443,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    659
+                    660
                 </div>
                 
 
@@ -475,28 +475,30 @@
             <div id="articleContent">
                 <h1 id="nginx-tomcat-2实现负载均衡"><a href="#nginx-tomcat-2实现负载均衡" class="headerlink" title="nginx+tomcat*2实现负载均衡"></a>nginx+tomcat*2实现负载均衡</h1><h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><blockquote>
 <p>安装tomcat<br>安装gcc<br>安装make<br>yum -y install gcc automake autoconf libtool make<br>安装pcre和zlib这两个包：<br>yum install -y pcre-devel<br>yum install -y zlib-devel<br>安装nginx1.12.2<br>去官网下载nginx的tar.gz的包：<a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a><br>下载后解压安装</p>
-</blockquote>
 <pre class="line-numbers language-none"><code class="language-none">tar -xvzf nginx-1.12.2.tar.gz
 cd nginx-1.12.2
 .&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx   #执行配置的命令
 make &amp;&amp; make install   #当前位置代码编译<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>vi /usr/local/nginx/conf/nginx.conf   #更改端口</p>
+</blockquote>
+<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><blockquote>
+<p>vi /usr/local/nginx/conf/nginx.conf   #更改端口</p>
 <pre class="line-numbers language-none"><code class="language-none">server&#123;
-    listen:  8089
-    server_name   localhost
+   listen:  8089
+   server_name   localhost
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>启动nginx<br>方式一：/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br>方式二：/usr/local/nginx/sbin/nginx -t</p>
+</blockquote>
+<blockquote>
 <p>配置:<br>vi /usr/local/nginx/conf/nginx.conf<br>第一个server前面加：(根据配置)</p>
 <pre class="line-numbers language-none"><code class="language-none">upstream tomcat_test  &#123;
-      server localhost:8080 weight&#x3D;1;
-      server localhost:8082 weight&#x3D;1;
-   &#125;
-    server &#123;
-        listen       8089;
-        server_name  localhost;
+     server localhost:8080 weight&#x3D;1;
+     server localhost:8082 weight&#x3D;1;
+  &#125;
+   server &#123;
+       listen       8089;
+       server_name  localhost;
 
-        #charset koi8-r;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+       #charset koi8-r;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注释Local:</p>
 <pre class="line-numbers language-none"><code class="language-none">#location &#x2F; &#123;
 
@@ -508,45 +510,47 @@ make &amp;&amp; make install   #当前位置代码编译<span aria-hidden="true"
        #&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>添加location</p>
 <pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;
-   proxy_pass http:&#x2F;&#x2F;tomcat_test;
-   proxy_redirect     off;
-   proxy_set_header   Host             $host:$server_port;
-   proxy_set_header   X-Real-IP        $remote_addr;
-   proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-   proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
-   proxy_max_temp_file_size 0;
-   proxy_connect_timeout      90; #连接前面的服务器超时时间
-   proxy_send_timeout         90;#请求转发数据报文的超时时间
-   proxy_read_timeout         90;#读取超时时间
-   proxy_buffer_size          4k; # 缓冲区的大小
-   proxy_buffers              4 32k; #
-   proxy_busy_buffers_size    64k; # #proxy_buffers缓冲区，网页平均在32k以下的
-   proxy_temp_file_write_size 64k; ##高负荷下缓冲大小（proxy_buffers*2）
+  proxy_pass http:&#x2F;&#x2F;tomcat_test;
+  proxy_redirect     off;
+  proxy_set_header   Host             $host:$server_port;
+  proxy_set_header   X-Real-IP        $remote_addr;
+  proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+  proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+  proxy_max_temp_file_size 0;
+  proxy_connect_timeout      90; #连接前面的服务器超时时间
+  proxy_send_timeout         90;#请求转发数据报文的超时时间
+  proxy_read_timeout         90;#读取超时时间
+  proxy_buffer_size          4k; # 缓冲区的大小
+  proxy_buffers              4 32k; #
+  proxy_busy_buffers_size    64k; # #proxy_buffers缓冲区，网页平均在32k以下的
+  proxy_temp_file_write_size 64k; ##高负荷下缓冲大小（proxy_buffers*2）
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+</blockquote>
+<blockquote>
 <p>location:详解：</p>
 <pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;
-   proxy_pass http:&#x2F;&#x2F;tomcat_pool;    #转向tomcat处理
-   proxy_redirect     off;#是否跳转
-   proxy_set_header   Host             $host; #请求要转发的host
-   proxy_set_header   X-Real-IP        $remote_addr;#请求的远程地址    这些在浏览器的header都可看，不一一解释
-   proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-   proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
-   proxy_max_temp_file_size 0;
-   proxy_connect_timeout      90; #连接前面的服务器超时时间
-   proxy_send_timeout         90;#请求转发数据报文的超时时间
-   proxy_read_timeout         90;#读取超时时间
-   proxy_buffer_size          4k; # 缓冲区的大小
-   proxy_buffers              4 32k; #
-   proxy_busy_buffers_size    64k; # #proxy_buffers缓冲区，网页平均在32k以下的
-   proxy_temp_file_write_size 64k; ##高负荷下缓冲大小（proxy_buffers*2）
+  proxy_pass http:&#x2F;&#x2F;tomcat_pool;    #转向tomcat处理
+  proxy_redirect     off;#是否跳转
+  proxy_set_header   Host             $host; #请求要转发的host
+  proxy_set_header   X-Real-IP        $remote_addr;#请求的远程地址    这些在浏览器的header都可看，不一一解释
+  proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+  proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+  proxy_max_temp_file_size 0;
+  proxy_connect_timeout      90; #连接前面的服务器超时时间
+  proxy_send_timeout         90;#请求转发数据报文的超时时间
+  proxy_read_timeout         90;#读取超时时间
+  proxy_buffer_size          4k; # 缓冲区的大小
+  proxy_buffers              4 32k; #
+  proxy_busy_buffers_size    64k; # #proxy_buffers缓冲区，网页平均在32k以下的
+  proxy_temp_file_write_size 64k; ##高负荷下缓冲大小（proxy_buffers*2）
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="加入服务"><a href="#加入服务" class="headerlink" title="加入服务"></a>加入服务</h2><p>vi /usr/lib/systemd/system/nginx.service<br>创建nginx.service加入以下内容:</p>
+</blockquote>
+<h2 id="加入服务"><a href="#加入服务" class="headerlink" title="加入服务"></a>加入服务</h2><blockquote>
+<p>vi /usr/lib/systemd/system/nginx.service<br>创建nginx.service加入以下内容:</p>
 <pre class="line-numbers language-none"><code class="language-none">[Unit]
 Description&#x3D;nginx -  web server
 After&#x3D;network.target remote-fs.target nss-lookup.target
-  
+ 
 [Service]
 Type&#x3D;forking
 PIDFile&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;nginx.pid
@@ -556,13 +560,14 @@ ExecReload&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s reload
 ExecStop&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s stop
 ExecQuit&#x3D;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -s quit
 PrivateTmp&#x3D;true
-  
+ 
 [Install]
 WantedBy&#x3D;multi-user.target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>相关操作：</p>
 <pre class="line-numbers language-none"><code class="language-none">systemctl start  nginx.service
 systemctl stop  nginx.service
-systemctl  enable nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+systemctl  enable nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></blockquote>
+
                 
             </div>
             <hr/>
@@ -625,31 +630,31 @@ systemctl  enable nginx<span aria-hidden="true" class="line-numbers-rows"><span>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/09/13/linux-tomcat-service-autostart/">
+                <a href="/2021/10/15/mvvm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="centos下添加tomcat服务并自启动">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="理解mvvm">
                         
-                        <span class="card-title">centos下添加tomcat服务并自启动</span>
+                        <span class="card-title">理解mvvm</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            为什么一定是mvvm
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-13
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/mvvm/" class="post-category">
+                                    mvvm
                                 </a>
                             
                             
@@ -659,8 +664,12 @@ systemctl  enable nginx<span aria-hidden="true" class="line-numbers-rows"><span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/mvvm/">
+                        <span class="chip bg-color">mvvm</span>
                     </a>
                     
                 </div>
@@ -674,13 +683,13 @@ systemctl  enable nginx<span aria-hidden="true" class="line-numbers-rows"><span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/13/linux-ftp-login-error/">
+                <a href="/2021/09/13/linux-tomcat-service-autostart/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="useradd -s /nologin创建用户后ftp无法登录">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="centos下添加tomcat服务并自启动">
                         
-                        <span class="card-title">useradd -s /nologin创建用户后ftp无法登录</span>
+                        <span class="card-title">centos下添加tomcat服务并自启动</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
