@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -556,7 +556,7 @@
 <h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><blockquote>
 <p>直接内存位于本地内存，不属于JVM内存，但是也会在物理内存耗尽的时候报OOM<br>在jdk1.4中加入了NIO（New Input/Putput）类，引入了一种基于通道（channel）与缓冲区（buffer）的新IO方式，它可以使用native函数直接分配堆外内存，然后通过存储在java堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样可以在一些场景下大大提高IO性能，避免了在java堆和native堆来回复制数据。</p>
 </blockquote>
-<h3 id="什么是Native方法？"><a href="#什么是Native方法？" class="headerlink" title="什么是Native方法？"></a>什么是Native方法？</h3><blockquote>
+<h2 id="常见问题？"><a href="#常见问题？" class="headerlink" title="常见问题？"></a>常见问题？</h2><h3 id="什么是Native方法？"><a href="#什么是Native方法？" class="headerlink" title="什么是Native方法？"></a>什么是Native方法？</h3><blockquote>
 <p>由于java是一门高级语言，离硬件底层比较远，有时候无法操作底层的资源，于是，java添加了native关键字，被native关键字修饰的方法可以用其他语言重写，这样，我们就可以写一个本地方法，然后用C语言重写，这样来操作底层资源。当然，使用了native方法会导致系统的可移植性不高，这是需要注意的。</p>
 </blockquote>
 <h3 id="成员变量、局部变量、类变量分别存储在内存的什么地方？"><a href="#成员变量、局部变量、类变量分别存储在内存的什么地方？" class="headerlink" title="成员变量、局部变量、类变量分别存储在内存的什么地方？"></a>成员变量、局部变量、类变量分别存储在内存的什么地方？</h3><blockquote>
@@ -593,11 +593,46 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
 </li>
 <li>符号引用<ul>
 <li>由于在编译过程中并不知道每个类的地址，因为可能这个类还没有加载，所以如果你在一个类中引用了另一个类，那么你完全无法知道他的内存地址，那怎么办，我们只能用他的类名作为符号引用，在类加载完后用这个符号引用去获取他的内存地址。</li>
-<li>例子：我在com.demo.Solution类中引用了com.test.Quest，那么我会把com.test.Quest作为符号引用存到类常量池，等类加载完后，拿着这个引用去方法区找这个类的内存地址。<br>参考： Java技术迷微信公众号</li>
+<li>例子：我在com.demo.Solution类中引用了com.test.Quest，那么我会把com.test.Quest作为符号引用存到类常量池，等类加载完后，拿着这个引用去方法区找这个类的内存地址。</li>
 </ul>
 </li>
 </ul>
 </blockquote>
+<h2 id="实例分析："><a href="#实例分析：" class="headerlink" title="实例分析："></a>实例分析：</h2><blockquote>
+<pre class="line-numbers language-none"><code class="language-none">class BirthDate &#123;  
+       private int day;  
+       private int month;  
+       private int year;      
+       public BirthDate(int d, int m, int y) &#123;  
+           day &#x3D; d;   
+           month &#x3D; m;   
+           year &#x3D; y;  
+       &#125;  
+       省略get,set方法………  
+   &#125;  
+     
+   public class Test&#123;  
+       public static void main(String args[])&#123;  
+            int date &#x3D; 9;  
+            Test test &#x3D; new Test();        
+            test.change(date);   
+            BirthDate d1&#x3D; new BirthDate(7,7,1970);         
+       &#125;    
+     
+       public void change(int i)&#123;  
+           i &#x3D; 1234;  
+       &#125;  
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于以上这段代码，date为局部变量，i,d,m,y都是形参为局部变量，day，month，year为成员变量。下面分析一下代码执行时候的变化：</p>
+<ol>
+<li>main方法开始执行：int date = 9;date局部变量，基础类型，引用和值都存在栈中。</li>
+<li>Test test = new Test();test为对象引用，存在栈中，对象(new Test())存在堆中。</li>
+<li>test.change(date);调用change(int i)方法，i为局部变量，引用和值存在栈中。当方法change执行完成后，i就会从栈中消失。</li>
+<li>BirthDate d1= new BirthDate(7,7,1970);调用BIrthDate类的构造函数生成对象。d1为对象引用，存在栈中；对象(new BirthDate())存在堆中；其中d,m,y为局部变量存储在栈中，且它们的类型为基础类型，因此它们的数据也存储在栈中；day,month,year为BirthDate对象的的成员变量，它们存储在堆中存储的new BirthDate()对象里面；当BirthDate构造方法执行完之后，d,m,y将从栈中消失。</li>
+<li>main方法执行完之后。date变量，test，d1引用将从栈中消失；new Test(),new BirthDate()将等待垃圾回收器进行回收。<br><img src="/2021/10/16/java-jvm/jvm3.png"><br>例子参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ghost_Programmer/article/details/40891735">https://blog.csdn.net/ghost_Programmer/article/details/40891735</a></li>
+</ol>
+</blockquote>
+<h3 id><a href="#" class="headerlink" title></a></h3><p>参考：Java技术迷微信公众号</p>
 
                 
             </div>
@@ -661,18 +696,17 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/16/java-jvm/">
+                <a href="/2021/10/17/java-utils/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="java8内存结构">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="java工具类">
                         
-                        <span class="card-title">java8内存结构</span>
+                        <span class="card-title">java工具类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -682,22 +716,21 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/mybatis/" class="post-category">
-                                    mybatis
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -705,8 +738,8 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                         <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/jvm/">
-                        <span class="chip bg-color">jvm</span>
+                    <a href="/tags/utils/">
+                        <span class="chip bg-color">utils</span>
                     </a>
                     
                 </div>
@@ -905,7 +938,7 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.1k</span>&nbsp;字
+                class="white-color">19k</span>&nbsp;字
             
             
             
