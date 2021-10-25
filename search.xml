@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>java-1</title>
+      <link href="/2021/10/25/java-base-1/"/>
+      <url>/2021/10/25/java-base-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Java-基础"><a href="#Java-基础" class="headerlink" title="Java 基础"></a>Java 基础</h1><h2 id="Oracle-JDK-和-OpenJDK-的区别是什么？"><a href="#Oracle-JDK-和-OpenJDK-的区别是什么？" class="headerlink" title="Oracle JDK 和 OpenJDK 的区别是什么？"></a>Oracle JDK 和 OpenJDK 的区别是什么？</h2><blockquote><ul><li>Oracle JDK 版本将每三年发布一次，而 OpenJDK 版本每三个月发布一次；</li><li>OpenJDK 是一个参考模型并且是完全开源的，而 Oracle JDK 是OpenJDK 的一个实现，并不是完全开源的；</li><li>Oracle JDK 比 OpenJDK 更稳定。OpenJDK 和 Oracle JDK 的代码几乎相同，但 Oracle JDK 有更多的类和一些错误修复。因此，如果您想开发企业/商业软件，建议选择 Oracle JDK，因为它经过了彻底的测试和稳定。某些情况下，有些人提到在使用 OpenJDK 可能会遇到了许多应用程序崩溃的问题，但是，只需切换到 Oracle JDK 就可以解决问题；</li><li>在响应性和 JVM 性能方面，Oracle JDK 与 OpenJDK 相比提供了更好的性能；</li><li>Oracle JDK 不会为即将发布的版本提供长期支持，用户每次都必须通过更新到最新版本获得支持来获取最新版本；</li><li>Oracle JDK 根据二进制代码许可协议获得许可，而 OpenJDK 根据 GPLv2 许可获得许可。</li></ul></blockquote><h2 id="Java基本数据类型"><a href="#Java基本数据类型" class="headerlink" title="Java基本数据类型"></a>Java基本数据类型</h2><blockquote><p><img src="/2021/10/25/java-base-1/java1.png" alt="Java基本数据类型"></p></blockquote><h2 id="switch-是否能作用在-byte-long-String-上？"><a href="#switch-是否能作用在-byte-long-String-上？" class="headerlink" title="switch 是否能作用在 byte, long,String 上？"></a>switch 是否能作用在 byte, long,String 上？</h2><blockquote><ul><li>Java5 以前 switch(expr)中，expr 只能是 byte、short、char、int。</li><li>从 Java 5 开始，Java 中引入了枚举类型， expr 也可以是 enum 类型。</li><li>从 Java 7 开始，expr还可以是字符串(String)，但是长整型(long)在目前所有的版本中都是不可以的。</li></ul></blockquote><h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><blockquote><p><img src="/2021/10/25/java-base-1/java2.png" alt="Java访问修饰符"></p></blockquote><h2 id="final-finally-finalize"><a href="#final-finally-finalize" class="headerlink" title="final,finally,finalize"></a>final,finally,finalize</h2><blockquote><ul><li>final 变量：被修饰的变量不可变，不可变分为 引用不可变 和 对象不可变 ，final 指的是 引用不可变 ，final 修饰的变量必须初始化，通常称被修饰的变量为常量 。</li><li>final 方法：被修饰的方法不允许任何子类重写，子类可以使用该方法。</li><li>final 类：被修饰的类不能被继承，所有方法不能被重写</li><li>finally 作为异常处理的一部分，它只能在 try/catch 语句中，并且附带一个语句块表示这段语句最终一定被执行（无论是否抛出异常,函数中try里面return后也会执行），System.exit (0) 可以阻断finally 执行。</li><li>finalize 是在 java.lang.Object 里定义的方法，也就是说每一个对象都有这么个方法，这个方法在gc 启动，该对象被回收的时候被调用。</li><li>一个对象的 finalize 方法只会被调用一次，finalize 被调用不一定会立即回收该对象，所以有可能调用finalize 后，该对象又不需要被回收了，然后到了真正要被回收的时候，因为前面调用过一次，所以不会再次调用 finalize 了，进而产生问题，因此不推荐使用 finalize 方法。</li></ul></blockquote><h2 id="java静态变量、代码块、和静态方法的执行顺序"><a href="#java静态变量、代码块、和静态方法的执行顺序" class="headerlink" title="java静态变量、代码块、和静态方法的执行顺序"></a>java静态变量、代码块、和静态方法的执行顺序</h2><blockquote><p>代码块执行顺序：静态代码块——&gt; 构造代码块 ——&gt; 构造函数——&gt; 普通代码块<br>继承中代码块执行顺序：父类静态块——&gt;子类静态块——&gt;父类代码块——&gt;父类构造器——&gt;子类代码块——&gt;子类构造器</p></blockquote><h2 id="面向对象，面向过程"><a href="#面向对象，面向过程" class="headerlink" title="面向对象，面向过程"></a>面向对象，面向过程</h2><blockquote><p>面向过程：</p><ul><li>优点：性能比面向对象高，因为类调用时需要实例化，开销比较大，比较消耗资源;比如单片机、嵌入式开发、Linux/Unix等一般采用面向过程开发，性能是最重要的因素。</li><li>缺点：没有面向对象易维护、易复用、易扩展。</li></ul><p>面向对象：</p><ul><li>优点：易维护、易复用、易扩展，有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护。</li><li>缺点：性能比面向过程低。</li></ul></blockquote><h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><blockquote><ol><li>编译时多态：例如重载</li><li>运行时多态：编译时不确定究竟调用哪个具体方法，一直到运行时才能确定。<br>多态规则：</li><li>如果是访问成员变量，编译的话就是看父类，运行同样是看父类 </li><li>如果访问的方法，编译就看父类，运行则看子类 </li><li>如果是静态方法，编译和运行都是看父类<br>总的来说就记住这么一句，多态中只有非静态的成员方法才是编译看父类，而运<br>行时看子类，也即是实际调用的是子类方法 </li></ol></blockquote><h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><blockquote><p>语法上的区别：</p><ul><li>抽象类可以提供成员方法的实现细节，而接口中只能存在public abstract 方法；</li><li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是public static final类型的；</li><li>接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；</li><li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。</li></ul><p>设计层面上的区别：</p><ul><li>抽象类是对事物的抽象，接口则是对行为的抽象。抽象类是对整个类进行抽象，包括属性、行为，接口却是对类局部（行为）进行抽象。</li><li>设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计。</li></ul></blockquote><h2 id="Java创建对象方式"><a href="#Java创建对象方式" class="headerlink" title="Java创建对象方式"></a>Java创建对象方式</h2><blockquote><ul><li>new创建新对象</li><li>通过反射机制</li><li>采用clone机制</li><li>通过序列化机制</li></ul></blockquote><h2 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h2><blockquote><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义在JDK的Object.java中，这就意味着Java中的任何类都包含有hashCode()函数。<br>散列表存储的是键值对(key-value)，它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！（可以快速找到所需要的对象）</p></blockquote><h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><blockquote><p>反射是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法。对于任意一个对象都能调用它的属性和方法。这种动态获取的信息和动态调用对象的属性和方法叫反射机制。<br>也就是说反射可以操作class字节码。<br>优点：能够运行时动态获取类的实例，提高灵活性；可与动态编译结合。<br>缺点：使用反射性能较低，需要解析字节码，将内存中的对象进行解析。</p><p>Java反射API：</p><ul><li>Class 类：反射的核心类，可以获取类的属性，方法等信息。</li><li>Field 类：Java.lang.reflec 包中的类，表示类的成员变量，可以用来获取和设置类之中的属性值</li><li>Method 类：Java.lang.reflec 包中的类，表示类的方法，它可以用来获取类中的方法信息或者执行方法</li><li>Constructor 类：Java.lang.reflec 包中的类，表示类的构造方法。</li></ul><p>获取使用反射的Class对象：</p><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;获取类的 Class 对象实例Class clz &#x3D; Class.forName(&quot;java.lang.String&quot;);&#x2F;&#x2F;获取类的方法Method setPriceMethod &#x3D; clz.getMethod(&quot;方法名&quot;, int.class);&#x2F;&#x2F;根据 Class 对象实例获取 Constructor 对象Constructor appleConstructor &#x3D; clz.getConstructor();&#x2F;&#x2F;使用 Constructor 对象的 newInstance 方法获取反射类对象Object appleObj &#x3D; appleConstructor.newInstance();&#x2F;&#x2F;调用方法setPriceMethod.invoke(appleObj,12);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>反射机制的应用有哪些:</p><ul><li>反射让开发人员可以通过外部类的全路径名创建对象，并使用这些类，实现一些扩展的功能。</li><li>反射让开发人员可以枚举出类的全部成员，包括构造函数、属性、方法。以帮助开发者写出正确的代码。</li><li>测试时可以利用反射 API 访问类的私有成员，以保证测试代码覆盖率。</li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>springcloud-微服务-Config</title>
       <link href="/2021/10/23/springcloud-6/"/>
       <url>/2021/10/23/springcloud-6/</url>
