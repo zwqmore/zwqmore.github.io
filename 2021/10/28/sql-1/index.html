@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="理解mvvm, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="SQL-1, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>理解mvvm | ZwqBlog</title>
+    <title>SQL-1 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">理解mvvm</h1>
+                    <h1 class="description center-align post-title">SQL-1</h1>
                 </div>
             </div>
         </div>
@@ -409,12 +409,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                                <span class="chip bg-color">前端</span>
+                            <a href="/tags/SQL/">
+                                <span class="chip bg-color">SQL</span>
                             </a>
                         
-                            <a href="/tags/mvvm/">
-                                <span class="chip bg-color">mvvm</span>
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -425,8 +425,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/mvvm/" class="post-category">
-                                mvvm
+                            <a href="/categories/SQL/" class="post-category">
+                                SQL
                             </a>
                         
                     </div>
@@ -438,7 +438,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-15
+                    2021-10-28
                 </div>
                 
 
@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    654
+                    3.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    12 分
                 </div>
                 
 
@@ -477,37 +477,112 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="mvvm详解"><a href="#mvvm详解" class="headerlink" title="mvvm详解"></a>mvvm详解</h1><h2 id="什么是mvvm？"><a href="#什么是mvvm？" class="headerlink" title="什么是mvvm？"></a>什么是mvvm？</h2><blockquote>
-<p>mvvm是Model-View-ViewModel的缩写。<br>-model：数据-后端传递的数据-data数据<br>-view：视图-代表 UI 组件，它负责将数据模型转化成 UI 展现出来-template<br>-ViewModel:视图模型-是一个同步View 和 Model的对象。MVVM模式的核心，它是连接Model和View的桥梁。<br>MVVM的设计思想：关注Model的变化，让MVVM框架去自动更新DOM的状态，从而把开发者从操作DOM的繁琐步骤中解脱出来！<br><img src="/2021/10/15/mvvm/mvvm-1.jpg" alt="mvvm"></p>
-</blockquote>
-<h2 id="为什么出现mvvm？"><a href="#为什么出现mvvm？" class="headerlink" title="为什么出现mvvm？"></a>为什么出现mvvm？</h2><blockquote>
-<p>一直以来前端开发暴露的问题：<br>1.开发者在代码中大量调用相同的 DOM API，处理繁琐 ，操作冗余，使得代码难以维护。<br>2.用户大量交互，导致dom操作过于频繁，效率低下，影响用户体验<br>3.当 Model 频繁发生变化，开发者需要主动更新到 View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到 Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态。<br>早期 jquery 的出现就是为了前端能更简洁的操作 DOM 而设计的，但它只解决了第一个问题，另外两个问题始终伴随着前端一直存在。</p>
-</blockquote>
-<h2 id="mvvm优势？"><a href="#mvvm优势？" class="headerlink" title="mvvm优势？"></a>mvvm优势？</h2><blockquote>
-<p>1.视图与数据分离，耦合性低，互不影响。<br>2.数据视图双向绑定，有mvvm框架自动绑定。<br>3.前端开发更灵活。</p>
-</blockquote>
-<h2 id="具体来看前端发展过程"><a href="#具体来看前端发展过程" class="headerlink" title="具体来看前端发展过程"></a>具体来看前端发展过程</h2><p>1.直接使用js操作dom节点，使用浏览器提供的原生API：</p>
-<pre class="line-numbers language-none"><code class="language-none">var dom &#x3D; document.getElementById(&#39;xxx&#39;);
-dom.innerHTML &#x3D; &#39;xxx&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>开发者需要调用dom api进行操作<br>&emsp;<br>2.使用jQuery，简洁的API使用起来很方便</p>
-<pre class="line-numbers language-none"><code class="language-none">$(&#39;#xxx&#39;).text(&#39;xxx&#39;).css(&#39;color&#39;, &#39;green&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>&emsp;<br>3.使用mvvm框架（这里举个例子与jquery对比）<br>修改下面name和age：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;!-- HTML --&gt;
-&lt;p&gt;Hello, &lt;span id&#x3D;&quot;name&quot;&gt;Bart&lt;&#x2F;span&gt;!&lt;&#x2F;p&gt;
-&lt;p&gt;You are &lt;span id&#x3D;&quot;age&quot;&gt;12&lt;&#x2F;span&gt;.&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;<br>使用jquery修改两个dom节点：</p>
-<pre class="line-numbers language-none"><code class="language-none">var name &#x3D; &#39;Homer&#39;;
-var age &#x3D; 51;
-$(&#39;#name&#39;).text(name);
-$(&#39;#age&#39;).text(age);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;<br>使用mvvm实现：</p>
-<pre class="line-numbers language-none"><code class="language-none">var person &#x3D; &#123;
-    name: &#39;Bart&#39;,
-    age: 12
-&#125;;
-person.name &#x3D; &#39;Homer&#39;;
-person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>（以上例子来自廖雪峰js教程)<br>&emsp;<br>可以发现我们只需要修改数据，不需要关心怎么操作dom节点,而是直接修改js的对象。<br>剩下的由mvvm框架帮我们实现了(数据绑定)</p>
+                <h1 id="SQL-基础"><a href="#SQL-基础" class="headerlink" title="SQL 基础"></a>SQL 基础</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>create table if not exists student(studentno char(11) not null auto_increment,primary key (studentno));<br>show create table student;<br>alter table student add address varchar(30) not null after studentno;<br>alter table student rename to student2;<br>alter table student modify studentname varchar;<br>alter table student drop address;<br>alter table student add constraint fname foreign key(studentno) references student(studentno);<br>delete * from student where 1=1;<br>truncate table;<br>drop table if exists student;<br>select studentno,sum(daily<em>0.3+final</em>0.7) as ‘总分’ from score where final&gt;-75 group by studentno having cont(*)&gt;=3;<br>select studentno,sum(final) 总分,avg(final) 平均分 from score group by studentno having sum(final)&gt;270;<br>select courseno,avg(final) from score group by courseno with rollup;#查询所有课的平均值，和所有成绩的平均值</p>
+<h2 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h2><p>Inner Join:结果只包含满足条件的列。<br>Left Outer Join:结果包含满足条件，左侧表全部行。<br>Right Outer Join:结果包含满足条件，右侧全部行。<br>Cross Join:结果包含两个表所有行。<br>select s.Name,C.Cname from student_course as sc left join student as s on s.Sno=sc.Sno left join course as c on c.Cno=sc.Cno</p>
+<h2 id="union"><a href="#union" class="headerlink" title="union"></a>union</h2><p>合并多个结果集，将多个select语句的返回结果组合到一个结果集中。<br>所有查询中的列数和列的顺序必须相同且数据类型必须兼容。<br>select studentno,sname,phone from student01 where phone like ‘%131%’ union select studentno,sname,phone from teaching.student where phone like ‘%132%’;</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>子查询就是一个嵌套在select,insert,update,delete语句或其他子查询中的查询。</p>
+<ol>
+<li><p>利用子查询做表达式：<br>此时子查询必须返回一个值或单个列值列表，此时的子查询可以替换where子句中包含in关键字的表达式。<br>select studentno,sname,entrance,(select avg(entrance) from student) 平均成绩,entrance -(select avg(entrance) from student) 分差 from student where studentno=’18121212’;</p>
+</li>
+<li><p>利用子查询生成派生表<br>用于替代from子句中的数据源表<br>select studentno,courseno from (select * from score where final&gt;85) where final&gt;90;</p>
+</li>
+<li><p>where子句中的子查询<br>select studentno,courseno,final from score as a where final &lt; (select avg(final) from score where courseno=courseno group by courseno);</p>
+</li>
+<li><p>带in关键字的子查询<br>select studentno,sname from student where studetno in (select studentno from score where final&gt;99);</p>
+</li>
+</ol>
+<h2 id="正则表达式模糊查询"><a href="#正则表达式模糊查询" class="headerlink" title="正则表达式模糊查询"></a>正则表达式模糊查询</h2><p>^匹配文本开始字符 ^b<br>$匹配文本结束字符 b$<br>.匹配单个字符 b.b<br>*匹配零个或多个在它面前的字符 *n<br>+匹配前面的字符1次或多次 如ba+ b开头后面紧跟至少一个a：bay,baa,bare,battle<br>&lt;字符串&gt;匹配包含指定的字符串的文本 fa:字符串要包含fa,如fafff<br>[字符集合]匹配字符集合中任何一个字符</p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>索引是为了加速对数据进行检索而创建的一种分散的，物理的数据结构。利用索引可以快速查询数据库表中的特定记录信息。表的存储由两部分组成，一部分是表的数据页面，另一部分是索引页面。索引放在索引页面上。<br>索引一旦创建，由数据库自动管理和维护，比如插入更新记录时，数据库会自动在索引中做出相应修改。<br>使用索引优点：</p>
+<ol>
+<li>加速数据检索：索引能以一列或多列值为基础实现快速查找</li>
+<li>优化查询；索引能加速连接，排序和分组等。</li>
+<li>强制实施的唯一性：创建唯一索引，可以保证表中的数据不重复。</li>
+</ol>
+<p>联合索引：<br>从左到右使用索引中的字段，一个查询可以只使用索引中的一部分，只能最左侧部分。<br>比如电话簿，知道姓，很有用。知道姓和名，很有用。只知道名，不起作用。<br>create index phone_index on student(phone asc)<br>create index sc_index on score(studentno,courseno);<br>drop index mark on teacher;</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图作用：</p>
+<ol>
+<li>简化数据查询和处理。视图可以集中多个表数据，简化对数据查询和处理。</li>
+<li>屏蔽数据库的复杂性。不必了解复杂的数据库中的表结构。</li>
+<li>安全性。只让用户访问视图权限，不授予访问表权限，提高数据库安全性。<br>create view stu_score1 as select student.no,sname from score left join student on student.no = score.no where …<br>create view teach_view(教师号,教师名) as select * from teacher;<br>alter view teach_view as select teacherno,tname from teach where …<br>使用视图修改表数据，基表的数据也进行了修改。</li>
+</ol>
+<h2 id="MYSQL编程"><a href="#MYSQL编程" class="headerlink" title="MYSQL编程"></a>MYSQL编程</h2><p>变量：<br>局部变量，用户会话变量：@开头，系统会话变量两个@开头。</p>
+<ol>
+<li>会话变量：<br>MySQL服务器在内存中为每一个会话开辟独立的会话连接空间，不同的会话空间互不干扰，会话结束，会话空间释放。<br>set @name = ‘sss’<br>select @name := ‘sss’<br>select ‘sss’ into @name<br>:=能够产生结果集，into赋值方式仅仅用于定义与赋值，不会产生结果集。<br>例：<br>set @sname = (select sname from student where studentno = ‘111’);<br>select studetnno,sname,birthdate from student where sname = @sname;</li>
+<li>局部变量：<br>局部变量必须先定义，然后使用set或者select语句赋值。局部变量定义在begin…and语句块之间。并且必须指定局部变量的数据类型。<br>局部变量作为存储过程或者函数的参数使用。<br>declare myvar int default 100;<br>set myvar = 77;</li>
+<li>局部变量与会话变量区别<br>会话变量定义时不需要指定类型，局部变量需要。会话变量不能使用declare定义。<br>会话变量作用范围和生存周期大于局部变量。会话变量在本次会话期间一直有效，知道关闭服务器连接。局部变量若作为存储过程或者函数的参数，此时在整个存储过程或函数内有效。</li>
+</ol>
+<h2 id="定界符delimiter"><a href="#定界符delimiter" class="headerlink" title="定界符delimiter"></a>定界符delimiter</h2><p>delimiter //</p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>使用步骤：</p>
+<ol>
+<li>创建预处理语句</li>
+<li>执行预处理语句</li>
+<li>释放预处理语句<br>set @a=2;<br>prepare STMT from “select studetnno,sname from student limit?”;<br>execute STMT using @a;</li>
+</ol>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>use teaching; –打开数据库<br>‘#’打开数据库<br>use teaching;<br>/<em>打开数据库</em>/</p>
+<h2 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h2><p>delimiter //<br>create function my_area(long1 int,wide1 int) returns int<br>begin return long1 * wide1; end //<br>delimiter ;<br>select my_area(5,4);<br>–查看当前数据库中所有的自定义函数信息<br>show function status;            –较少<br>show function status like 模式;  –较多<br>–查看指定数据库中所有自定义函数名<br>select name from MySQL.proc where db = ‘teaching’ and type = ‘function’;<br>–详细信息<br>show create function func_name;<br>drop function func_name;</p>
+<h2 id="控制流语句"><a href="#控制流语句" class="headerlink" title="控制流语句"></a>控制流语句</h2><ol>
+<li>if<br>if x = 10 then set x = 1;<br>elseif x = 20 then set x = 2;<br>else set x = 3;<br>end if;</li>
+<li>case<br>case x<br>when 10 then set x = 1;<br>when 20 then set x = 2;<br>else set x = 3;<br>end case;</li>
+<li>while<br>while m &lt; n do<br>set sum = sum + n;<br>end while;</li>
+<li>loop<br>loop_label:loop<br>set sum = sum + k<br>if k &gt; n then<br>leave loop_label;<br>end if;<br>end loop;</li>
+<li>repeat<br>repeat<br>set sum = sum + k;<br>until p &gt; n<br>end repeat;</li>
+</ol>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>利用存储过程可以保证数据的完整性，提高执行重复任务的性能和数据的一致性。<br>优势：</p>
+<ol>
+<li>提高处理复杂任务的能力。</li>
+<li>增强代码复用性和共享性。</li>
+<li>减少网络中数据的流量。</li>
+<li>存储过程在服务器注册。</li>
+<li>加强了系统的安全性。<br>delimiter //<br>create procedure proc_stu()<br>reads sql data  –整个过程中所有的SQL语句仅需要读记录，不对记录进行写的操作。<br>begin<br>select studentno,sname from student where phone like ‘%131%’;<br>end//<br>delimiter ;<br>call proc_stu();<br>show procedure status like ‘proc_%’;<br>show create procedure proc_stu;</li>
+</ol>
+<p>–将读写权限改为modifies sql data,并指明调用者可以执行:<br>alter procedure do_insert<br>modifies sql data sql<br>security invoker;<br>在mysql存储过程出现的同时，用户权限也增加了5种，其中和存储过程有关的权限有 三种：<br>ALTER ROUTINE 编辑或删除存储过程<br>CREATE ROUTINE 建立存储过程<br>EXECUTE 运行存储过程</p>
+<p>SQL SECURITY INVOKER 只是让其他用户能运行 没有select、 update、delete权限只有CREATE ROUTINE权限的用户 所创建的存储过程<br>drop procedure if exists do_insert;</p>
+<h2 id="存储过程与函数比较"><a href="#存储过程与函数比较" class="headerlink" title="存储过程与函数比较"></a>存储过程与函数比较</h2><p>相同：</p>
+<ol>
+<li>存储过程和函数都可以重复使用，减少开发人员工作量。</li>
+<li>存储过程和函数可以增强数据的安全访问控制，可以设定只有某些数据库用户才具有某些存储过程和函数的执行权。</li>
+</ol>
+<p>不同：</p>
+<ol>
+<li>函数有且只有一个返回值，且必须指定返回值为字符串，数值两种。<br>存储过程返回值任意个，也可以没有。返回值需要使用out,inout参数定义。</li>
+<li>函数可以使用select…into语句为某个变量赋值，但不能使用select语句返回结果集。<br>存储过程甚至可以返回多个结果集。</li>
+<li>函数可以直接嵌入到SQL语句或MySQL表达式，还可以扩充标准的SQL语句。<br>存储过程一般需要单独调用，使用call。</li>
+</ol>
+<h2 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h2><p>有时需要访问select结果集中的具体数据行，对结果集中每条记录进行处理。游标就是用于解决此类问题。<br>游标在MySQL中是一种对select语句结果集进行访问的机制。<br>–声明游标后select没有执行，内存中不存在结果集<br>declare teach_cursor cursor<br>for select teacherno,tname from teacher;<br>–打开游标，select执行，内存存放结果集<br>open teach_cursor<br>–提取数据，需要fetch，只能顺序从前往后读。<br>fetch_loop:LOOP<br>fetch teach_cursor into v_no,v_name;<br>if @dovar = 1 then leave fetch_loop;<br>else select v_no,v_name;<br>end if;<br>end LOOP fetch_loop;<br>close teach_cursor;</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器是一种特殊的存储过程，只要满足一定条件，对数据insert,update,delete，数据库会自动执行触发器中定义的程序语句。<br>优点：</p>
+<ol>
+<li>触发器自动执行，在表的数据做了任何修改之后立即激活。</li>
+<li>可以强制限制，这些限制比用check约束所定义的更复杂，与check不同的是触发器可以引用其他表中的列。</li>
+</ol>
+<p>–更改course中某门课的课程号时，同时将score表课程号全部更新。<br>create trigger cno_update after update<br>on course for each row<br>begin update score set courseno = new.courseno<br>where courseno = old.courseno;<br>end<br>查看:<br>show triggers;<br>select * from information_schema.triggers;<br>注意事项：</p>
+<ol>
+<li>触发程序如果包含select语句，select语句不能返回结果集。</li>
+<li>同一个表不能创建两个相同触发时间，事件的触发程序。</li>
+<li>批量更新操作是，触发器会导致操作性能降低。</li>
+<li>InnoDB支持事务，触发程序和更新操作是在同一个事务中完成。</li>
+<li>MySQL触发程序不能对本表使用更新语句例如update，可以使用set代替，否则可能出现错误信息。</li>
+<li>添加触发器后一定要测试。<br>drop trigger stu_score;</li>
+</ol>
+<h2 id="事件及其应用"><a href="#事件及其应用" class="headerlink" title="事件及其应用"></a>事件及其应用</h2><p>MySQL中的事件又称事件调度器，是一种定时任务机制，可以用于定时执行任务。可以精确到每秒执行一个任务。<br>开启事件调度器：</p>
+<ol>
+<li>set @@global.event_scheduler = true;</li>
+<li>配置文件my.ini:加上一行：event_scheduler = 1,重启</li>
+</ol>
+<p>查看事件调度器：<br>show variables like ‘event_scheduler’;<br>–5秒后创建一个表test：<br>create event direct<br>on schedule at current_timestamp + interval 5 second<br>do<br>create table test(timeline timestamp);<br>–每秒插入一条记录到数据库test中：<br>create event test_insert<br>on schedule every 1 second<br>do insert into test values(current_timestamp);</p>
+<p>查看事件：<br>show events;<br>show events\G</p>
+<p>修改：<br>alter event test_insert disable;</p>
+<h2 id="并发事务与锁机制"><a href="#并发事务与锁机制" class="headerlink" title="并发事务与锁机制"></a>并发事务与锁机制</h2><p>一个事务往往是需要多条语句共同组成，来完成较为复杂的数据操作。<br>在MySQL数据库中，事务是进行数据管理的基本操作单元，锁机制是用于实现并发控制的主要方法。<br>事务本身必须具有以下4个特性。</p>
+<ol>
+<li>原子性：每个事务都必须被看作一个不可分割的单元。假设一个事务由两个或多个任务组成，其中的语句必须同时成功才能认为整个事务是成功的。</li>
+<li>一致性：事务执行完成后，都将数据库从一个一致状态转变到另一个状态，不能违背数据库的任何完整性检查。</li>
+<li>隔离性：每个事务在自己的会话空间发生，和其他发生在系统中的事务隔离。事务的结果只有在完全执行后才能看到。</li>
+<li>持久性：事务一旦提交，对数据库的修改将是持久的。</li>
+</ol>
+<h2 id="事务分类"><a href="#事务分类" class="headerlink" title="事务分类"></a>事务分类</h2><ol>
+<li>自动提交事务：默认情况下，MySQL采用autocommit模式运行。当执行一个用于修改表数据语句后，MySQL会将结果存储到磁盘中。如果没有定义事务，MySQL会自己定义事务。每个语句在完成时，都被提交或回滚。如果一个语句成功地完成，则提交该语句。如果遇到错误，则回滚。</li>
+<li>用户定义事务：显式事务是指显式定义了启动和结束的事务。</li>
+<li>分布式事务：一个比较复杂的环境，可能有多台服务器，要保证在多服务器环境中事务的完整性和一致性，就需要分布式事务。在分布式事务中，所有的操作都可以设计对多个服务器的操作，当这些操作都成功时，这些操作都会提交到相应的服务器的数据库中，如果存在一条失败，那么全部取消。</li>
+</ol>
 
                 
             </div>
@@ -522,12 +597,12 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                                    <span class="chip bg-color">前端</span>
+                                <a href="/tags/SQL/">
+                                    <span class="chip bg-color">SQL</span>
                                 </a>
                             
-                                <a href="/tags/mvvm/">
-                                    <span class="chip bg-color">mvvm</span>
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -571,17 +646,18 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/15/data-structure/">
+                <a href="/2021/10/28/sql-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="数据结构总汇">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="SQL-1">
                         
-                        <span class="card-title">数据结构总汇</span>
+                        <span class="card-title">SQL-1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -591,30 +667,31 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
+                            <a href="/categories/SQL/" class="post-category">
+                                    SQL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
                     </a>
                     
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">计算机基础</span>
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -628,13 +705,13 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/14/rabbitmq-springboot/">
+                <a href="/2021/10/25/java-base-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="rabbitmq安装配置+springboot整合">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="java-1">
                         
-                        <span class="card-title">rabbitmq安装配置+springboot整合</span>
+                        <span class="card-title">java-1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -645,14 +722,14 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/rabbitmq/" class="post-category">
-                                    rabbitmq
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
@@ -662,12 +739,8 @@ person.age &#x3D; 51;<span aria-hidden="true" class="line-numbers-rows"><span></
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/springboot/">
-                        <span class="chip bg-color">springboot</span>
-                    </a>
-                    
-                    <a href="/tags/rabbitmq/">
-                        <span class="chip bg-color">rabbitmq</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
                 </div>
