@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="centos7搭建本地yum源, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="SQL-2, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>centos7搭建本地yum源 | ZwqBlog</title>
+    <title>SQL-2 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">centos7搭建本地yum源</h1>
+                    <h1 class="description center-align post-title">SQL-2</h1>
                 </div>
             </div>
         </div>
@@ -303,10 +303,104 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -315,8 +409,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
+                            <a href="/tags/SQL/">
+                                <span class="chip bg-color">SQL</span>
+                            </a>
+                        
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -327,8 +425,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/linux/" class="post-category">
-                                linux
+                            <a href="/categories/SQL/" class="post-category">
+                                SQL
                             </a>
                         
                     </div>
@@ -340,7 +438,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-13
+                    2021-10-31
                 </div>
                 
 
@@ -349,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    249
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    9 分
                 </div>
                 
 
@@ -379,36 +477,101 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="centos7搭建本地yum源"><a href="#centos7搭建本地yum源" class="headerlink" title="centos7搭建本地yum源"></a>centos7搭建本地yum源</h1><h2 id="安装启动httpd服务器"><a href="#安装启动httpd服务器" class="headerlink" title="安装启动httpd服务器"></a>安装启动httpd服务器</h2><pre class="line-numbers language-none"><code class="language-none">yum -y install httpd yum
-systemctl start httpd
-#设置开机启动http服务
-systemctl enable httpd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>浏览器输入ip:80查看是否开启成功</p>
-<h2 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h2><pre class="line-numbers language-none"><code class="language-none">#创建挂载目录
-mkdir -p &#x2F;mnt&#x2F;cdrom
-#挂载
-mount &#x2F;dev&#x2F;cdrom &#x2F;mnt&#x2F;cdrom
-#编译此文件
-vi &#x2F;etc&#x2F;fstab
-#在文件最后一行增加以下内容：(挂载的镜像)
-&#x2F;dev&#x2F;cdrom &#x2F;mnt&#x2F;cdrom iso9660 defaults 0 0
-#开启目录阅览
-vi &#x2F;etc&#x2F;httpd&#x2F;conf.d&#x2F;welcome.conf
-#将Options -Indexes修改为Options +Indexes
-#旧文件复制
-mv &#x2F;var&#x2F;www&#x2F;html &#x2F;var&#x2F;www&#x2F;html_old
-#做挂载目录 的软链接
-ln -s &#x2F;mnt&#x2F;cdrom&#x2F; &#x2F;var&#x2F;www&#x2F;html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后重启httpd</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><pre class="line-numbers language-none"><code class="language-none">vi &#x2F;etc&#x2F;yum.repos.d&#x2F;zhsx-lan.repo
-#修改：(根据网络设置)
-[ZHSX-LAN-YUM]
-name&#x3D;CentOS7
-baseurl&#x3D;http:&#x2F;&#x2F;192.168.0.200:8000
-gpgcheck&#x3D;1
-gpgkey&#x3D;http:&#x2F;&#x2F;192.168.0.200:8000&#x2F;RPM-GPG-KEY-CentOS-7
-#测试是否能下载
-yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><h2 id="并发事务与锁机制"><a href="#并发事务与锁机制" class="headerlink" title="并发事务与锁机制"></a>并发事务与锁机制</h2><blockquote>
+<p>一个事务往往是需要多条语句共同组成，来完成较为复杂的数据操作。<br>在MySQL数据库中，事务是进行数据管理的基本操作单元，锁机制是用于实现并发控制的主要方法。<br>事务本身必须具有以下4个特性。</p>
+<ol>
+<li>原子性：每个事务都必须被看作一个不可分割的单元。假设一个事务由两个或多个任务组成，其中的语句必须同时成功才能认为整个事务是成功的。</li>
+<li>一致性：事务执行完成后，都将数据库从一个一致状态转变到另一个状态，不能违背数据库的任何完整性检查。</li>
+<li>隔离性：每个事务在自己的会话空间发生，和其他发生在系统中的事务隔离。事务的结果只有在完全执行后才能看到。</li>
+<li>持久性：事务一旦提交，对数据库的修改将是持久的。</li>
+</ol>
+</blockquote>
+<h2 id="事务分类"><a href="#事务分类" class="headerlink" title="事务分类"></a>事务分类</h2><blockquote>
+<ol>
+<li>自动提交事务：默认情况下，MySQL采用autocommit模式运行。当执行一个用于修改表数据语句后，MySQL会将结果存储到磁盘中。如果没有定义事务，MySQL会自己定义事务。每个语句在完成时，都被提交或回滚。如果一个语句成功地完成，则提交该语句。如果遇到错误，则回滚。</li>
+<li>用户定义事务：显式事务是指显式定义了启动和结束的事务。</li>
+<li>分布式事务：一个比较复杂的环境，可能有多台服务器，要保证在多服务器环境中事务的完整性和一致性，就需要分布式事务。在分布式事务中，所有的操作都可以设计对多个服务器的操作，当这些操作都成功时，这些操作都会提交到相应的服务器的数据库中，如果存在一条失败，那么全部取消。</li>
+</ol>
+</blockquote>
+<h2 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h2><blockquote>
+<p>MySQL中，当会话开始时，自动提交功能是打开的，@@autocommit=1，用户执行SQL语句后，就会被立即提交。<br>关闭自动提交：<br>set @@autocommit=0;</p>
+<ol>
+<li>启动事务：<br>第一条SQL语句或者在commit或rollback语句后的第一条SQL执行后，新的事务就开始了。也可以显示地启动一个事务。<br>start transaction | begin work</li>
+<li>结束事务：<br>commit提交语句，使事务开始后所执行的所有数据修改成为数据库的永久部分，也标志一个事务的结束。<br>注意：MySQL是平面事务模型，所有嵌套的事务不允许。在第一个事务使用start transaction后，第二个事务开始时，自动提交第一个事务。</li>
+<li>回滚事务<br>rollback回滚语句，回滚事务所做的修改，并结束当前事务。<br>rollback work;</li>
+<li>设置事务检查点<br>rollback to语句使事务回滚到某个点，实现事务部分回滚。需要使用savepoint来设置一个保存点。<br>savepoint identifier<br>identifier为保存点的名称<br>rollback to savepoint会向保存点回滚一个事务。<br>rollback to savepoing identifier<br>当回滚到某个保存点后，该保存点后设置的保存点将被删除。<br>释放保存点：<br>release savepoint identifier</li>
+<li>隐式关闭自动提交<br>start transaction可以隐式关闭自动提交,不会修改@@autocommit，<br>例：<pre class="line-numbers language-none"><code class="language-none">delimiter &#x2F;&#x2F;
+create procedure update_cno()
+begin start transaction;
+update course set cname&#x3D;&#39;高等数学&#39; where courseno&#x3D;&#39;c3333&#39;;
+commit;
+select * from course where courseno&#x3D;&#39;c3333&#39;;
+end&#x2F;&#x2F;
+delimiter ;
+call update_cno();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>运用事务保存点<br>向course添加一条记录，设置保存点，删除该记录，然后回滚，提交，可以发现没有删除:<pre class="line-numbers language-none"><code class="language-none">delimiter &#x2F;&#x2F;
+create procedure po_in()
+begin start transaction; insert into course values(&#39;c1111&#39;,&#39;111&#39;,&#39;111&#39;,&#39;111&#39;);
+savepoint spcno1;
+delete from course where courseno&#x3D;&#39;c1111&#39;;
+rollback work to savepoint spcno1;
+select * from course where courseno&#x3D;&#39;c1111&#39;;
+commit;
+end&#x2F;&#x2F;
+delimiter ;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+</blockquote>
+<h2 id="事务并发处理"><a href="#事务并发处理" class="headerlink" title="事务并发处理"></a>事务并发处理</h2><blockquote>
+<p>MySQL中，并发控制通过锁来实现。保证同一时刻执行多个事务时，一个事务的执行不能被其它事务干扰。</p>
+</blockquote>
+<h3 id="并发问题影响"><a href="#并发问题影响" class="headerlink" title="并发问题影响"></a>并发问题影响</h3><blockquote>
+<p>多个用户访问同一个数据库时，如果数据存储系统没有并发控制，就有并发问题。如果不加以控制，就有可能产生数据不一致问题。<br>数据库并发操作导致数据库不一致主要有4种：更新丢失，不可重复性，脏读，幻读数据。而且也有可能死锁。</p>
+<ol>
+<li>更新丢失：多个事务选择同一行更新，每个事务不知道其他事务的存在，最后的更新将覆盖其他事务，可能导致数据丢失。</li>
+<li>脏读：即读出的不正确的临时数据。</li>
+<li>不可重复读：同一个事务内两条相同的查询语句，查询结果不一致。</li>
+<li>幻读：当对某行执行插入或删除操作，而该行属于某事务正在读取的行的范围时，就会出现幻读。</li>
+<li>死锁：如果两个用户并发访问数据库，互相等待对方的数据，就会产生死锁。</li>
+</ol>
+</blockquote>
+<h3 id="设置事务隔离级别"><a href="#设置事务隔离级别" class="headerlink" title="设置事务隔离级别"></a>设置事务隔离级别</h3><blockquote>
+<p>SQL标准定义了4种隔离级别：<br>read uncommitted(读取未提交的数据) 隔离级别低：<br>所有事务都可以看到其他未提交事务的执行结果，该隔离级别很少用于实际应用。<br>read committed(读取提交的数据)：<br>大多数数据库系统默认隔离级别（不是MySQL的），满足隔离简单定义，一个事务只能看见已提交事务所做的改变。<br>repeatable read(可重复读)：<br>MySQL默认事务隔离级别，确保同一事务内相同的查询语句执行结果一致。<br>serializable(串行化) 隔离级别高：<br>通过强制事务排序，使之不可能相互冲突。换言之，在每条select语句后加上lock in share mode，为每个查询操作加一个共享锁。<br>这个级别，可能导致大量的锁等待现象。该隔离级别主要用于InnoDB存储引擎的分布式事务。<br>&emsp;<br>低级别的事务隔离可以提高事务的并发访问性能，可能导致较多的并发问题。<br>高级别的事务隔离可以有效避免并发问题，但会降低事务的并发访问性能，可能导致出现大量锁等待，甚至死锁现象。<br>查询当前隔离级别：<br>select @@tx_isolation<br>设置：set session transaction isolation level read uncommitted;</p>
+</blockquote>
+<h2 id="管理锁"><a href="#管理锁" class="headerlink" title="管理锁"></a>管理锁</h2><blockquote>
+<p>MySQL通过锁来防止数据并发操作过程中引起的问题。它是实现并发控制的主要方法，是多个用户能够同时操作同一个数据库中额数据而不发生数据不一致性现象的重要保障。<br>MySQL通过不同类型的锁来管理多用户并发访问，实现数据访问的一致性。</p>
+</blockquote>
+<h3 id="锁机制基本概念"><a href="#锁机制基本概念" class="headerlink" title="锁机制基本概念"></a>锁机制基本概念</h3><blockquote>
+<ol>
+<li>锁的粒度：指锁的作用范围。锁的粒度可以分为服务器级锁和存储引擎级锁。MyISAM支持表锁，InnoDB支持表锁以及行级锁。</li>
+<li>隐式锁和显式锁：自动加锁叫隐式锁，手动加锁称为显式锁。</li>
+<li>锁的类型：读锁(共享锁)和写锁(独占锁)。读锁允许其他用户对数据同时读，不允许写。写锁不允许读也不允许写。</li>
+<li>锁的钥匙：多个用户并发访问同一数据时，如果用户A对该数据成功加锁，那么只有A拥有钥匙，只有A能够对锁进行解锁。</li>
+<li>锁的生命周期：指在同一个MySQL服务器连接内，对数据加锁到解锁之间的时间间隔。</li>
+</ol>
+</blockquote>
+<h3 id="锁定和解锁"><a href="#锁定和解锁" class="headerlink" title="锁定和解锁"></a>锁定和解锁</h3><blockquote>
+<ol>
+<li>锁定表：<br>表锁定支持以下类型：read锁，write锁：<br>lock tables score read;<br>lock tables course write;</li>
+<li>解锁：<br>unlock tables;<br>&emsp;<br>在对事务表使用表锁定需要注意：在锁定表时会隐式地提交所有事务，在开始一个事务时，start transaction会隐式解开所有表锁定。系统变量@@autocommit必须为0，否则，MySQL会在调用lock tables之后会立即释放表锁定，很容易形成死锁。</li>
+</ol>
+</blockquote>
+<h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><blockquote>
+<p>MySQL中3种锁定机制</p>
+<ol>
+<li>表锁：一个特殊类型的访问，整个表被客户锁定。根据锁定的类型其他用户不能写数据，甚至不能读数据。表锁有两种：读锁和写锁。</li>
+<li>行锁：行级锁比表级锁或页级锁对锁定过程提供了更精细的控制。在这种情况下，只有线程使用的行是被锁定的。表中的其他行对于其他线程都是可用的。行级锁并不是由MySQL提供的锁定机制，而是由存储引擎自己实现。InnoDB的锁定机制就是行级锁定。行级锁定的类型包括3种：排他锁，共享锁，意向锁。</li>
+</ol>
+<ul>
+<li>排他锁(X锁)：如果事务T获得了数据行D上的排他锁，则T对数据行既可读又可写。事务T对数据行D加上排他锁，则其他事务对数据行D的任务封锁请求都不会成功，直至事务T释放数据行D上的排他锁。</li>
+<li>共享锁(S锁)：如果事务T获得了数据行D上的共享锁，则T对数据行可以读，不能写。事务T对数据行D加上共享锁，则其他事务对数据行D的排他锁请求不会成功，对数据行D的共享锁请求可以成功。</li>
+<li>意向锁：是一种表锁，锁定粒度是整张表，分为意向共享锁，意向排他锁。意向锁表示一个事务有意对数据上共享锁或排他锁。<ul>
+<li>意向共享锁：事务打算给数据行加共享锁，事务在取得一个数据行的共享锁之前必须先取得该表的意向共享锁。</li>
+<li>意向排他锁：事务打算给数据行加排他锁，事务在取得一个数据行的排他锁之前必须先取得该表的意向排他锁。</li>
+</ul>
+</li>
+</ul>
+<p>InnoDB表的行锁是通过对索引施加锁的方式实现的，这就是说，只有通过索引字段检索数据的查询语句或者更新语句，才可能施加行级锁。否则InnoDB将使用表级锁，会降低表的并发访问性能。<br>3. 页锁：页级锁开锁和加锁时间介于表级锁和行级锁之间，会出现死锁，锁定粒度介于表级锁和行级锁之间。<br>上述三种锁的特性可大致归纳如下：<br>表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低。<br>行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度也最高。<br>页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般。</p>
+</blockquote>
 
                 
             </div>
@@ -423,8 +586,12 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
+                                <a href="/tags/SQL/">
+                                    <span class="chip bg-color">SQL</span>
+                                </a>
+                            
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -468,17 +635,18 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/09/13/linux-ftp-login-error/">
+                <a href="/2021/10/31/sql-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="useradd -s /nologin创建用户后ftp无法登录">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="SQL-2">
                         
-                        <span class="card-title">useradd -s /nologin创建用户后ftp无法登录</span>
+                        <span class="card-title">SQL-2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -488,26 +656,31 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/SQL/" class="post-category">
+                                    SQL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -521,13 +694,13 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/08/jwt-springboot-aop/">
+                <a href="/2021/10/28/sql-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="springboot+aop实现验证jwt+全局异常处理">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="SQL-1">
                         
-                        <span class="card-title">springboot+aop实现验证jwt+全局异常处理</span>
+                        <span class="card-title">SQL-1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -538,14 +711,14 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/jwt/" class="post-category">
-                                    jwt
+                            <a href="/categories/SQL/" class="post-category">
+                                    SQL
                                 </a>
                             
                             
@@ -555,16 +728,12 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
                     </a>
                     
-                    <a href="/tags/jwt/">
-                        <span class="chip bg-color">jwt</span>
-                    </a>
-                    
-                    <a href="/tags/springboot/">
-                        <span class="chip bg-color">springboot</span>
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -596,6 +765,100 @@ yum install telnet<span aria-hidden="true" class="line-numbers-rows"><span></spa
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 
