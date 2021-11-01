@@ -447,7 +447,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    2.9k
                 </div>
                 
 
@@ -477,7 +477,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SQL-基础"><a href="#SQL-基础" class="headerlink" title="SQL 基础"></a>SQL 基础</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><blockquote>
+                <h1 id="SQL-基础"><a href="#SQL-基础" class="headerlink" title="SQL 基础"></a>SQL 基础</h1><h2 id="主要关键字的执行顺序："><a href="#主要关键字的执行顺序：" class="headerlink" title="主要关键字的执行顺序："></a>主要关键字的执行顺序：</h2><blockquote>
+<p>from<br>on<br>join<br>where<br>group by<br>having<br>select<br>distinct<br>union<br>order by  </p>
+</blockquote>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><blockquote>
 <pre class="line-numbers language-none"><code class="language-none">create table if not exists student(studentno char(11) not null auto_increment,primary key (studentno));
 show create table student;
 alter table student add address varchar(30) not null after studentno;
@@ -493,7 +496,7 @@ select studentno,sum(final) 总分,avg(final) 平均分 from score group by stud
 select courseno,avg(final) from score group by courseno with rollup;#查询所有课的平均值，和所有成绩的平均值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 <h2 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h2><blockquote>
-<p>Inner Join:结果只包含满足条件的列。<br>Left Outer Join:结果包含满足条件，左侧表全部行。<br>Right Outer Join:结果包含满足条件，右侧全部行。<br>Cross Join:结果包含两个表所有行。<br>select s.Name,C.Cname from student_course as sc left join student as s on s.Sno=sc.Sno left join course as c on c.Cno=sc.Cno</p>
+<p>Inner Join:结果只包含满足条件的列。<br>Left Outer Join:结果包含满足条件，左侧表全部行。<br>Right Outer Join:结果包含满足条件，右侧全部行。<br>Cross Join:结果包含两个表所有行。<br>select s.Name,C.Cname from student_course as sc left join student as s on s.Sno=sc.Sno left join course as c on c.Cno=sc.Cno<br>其中outer join 的执行过程分为4步<br>1、先对两个表执行交叉连接(笛卡尔积)<br>2、应用on筛选器<br>3、添加外部行<br>4、应用where筛选器</p>
 </blockquote>
 <h2 id="union"><a href="#union" class="headerlink" title="union"></a>union</h2><blockquote>
 <p>合并多个结果集，将多个select语句的返回结果组合到一个结果集中。<br>所有查询中的列数和列的顺序必须相同且数据类型必须兼容。<br>select studentno,sname,phone from student01 where phone like ‘%131%’ union select studentno,sname,phone from teaching.student where phone like ‘%132%’;</p>
@@ -1007,7 +1010,7 @@ do insert into test values(current_timestamp);<span aria-hidden="true" class="li
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">41.7k</span>&nbsp;字
+                class="white-color">46.6k</span>&nbsp;字
             
             
             

@@ -1,0 +1,1491 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="设计模式, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>设计模式 | ZwqBlog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">ZwqBlog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZwqBlog</div>
+        <div class="logo-desc">
+            
+            本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zwqmore/zwqmore.github.io.git" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zwqmore/zwqmore.github.io.git" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">设计模式</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">设计模式</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                设计模式
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-01
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    19 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="设计模式定义"><a href="#设计模式定义" class="headerlink" title="设计模式定义"></a>设计模式定义</h2><p>在软件工程领域，设计模式是一套通用的可复用的解决方案，用来解决在软件设计过程中产生的通用问题。它不是一个可以直接转换成源代码的设计，只是一套在软件系统设计过程中程序员应该遵循的最佳实践准则。</p>
+<h2 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h2><p>创建型模式：共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式<br>结构型模式：共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式<br>行为型模式：共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式</p>
+<h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul>
+<li>总原则：开闭原则，对扩展开放，对修改关闭。</li>
+<li>单一原则：每个类应该实现单一的职责，如若不然，就应该把类拆分。</li>
+<li>里氏替换原则(LSP)：子类对父类的方法尽量不要重写和重载。因为父类代表了定义好的结构，通过这个规范的接口与外界交互，子类不应该随便破坏它。</li>
+<li>依赖倒转原则：这个是开闭原则的基础，具体来说就是面向接口编程，依赖于抽象而不依赖于具体。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。</li>
+<li>接口隔离原则：每个接口中不存在子类用不到却必须实现的方法，如果不然，就要将接口拆分。使用多个隔离的接口要比使用单个接口要好。</li>
+<li>迪米特法则(Demeter)：一个类对自己依赖的类知道的越少越好。无论被依赖的类多么复杂，都应该将逻辑封装在方法内部，通过public方法提供给外部。这样当被依赖的类变化时，才能最小的影响该类。</li>
+<li>合成复用原则：尽量使用对象组合，而不是通过继承来达到复用的目的。就是在一个新的对象里面使用一些已有的对象，使之成为新对象的一部分。新对象通过向这些对象的委派达到复用已有功能的目的。这样耦合度更低。不会破坏封装性，即黑盒复用，继承的话是白盒复用。父类会将实现细节暴露给子类。</li>
+</ul>
+<h2 id="设计模式-1"><a href="#设计模式-1" class="headerlink" title="设计模式"></a>设计模式</h2><h3 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h3><h4 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h4><p>首先，简单工厂模式不属于23种设计模式，简单工厂一般分为：普通简单工厂、多方法简单工厂、静态方法简单工厂。</p>
+<ol>
+<li>普通简单工厂(举例:发送邮件和短信的例子):<br>创建二者的共同接口：<pre class="line-numbers language-none"><code class="language-none">public interface Sender &#123;
+	public void Send();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+创建实现类：<pre class="line-numbers language-none"><code class="language-none">public class MailSender implements Sender &#123;
+	@Override
+	public void Send() &#123;
+		System.out.println(&quot;this is mailsender!&quot;);
+	&#125;
+&#125;
+
+public class SmsSender implements Sender &#123;
+ 
+	@Override
+	public void Send() &#123;
+		System.out.println(&quot;this is sms sender!&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+创建工厂类：<pre class="line-numbers language-none"><code class="language-none">public class SendFactory &#123;
+ 
+	public Sender produce(String type) &#123;
+		if (&quot;mail&quot;.equals(type)) &#123;
+			return new MailSender();
+		&#125; else if (&quot;sms&quot;.equals(type)) &#123;
+			return new SmsSender();
+		&#125; else &#123;
+			System.out.println(&quot;请输入正确的类型!&quot;);
+			return null;
+		&#125;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+测试：<pre class="line-numbers language-none"><code class="language-none">public class FactoryTest &#123;
+ 
+	public static void main(String[] args) &#123;
+		SendFactory factory &#x3D; new SendFactory();
+		Sender sender &#x3D; factory.produce(&quot;sms&quot;);
+		sender.Send();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+输出：this is sms sender!</li>
+<li>多方法简单工厂:是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。<br>对SendFactory进行修改：<pre class="line-numbers language-none"><code class="language-none">public class SendFactory &#123;
+	
+	public Sender produceMail()&#123;
+		return new MailSender();
+	&#125;
+	
+	public Sender produceSms()&#123;
+		return new SmsSender();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+测试：<pre class="line-numbers language-none"><code class="language-none">public class FactoryTest &#123;
+ 
+	public static void main(String[] args) &#123;
+		SendFactory factory &#x3D; new SendFactory();
+		Sender sender &#x3D; factory.produceMail();
+		sender.Send();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+输出：this is mailsender!</li>
+<li>静态方法简单工厂,将上面的多方法简单工厂里的方法置为静态的，可直接调用。<pre class="line-numbers language-none"><code class="language-none">public class SendFactory &#123;
+	
+	public static Sender produceMail()&#123;
+		return new MailSender();
+	&#125;
+	
+	public static Sender produceSms()&#123;
+		return new SmsSender();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+测试：<pre class="line-numbers language-none"><code class="language-none">public class FactoryTest &#123;
+ 
+	public static void main(String[] args) &#123;	
+		Sender sender &#x3D; SendFactory.produceMail();
+		sender.Send();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+输出：this is mailsender!<br>总体来说，工厂模式适合：凡是出现了大量的产品需要创建，并且具有共同的接口时，可以通过工厂方法模式进行创建。</li>
+</ol>
+<h4 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h4><p>简单工厂模式类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则。需要使用工厂方法模式，创建一个工厂接口和创建多个工厂实现类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。<br>举例(共同接口)：</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface Sender &#123;  
+    public void Send();  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>实现类:</p>
+<pre class="line-numbers language-none"><code class="language-none">public class MailSender implements Sender &#123;  
+    @Override  
+    public void Send() &#123;  
+        System.out.println(&quot;this is mailsender!&quot;);  
+    &#125;  
+&#125;  
+
+public class SmsSender implements Sender &#123;  
+  
+    @Override  
+    public void Send() &#123;  
+        System.out.println(&quot;this is sms sender!&quot;);  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>工厂类：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class SendMailFactory implements Provider &#123;  
+      
+    @Override  
+    public Sender produce()&#123;  
+        return new MailSender();  
+    &#125;  
+&#125;  
+
+public class SendSmsFactory implements Provider&#123;  
+  
+    @Override  
+    public Sender produce() &#123;  
+        return new SmsSender();  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>提供接口：</p>
+<pre class="line-numbers language-none"><code class="language-none">public interface Provider &#123;  
+    public Sender produce();  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>测试类:</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Test &#123;  
+  
+    public static void main(String[] args) &#123;  
+        Provider provider &#x3D; new SendMailFactory();  
+        Sender sender &#x3D; provider.produce();  
+        sender.Send();  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样工厂方法模式如果想要添加一个功能，只需要做一个实现类(实现Sender),同时做一个工厂类，实现Provider接口，就OK。无需更改现成代码。扩展性较好。</p>
+<h4 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h4><p>抽象工厂模式和工厂方法模式很相似，区别如下：</p>
+<ul>
+<li>工厂方法模式：<ul>
+<li>一个抽象产品类，可以派生出多个具体产品类。   </li>
+<li>一个抽象工厂类，可以派生出多个具体工厂类。   </li>
+<li>每个具体工厂类只能创建一个具体产品类的实例。</li>
+</ul>
+</li>
+<li>抽象工厂模式：<ul>
+<li>多个抽象产品类，每个抽象产品类可以派生出多个具体产品类。   </li>
+<li>一个抽象工厂类，可以派生出多个具体工厂类。   </li>
+<li>每个具体工厂类可以创建多个具体产品类的实例，也就是创建的是一个产品线下的多个产品。</li>
+</ul>
+</li>
+<li>工厂方法模式只有一个抽象产品类，而抽象工厂模式有多个。</li>
+<li>工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个。</li>
+<li>工厂方法创建 “一种” 产品，他的着重点在于”怎么创建”。抽象工厂需要创建一系列产品，着重点在于”创建哪些”产品上。</li>
+</ul>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>单例对象是一种常用的设计模式。在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样的模式有几个好处：</p>
+<ol>
+<li>某些类创建比较频繁，对于一些大型的对象，这是一笔很大的系统开销。</li>
+<li>省去了new操作符，降低了系统内存的使用频率，减轻GC压力。</li>
+<li>有些类如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了。<br>简单单例类举例：<pre class="line-numbers language-none"><code class="language-none">public class Singleton &#123;  
+  
+    &#x2F;* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 *&#x2F;  
+    private static Singleton instance &#x3D; null;  
+  
+    &#x2F;* 私有构造方法，防止被实例化 *&#x2F;  
+    private Singleton() &#123;  
+    &#125;  
+  
+    &#x2F;* 静态工程方法，创建实例 *&#x2F;  
+    public static Singleton getInstance() &#123;  
+        if (instance &#x3D;&#x3D; null) &#123;  
+            instance &#x3D; new Singleton();  
+        &#125;  
+        return instance;  
+    &#125;  
+  
+    &#x2F;* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 *&#x2F;  
+    public Object readResolve() &#123;  
+        return instance;  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+这个类可以满足基本要求，但是没有线程安全保护，放入多线程的环境下肯定会出现问题，如何解决？我们首先会想到对getInstance方法加synchronized关键字，如下：<pre class="line-numbers language-none"><code class="language-none">public static synchronized Singleton getInstance() &#123;  
+       if (instance &#x3D;&#x3D; null) &#123;  
+           instance &#x3D; new Singleton();  
+       &#125;  
+       return instance;  
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+由于JVM内部的优化机制，JVM先划出了一些分配给Singleton实例的空白内存，并赋值给instance成员（此时JVM没有开始初始化这个实例），然后A离开了synchronized块。这种情况还是可能存在问题。<br>进一步优化：<pre class="line-numbers language-none"><code class="language-none">	public class Singleton &#123;  
+  
+    &#x2F;* 私有构造方法，防止被实例化 *&#x2F;  
+    private Singleton() &#123;  
+    &#125;  
+  
+    &#x2F;* 此处使用一个内部类来维护单例 *&#x2F;  
+    private static class SingletonFactory &#123;  
+        private static Singleton instance &#x3D; new Singleton();  
+    &#125;  
+  
+    &#x2F;* 获取实例 *&#x2F;  
+    public static Singleton getInstance() &#123;  
+        return SingletonFactory.instance;  
+    &#125;  
+  
+    &#x2F;* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 *&#x2F;  
+    public Object readResolve() &#123;  
+        return getInstance();  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+实际情况是，单例模式使用内部类来维护单例的实现，JVM内部的机制能够保证当一个类被加载的时候，这个类的加载过程是线程互斥的。这样当我们第一次调用getInstance的时候，JVM能够帮我们保证instance只被创建一次，并且会保证把赋值给instance的内存初始化完毕，这样我们就不用担心上面的问题。同时该方法也只会在第一次调用的时候使用互斥机制，这样就解决了低性能问题。这样我们暂时总结一个完美的单例模式。<br>说它完美，也不一定，如果在构造函数中抛出异常，实例将永远得不到创建，也会出错。<br>也有人这样实现：因为我们只需要在创建类的时候进行同步，所以只要将创建和getInstance()分开，单独为创建加synchronized关键字，也是可以的：<pre class="line-numbers language-none"><code class="language-none">	public class SingletonTest &#123;  
+  
+    private static SingletonTest instance &#x3D; null;  
+  
+    private SingletonTest() &#123;  
+    &#125;  
+  
+    private static synchronized void syncInit() &#123;  
+        if (instance &#x3D;&#x3D; null) &#123;  
+            instance &#x3D; new SingletonTest();  
+        &#125;  
+    &#125;  
+  
+    public static SingletonTest getInstance() &#123;  
+        if (instance &#x3D;&#x3D; null) &#123;  
+            syncInit();  
+        &#125;  
+        return instance;  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+考虑性能的话，整个程序只需创建一次实例，所以性能也不会有什么影响。<br>饿汉式实现：<pre class="line-numbers language-none"><code class="language-none">public class Hungry &#123;
+
+    &#x2F;**
+     * 可能会浪费空间
+     *&#x2F;
+    private byte[] data1 &#x3D; new byte[1024*1024];
+    private byte[] data2 &#x3D; new byte[1024*1024];
+    private byte[] data3 &#x3D; new byte[1024*1024];
+    private byte[] data4 &#x3D; new byte[1024*1024];
+
+
+    private Hungry()&#123;
+
+    &#125;
+
+    private final static Hungry HUNGRY &#x3D; new Hungry();
+
+    public static Hungry getInstance()&#123;
+        return HUNGRY;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+懒汉式实现：<pre class="line-numbers language-none"><code class="language-none">import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+public class LazyMan &#123;
+
+    private static boolean qinjiang &#x3D; false;
+
+    private LazyMan() &#123;
+        synchronized (LazyMan.class) &#123;
+            if (qinjiang &#x3D;&#x3D; false) &#123;
+                qinjiang &#x3D; true;
+            &#125; else &#123;
+                throw new RuntimeException(&quot;不要试图使用反射破坏异常&quot;);
+            &#125;
+        &#125;
+    &#125;
+
+    private volatile static LazyMan lazyMan;
+
+    &#x2F;**
+     * 双重检测锁模式的懒汉式单例，简称为DCL懒汉式
+     *
+     * @return
+     *&#x2F;
+    public static LazyMan getInstance() &#123;
+        if (lazyMan &#x3D;&#x3D; null) &#123;
+            synchronized (LazyMan.class) &#123;
+                if (lazyMan &#x3D;&#x3D; null) &#123;
+                    &#x2F;&#x2F;不是一个原子性操作
+                    lazyMan &#x3D; new LazyMan();
+                    &#x2F;**
+                     * 1. 分配内存空间
+                     * 2. 执行构造方法，初始化对象
+                     * 3. 把这个对象指向这个空间
+                     *&#x2F;
+                &#125;
+            &#125;
+        &#125;
+
+        return lazyMan;
+    &#125;
+
+&#x2F;&#x2F;    &#x2F;**
+&#x2F;&#x2F;     * 多线程并发
+&#x2F;&#x2F;     *&#x2F;
+&#x2F;&#x2F;    public static void main(String[] args) &#123;
+&#x2F;&#x2F;        for (int i &#x3D; 0; i &lt; 10; i++) &#123;
+&#x2F;&#x2F;            new Thread(()-&gt;&#123;
+&#x2F;&#x2F;                LazyMan.getInstance();
+&#x2F;&#x2F;            &#125;).start();
+&#x2F;&#x2F;        &#125;
+&#x2F;&#x2F;    &#125;
+
+    &#x2F;**
+     * 反射
+     *&#x2F;
+    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException &#123;
+        &#x2F;&#x2F;LazyMan instance &#x3D; LazyMan.getInstance();
+        Constructor&lt;LazyMan&gt; declaredConstructor &#x3D; LazyMan.class.getDeclaredConstructor(null);
+        declaredConstructor.setAccessible(true);
+        LazyMan instance &#x3D; declaredConstructor.newInstance();
+        LazyMan instance2 &#x3D; declaredConstructor.newInstance();
+        System.out.println(instance);
+        System.out.println(instance2);
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+在普通的懒汉式单例模式中，线程是不安全的，所以我们需要使用双重检测锁模式的懒汉式单例来解决问题，由于实例不能保持原子性，所以会导致指令重排的现象，于是我们会添加volatile关键字来保证原子性，这样既保证原子性又不会造成线程不安全的现象。<br>单例模式理解起来简单，但是具体实现起来还是有一定的难度。<br>synchronized关键字锁定的是对象，在用的时候，一定要在恰当的地方使用（注意需要使用锁的对象和过程，可能有的时候并不是整个对象及整个过程都需要锁）。</li>
+</ol>
+<h4 id="构建者模式"><a href="#构建者模式" class="headerlink" title="构建者模式"></a>构建者模式</h4><p>定义：将一个复杂对象的构建与其表示分离，使得同样的构建过程可以创建不同的表示。构建者模式隐藏了复杂对象的创建过程，它把复杂对象的创建过程加以抽象，通过子类继承或者重载的方式，动态的创建具有复合属性的对象。<br>适用场景：当一个类的构造函数参数个数超过4个，而且这些参数有些是可选的参数，考虑使用构造者模式。<br>当一个类的构造函数参数超过4个，而且这些参数有些是可选的时，我们通常有两种办法来构建它的对象。 例如我们现在有如下一个类计算机类Computer，其中cpu与ram是必填参数，而其他3个是可选参数，那么我们如何构造这个类的实例呢,通常有两种常用的方式：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
+    private String cpu;&#x2F;&#x2F;必须
+    private String ram;&#x2F;&#x2F;必须
+    private int usbCount;&#x2F;&#x2F;可选
+    private String keyboard;&#x2F;&#x2F;可选
+    private String display;&#x2F;&#x2F;可选
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第一：折叠构造函数模式:</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
+     ...
+    public Computer(String cpu, String ram) &#123;
+        this(cpu, ram, 0);
+    &#125;
+    public Computer(String cpu, String ram, int usbCount) &#123;
+        this(cpu, ram, usbCount, &quot;罗技键盘&quot;);
+    &#125;
+    public Computer(String cpu, String ram, int usbCount, String keyboard) &#123;
+        this(cpu, ram, usbCount, keyboard, &quot;三星显示器&quot;);
+    &#125;
+    public Computer(String cpu, String ram, int usbCount, String keyboard, String display) &#123;
+        this.cpu &#x3D; cpu;
+        this.ram &#x3D; ram;
+        this.usbCount &#x3D; usbCount;
+        this.keyboard &#x3D; keyboard;
+        this.display &#x3D; display;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第二种：Javabean 模式:</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
+        ...
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+    public void setCpu(String cpu) &#123;
+        this.cpu &#x3D; cpu;
+    &#125;
+    public String getRam() &#123;
+        return ram;
+    &#125;
+    public void setRam(String ram) &#123;
+        this.ram &#x3D; ram;
+    &#125;
+    public int getUsbCount() &#123;
+        return usbCount;
+    &#125;
+...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面两种方式弊端：<br>第一种使用及阅读不方便，当你要调用一个类的构造函数时，你首先要决定使用哪一个，然后里面又是一堆参数，如果这些参数的类型很多又都一样，你还要搞清楚这些参数的含义，很容易就传混了。<br>第二种方式在构建过程中对象的状态容易发生变化，造成错误。因为那个类中的属性是分步设置的，所以就容易出错。<br>builder模式实现：</p>
+<ol>
+<li>在Computer 中创建一个静态内部类 Builder，然后将Computer 中的参数都复制到Builder类中。</li>
+<li>在Computer中创建一个private的构造函数，参数为Builder类型</li>
+<li>在Builder中创建一个public的构造函数，参数为Computer中必填的那些参数，cpu 和ram。</li>
+<li>在Builder中创建设置函数，对Computer中那些可选参数进行赋值，返回值为Builder类型的实例</li>
+<li>在Builder中创建一个build()方法，在其中构建Computer的实例并返回<pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
+    private final String cpu;&#x2F;&#x2F;必须
+    private final String ram;&#x2F;&#x2F;必须
+    private final int usbCount;&#x2F;&#x2F;可选
+    private final String keyboard;&#x2F;&#x2F;可选
+    private final String display;&#x2F;&#x2F;可选
+
+    private Computer(Builder builder)&#123;
+        this.cpu&#x3D;builder.cpu;
+        this.ram&#x3D;builder.ram;
+        this.usbCount&#x3D;builder.usbCount;
+        this.keyboard&#x3D;builder.keyboard;
+        this.display&#x3D;builder.display;
+    &#125;
+    public static class Builder&#123;
+        private String cpu;&#x2F;&#x2F;必须
+        private String ram;&#x2F;&#x2F;必须
+        private int usbCount;&#x2F;&#x2F;可选
+        private String keyboard;&#x2F;&#x2F;可选
+        private String display;&#x2F;&#x2F;可选
+
+        public Builder(String cup,String ram)&#123;
+            this.cpu&#x3D;cup;
+            this.ram&#x3D;ram;
+        &#125;
+
+        public Builder setUsbCount(int usbCount) &#123;
+            this.usbCount &#x3D; usbCount;
+            return this;
+        &#125;
+        public Builder setKeyboard(String keyboard) &#123;
+            this.keyboard &#x3D; keyboard;
+            return this;
+        &#125;
+        public Builder setDisplay(String display) &#123;
+            this.display &#x3D; display;
+            return this;
+        &#125;        
+        public Computer build()&#123;
+            return new Computer(this);
+        &#125;
+    &#125;
+  &#x2F;&#x2F;省略getter方法
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+使用：链式调用，一步一步的把对象构建出来：<pre class="line-numbers language-none"><code class="language-none">Computer computer&#x3D;new Computer.Builder(&quot;因特尔&quot;,&quot;三星&quot;)
+                .setDisplay(&quot;三星24寸&quot;)
+                .setKeyboard(&quot;罗技&quot;)
+                .setUsbCount(2)
+                .build();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><p>原型模式虽然是创建型的模式，但是与工程模式没有关系，从名字即可看出，该模式的思想就是将一个对象作为原型，对其进行复制、克隆，产生一个和原对象类似的新对象。本小结会通过对象的复制，进行讲解。在Java中，复制对象是通过clone()实现的，先创建一个原型类：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class Prototype implements Cloneable &#123;  
+  
+    public Object clone() throws CloneNotSupportedException &#123;  
+        Prototype proto &#x3D; (Prototype) super.clone();  
+        return proto;  
+    &#125;  
+&#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>原型模式优势和适用场景：<br>使用原型模式创建对象比直接new一个对象在性能上要好的多，因为Object类的clone方法是一个本地方法，它直接操作内存中的二进制流，特别是复制大对象时，性能的差别非常明显。<br>简化对象的创建，使得创建对象就像我们在编辑文档时的复制粘贴一样简单。<br>在需要重复地创建相似对象时可以考虑使用原型模式。比如需要在一个循环体内创建对象，假如对象创建过程比较复杂或者循环次数很多的话，使用原型模式不但可以简化创建过程，而且可以使系统的整体性能提高很多。<br>注意：</p>
+<ul>
+<li>使用原型模式复制对象不会调用类的构造方法。因为对象的复制是通过调用Object类的clone方法来完成的，它直接在内存中复制数据，因此不会调用到类的构造方法。不但构造方法中的代码不会执行，甚至连访问权限都对原型模式无效。还记得单例模式吗？单例模式中，只要将构造方法的访问权限设置为private型，就可以实现单例。但是clone方法直接无视构造方法的权限，所以，单例模式与原型模式是冲突的，在使用时要特别注意。</li>
+<li>深拷贝与浅拷贝。Object类的clone方法只会拷贝对象中的基本的数据类型，对于数组、容器对象、引用对象等都不会拷贝，这就是浅拷贝。如果要实现深拷贝，必须将原型模式中的数组、容器对象、引用对象等另行拷贝。例如：<pre class="line-numbers language-none"><code class="language-none">public class Prototype implements Cloneable &#123;
+	private ArrayList list &#x3D; new ArrayList();
+	public Prototype clone()&#123;
+		Prototype prototype &#x3D; null;
+		try&#123;
+			prototype &#x3D; (Prototype)super.clone();
+			prototype.list &#x3D; (ArrayList) this.list.clone();
+		&#125;catch(CloneNotSupportedException e)&#123;
+			e.printStackTrace();
+		&#125;
+		return prototype; 
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要我们自己实现深拷贝。<br>PS：深拷贝与浅拷贝问题中，会发生深拷贝的有java中的8中基本类型以及他们的封装类型，另外还有String类型。其余的都是浅拷贝。<br>&emsp;<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengzhb/article/details/7393528">https://blog.csdn.net/zhengzhb/article/details/7393528</a><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangerqing/article/details/8194653">https://blog.csdn.net/zhangerqing/article/details/8194653</a></li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">设计模式</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/11/01/design-patterns-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="设计模式">
+                        
+                        <span class="card-title">设计模式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/31/sql-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="SQL-2">
+                        
+                        <span class="card-title">SQL-2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SQL/" class="post-category">
+                                    SQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+			<span id="sitetime"></span>
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">zwq</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">46.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://beian.miit.gov.cn/" target="_blank">渝ICP备2021010819号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zwqmore" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2672879993@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2672879993" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2672879993" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2021, 10, 15, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+	<script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ人呢？", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪嘿嘿！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) }) </script>
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
