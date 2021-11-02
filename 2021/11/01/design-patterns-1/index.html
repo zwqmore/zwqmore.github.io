@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="设计模式, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="设计模式-创建型模式, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>设计模式 | ZwqBlog</title>
+    <title>设计模式-创建型模式 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">设计模式</h1>
+                    <h1 class="description center-align post-title">设计模式-创建型模式</h1>
                 </div>
             </div>
         </div>
@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    21 分
                 </div>
                 
 
@@ -473,9 +473,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="设计模式定义"><a href="#设计模式定义" class="headerlink" title="设计模式定义"></a>设计模式定义</h2><p>在软件工程领域，设计模式是一套通用的可复用的解决方案，用来解决在软件设计过程中产生的通用问题。它不是一个可以直接转换成源代码的设计，只是一套在软件系统设计过程中程序员应该遵循的最佳实践准则。</p>
-<h2 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h2><p>创建型模式：共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式<br>结构型模式：共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式<br>行为型模式：共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式</p>
-<h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><ul>
+                <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="设计模式定义"><a href="#设计模式定义" class="headerlink" title="设计模式定义"></a>设计模式定义</h2><blockquote>
+<p>在软件工程领域，设计模式是一套通用的可复用的解决方案，用来解决在软件设计过程中产生的通用问题。它不是一个可以直接转换成源代码的设计，只是一套在软件系统设计过程中程序员应该遵循的最佳实践准则。</p>
+</blockquote>
+<h2 id="设计模式分类"><a href="#设计模式分类" class="headerlink" title="设计模式分类"></a>设计模式分类</h2><blockquote>
+<p>创建型模式：共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式<br>结构型模式：共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式<br>行为型模式：共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式</p>
+</blockquote>
+<h2 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h2><blockquote>
+<ul>
 <li>总原则：开闭原则，对扩展开放，对修改关闭。</li>
 <li>单一原则：每个类应该实现单一的职责，如若不然，就应该把类拆分。</li>
 <li>里氏替换原则(LSP)：子类对父类的方法尽量不要重写和重载。因为父类代表了定义好的结构，通过这个规范的接口与外界交互，子类不应该随便破坏它。</li>
@@ -484,135 +489,141 @@
 <li>迪米特法则(Demeter)：一个类对自己依赖的类知道的越少越好。无论被依赖的类多么复杂，都应该将逻辑封装在方法内部，通过public方法提供给外部。这样当被依赖的类变化时，才能最小的影响该类。</li>
 <li>合成复用原则：尽量使用对象组合，而不是通过继承来达到复用的目的。就是在一个新的对象里面使用一些已有的对象，使之成为新对象的一部分。新对象通过向这些对象的委派达到复用已有功能的目的。这样耦合度更低。不会破坏封装性，即黑盒复用，继承的话是白盒复用。父类会将实现细节暴露给子类。</li>
 </ul>
-<h2 id="设计模式-1"><a href="#设计模式-1" class="headerlink" title="设计模式"></a>设计模式</h2><h3 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h3><h4 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h4><p>首先，简单工厂模式不属于23种设计模式，简单工厂一般分为：普通简单工厂、多方法简单工厂、静态方法简单工厂。</p>
+</blockquote>
+<h2 id="设计模式-1"><a href="#设计模式-1" class="headerlink" title="设计模式"></a>设计模式</h2><h3 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h3><h4 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h4><blockquote>
+<p>首先，简单工厂模式不属于23种设计模式，简单工厂一般分为：普通简单工厂、多方法简单工厂、静态方法简单工厂。</p>
 <ol>
 <li>普通简单工厂(举例:发送邮件和短信的例子):<br>创建二者的共同接口：<pre class="line-numbers language-none"><code class="language-none">public interface Sender &#123;
-	public void Send();
+public void Send();
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 创建实现类：<pre class="line-numbers language-none"><code class="language-none">public class MailSender implements Sender &#123;
-	@Override
-	public void Send() &#123;
-		System.out.println(&quot;this is mailsender!&quot;);
-	&#125;
+@Override
+public void Send() &#123;
+	System.out.println(&quot;this is mailsender!&quot;);
+&#125;
 &#125;
 
 public class SmsSender implements Sender &#123;
- 
-	@Override
-	public void Send() &#123;
-		System.out.println(&quot;this is sms sender!&quot;);
-	&#125;
+
+@Override
+public void Send() &#123;
+	System.out.println(&quot;this is sms sender!&quot;);
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 创建工厂类：<pre class="line-numbers language-none"><code class="language-none">public class SendFactory &#123;
- 
-	public Sender produce(String type) &#123;
-		if (&quot;mail&quot;.equals(type)) &#123;
-			return new MailSender();
-		&#125; else if (&quot;sms&quot;.equals(type)) &#123;
-			return new SmsSender();
-		&#125; else &#123;
-			System.out.println(&quot;请输入正确的类型!&quot;);
-			return null;
-		&#125;
+
+public Sender produce(String type) &#123;
+	if (&quot;mail&quot;.equals(type)) &#123;
+		return new MailSender();
+	&#125; else if (&quot;sms&quot;.equals(type)) &#123;
+		return new SmsSender();
+	&#125; else &#123;
+		System.out.println(&quot;请输入正确的类型!&quot;);
+		return null;
 	&#125;
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 测试：<pre class="line-numbers language-none"><code class="language-none">public class FactoryTest &#123;
- 
-	public static void main(String[] args) &#123;
-		SendFactory factory &#x3D; new SendFactory();
-		Sender sender &#x3D; factory.produce(&quot;sms&quot;);
-		sender.Send();
-	&#125;
+
+public static void main(String[] args) &#123;
+	SendFactory factory &#x3D; new SendFactory();
+	Sender sender &#x3D; factory.produce(&quot;sms&quot;);
+	sender.Send();
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 输出：this is sms sender!</li>
 <li>多方法简单工厂:是对普通工厂方法模式的改进，在普通工厂方法模式中，如果传递的字符串出错，则不能正确创建对象，而多个工厂方法模式是提供多个工厂方法，分别创建对象。<br>对SendFactory进行修改：<pre class="line-numbers language-none"><code class="language-none">public class SendFactory &#123;
-	
-	public Sender produceMail()&#123;
-		return new MailSender();
-	&#125;
-	
-	public Sender produceSms()&#123;
-		return new SmsSender();
-	&#125;
+
+public Sender produceMail()&#123;
+	return new MailSender();
+&#125;
+
+public Sender produceSms()&#123;
+	return new SmsSender();
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 测试：<pre class="line-numbers language-none"><code class="language-none">public class FactoryTest &#123;
- 
-	public static void main(String[] args) &#123;
-		SendFactory factory &#x3D; new SendFactory();
-		Sender sender &#x3D; factory.produceMail();
-		sender.Send();
-	&#125;
+
+public static void main(String[] args) &#123;
+	SendFactory factory &#x3D; new SendFactory();
+	Sender sender &#x3D; factory.produceMail();
+	sender.Send();
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 输出：this is mailsender!</li>
 <li>静态方法简单工厂,将上面的多方法简单工厂里的方法置为静态的，可直接调用。<pre class="line-numbers language-none"><code class="language-none">public class SendFactory &#123;
-	
-	public static Sender produceMail()&#123;
-		return new MailSender();
-	&#125;
-	
-	public static Sender produceSms()&#123;
-		return new SmsSender();
-	&#125;
+
+public static Sender produceMail()&#123;
+	return new MailSender();
+&#125;
+
+public static Sender produceSms()&#123;
+	return new SmsSender();
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 测试：<pre class="line-numbers language-none"><code class="language-none">public class FactoryTest &#123;
- 
-	public static void main(String[] args) &#123;	
-		Sender sender &#x3D; SendFactory.produceMail();
-		sender.Send();
-	&#125;
+
+public static void main(String[] args) &#123;	
+	Sender sender &#x3D; SendFactory.produceMail();
+	sender.Send();
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 输出：this is mailsender!<br>总体来说，工厂模式适合：凡是出现了大量的产品需要创建，并且具有共同的接口时，可以通过工厂方法模式进行创建。</li>
 </ol>
-<h4 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h4><p>简单工厂模式类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则。需要使用工厂方法模式，创建一个工厂接口和创建多个工厂实现类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。<br>举例(共同接口)：</p>
+</blockquote>
+<h4 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h4><blockquote>
+<p>简单工厂模式类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则。需要使用工厂方法模式，创建一个工厂接口和创建多个工厂实现类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。<br>举例(共同接口)：</p>
 <pre class="line-numbers language-none"><code class="language-none">public interface Sender &#123;  
-    public void Send();  
+   public void Send();  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>实现类:</p>
 <pre class="line-numbers language-none"><code class="language-none">public class MailSender implements Sender &#123;  
-    @Override  
-    public void Send() &#123;  
-        System.out.println(&quot;this is mailsender!&quot;);  
-    &#125;  
+   @Override  
+   public void Send() &#123;  
+       System.out.println(&quot;this is mailsender!&quot;);  
+   &#125;  
 &#125;  
 
 public class SmsSender implements Sender &#123;  
-  
-    @Override  
-    public void Send() &#123;  
-        System.out.println(&quot;this is sms sender!&quot;);  
-    &#125;  
+ 
+   @Override  
+   public void Send() &#123;  
+       System.out.println(&quot;this is sms sender!&quot;);  
+   &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>工厂类：</p>
 <pre class="line-numbers language-none"><code class="language-none">public class SendMailFactory implements Provider &#123;  
-      
-    @Override  
-    public Sender produce()&#123;  
-        return new MailSender();  
-    &#125;  
+     
+   @Override  
+   public Sender produce()&#123;  
+       return new MailSender();  
+   &#125;  
 &#125;  
 
 public class SendSmsFactory implements Provider&#123;  
-  
-    @Override  
-    public Sender produce() &#123;  
-        return new SmsSender();  
-    &#125;  
+ 
+   @Override  
+   public Sender produce() &#123;  
+       return new SmsSender();  
+   &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>提供接口：</p>
 <pre class="line-numbers language-none"><code class="language-none">public interface Provider &#123;  
-    public Sender produce();  
+   public Sender produce();  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>测试类:</p>
 <pre class="line-numbers language-none"><code class="language-none">public class Test &#123;  
-  
-    public static void main(String[] args) &#123;  
-        Provider provider &#x3D; new SendMailFactory();  
-        Sender sender &#x3D; provider.produce();  
-        sender.Send();  
-    &#125;  
+ 
+   public static void main(String[] args) &#123;  
+       Provider provider &#x3D; new SendMailFactory();  
+       Sender sender &#x3D; provider.produce();  
+       sender.Send();  
+   &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样工厂方法模式如果想要添加一个功能，只需要做一个实现类(实现Sender),同时做一个工厂类，实现Provider接口，就OK。无需更改现成代码。扩展性较好。</p>
-<h4 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h4><p>抽象工厂模式和工厂方法模式很相似，区别如下：</p>
+</blockquote>
+<h4 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h4><blockquote>
+<p>抽象工厂模式和工厂方法模式很相似，区别如下：</p>
 <ul>
 <li>工厂方法模式：<ul>
 <li>一个抽象产品类，可以派生出多个具体产品类。   </li>
@@ -630,31 +641,33 @@ public class SendSmsFactory implements Provider&#123;
 <li>工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个。</li>
 <li>工厂方法创建 “一种” 产品，他的着重点在于”怎么创建”。抽象工厂需要创建一系列产品，着重点在于”创建哪些”产品上。</li>
 </ul>
-<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>单例对象是一种常用的设计模式。在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样的模式有几个好处：</p>
+</blockquote>
+<h4 id="单例模式-Singleton"><a href="#单例模式-Singleton" class="headerlink" title="单例模式 Singleton"></a>单例模式 Singleton</h4><blockquote>
+<p>单例对象是一种常用的设计模式。在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样的模式有几个好处：</p>
 <ol>
 <li>某些类创建比较频繁，对于一些大型的对象，这是一笔很大的系统开销。</li>
 <li>省去了new操作符，降低了系统内存的使用频率，减轻GC压力。</li>
 <li>有些类如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了。<br>简单单例类举例：<pre class="line-numbers language-none"><code class="language-none">public class Singleton &#123;  
-  
-    &#x2F;* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 *&#x2F;  
-    private static Singleton instance &#x3D; null;  
-  
-    &#x2F;* 私有构造方法，防止被实例化 *&#x2F;  
-    private Singleton() &#123;  
-    &#125;  
-  
-    &#x2F;* 静态工程方法，创建实例 *&#x2F;  
-    public static Singleton getInstance() &#123;  
-        if (instance &#x3D;&#x3D; null) &#123;  
-            instance &#x3D; new Singleton();  
-        &#125;  
-        return instance;  
-    &#125;  
-  
-    &#x2F;* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 *&#x2F;  
-    public Object readResolve() &#123;  
-        return instance;  
-    &#125;  
+ 
+   &#x2F;* 持有私有静态实例，防止被引用，此处赋值为null，目的是实现延迟加载 *&#x2F;  
+   private static Singleton instance &#x3D; null;  
+ 
+   &#x2F;* 私有构造方法，防止被实例化 *&#x2F;  
+   private Singleton() &#123;  
+   &#125;  
+ 
+   &#x2F;* 静态工程方法，创建实例 *&#x2F;  
+   public static Singleton getInstance() &#123;  
+       if (instance &#x3D;&#x3D; null) &#123;  
+           instance &#x3D; new Singleton();  
+       &#125;  
+       return instance;  
+   &#125;  
+ 
+   &#x2F;* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 *&#x2F;  
+   public Object readResolve() &#123;  
+       return instance;  
+   &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 这个类可以满足基本要求，但是没有线程安全保护，放入多线程的环境下肯定会出现问题，如何解决？我们首先会想到对getInstance方法加synchronized关键字，如下：<pre class="line-numbers language-none"><code class="language-none">public static synchronized Singleton getInstance() &#123;  
        if (instance &#x3D;&#x3D; null) &#123;  
@@ -683,88 +696,88 @@ public class SendSmsFactory implements Provider&#123;
         return getInstance();  
     &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-实际情况是，单例模式使用内部类来维护单例的实现，JVM内部的机制能够保证当一个类被加载的时候，这个类的加载过程是线程互斥的。这样当我们第一次调用getInstance的时候，JVM能够帮我们保证instance只被创建一次，并且会保证把赋值给instance的内存初始化完毕，这样我们就不用担心上面的问题。同时该方法也只会在第一次调用的时候使用互斥机制，这样就解决了低性能问题。这样我们暂时总结一个完美的单例模式。<br>说它完美，也不一定，如果在构造函数中抛出异常，实例将永远得不到创建，也会出错。<br>也有人这样实现：因为我们只需要在创建类的时候进行同步，所以只要将创建和getInstance()分开，单独为创建加synchronized关键字，也是可以的：<pre class="line-numbers language-none"><code class="language-none">	public class SingletonTest &#123;  
-  
-    private static SingletonTest instance &#x3D; null;  
-  
-    private SingletonTest() &#123;  
-    &#125;  
-  
-    private static synchronized void syncInit() &#123;  
-        if (instance &#x3D;&#x3D; null) &#123;  
-            instance &#x3D; new SingletonTest();  
-        &#125;  
-    &#125;  
-  
-    public static SingletonTest getInstance() &#123;  
-        if (instance &#x3D;&#x3D; null) &#123;  
-            syncInit();  
-        &#125;  
-        return instance;  
-    &#125;  
+实际情况是，单例模式使用内部类来维护单例的实现，JVM内部的机制能够保证当一个类被加载的时候，这个类的加载过程是线程互斥的。这样当我们第一次调用getInstance的时候，JVM能够帮我们保证instance只被创建一次，并且会保证把赋值给instance的内存初始化完毕，这样我们就不用担心上面的问题。同时该方法也只会在第一次调用的时候使用互斥机制，这样就解决了低性能问题。这样我们暂时总结一个完美的单例模式。<br>说它完美，也不一定，如果在构造函数中抛出异常，实例将永远得不到创建，也会出错。<br>也有人这样实现：因为我们只需要在创建类的时候进行同步，所以只要将创建和getInstance()分开，单独为创建加synchronized关键字，也是可以的：<pre class="line-numbers language-none"><code class="language-none">public class SingletonTest &#123;  
+ 
+   private static SingletonTest instance &#x3D; null;  
+ 
+   private SingletonTest() &#123;  
+   &#125;  
+ 
+   private static synchronized void syncInit() &#123;  
+       if (instance &#x3D;&#x3D; null) &#123;  
+           instance &#x3D; new SingletonTest();  
+       &#125;  
+   &#125;  
+ 
+   public static SingletonTest getInstance() &#123;  
+       if (instance &#x3D;&#x3D; null) &#123;  
+           syncInit();  
+       &#125;  
+       return instance;  
+   &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 考虑性能的话，整个程序只需创建一次实例，所以性能也不会有什么影响。<br>饿汉式实现：<pre class="line-numbers language-none"><code class="language-none">public class Hungry &#123;
 
-    &#x2F;**
-     * 可能会浪费空间
-     *&#x2F;
-    private byte[] data1 &#x3D; new byte[1024*1024];
-    private byte[] data2 &#x3D; new byte[1024*1024];
-    private byte[] data3 &#x3D; new byte[1024*1024];
-    private byte[] data4 &#x3D; new byte[1024*1024];
+   &#x2F;**
+    * 可能会浪费空间
+    *&#x2F;
+   private byte[] data1 &#x3D; new byte[1024*1024];
+   private byte[] data2 &#x3D; new byte[1024*1024];
+   private byte[] data3 &#x3D; new byte[1024*1024];
+   private byte[] data4 &#x3D; new byte[1024*1024];
 
 
-    private Hungry()&#123;
+   private Hungry()&#123;
 
-    &#125;
+   &#125;
 
-    private final static Hungry HUNGRY &#x3D; new Hungry();
+   private final static Hungry HUNGRY &#x3D; new Hungry();
 
-    public static Hungry getInstance()&#123;
-        return HUNGRY;
-    &#125;
+   public static Hungry getInstance()&#123;
+       return HUNGRY;
+   &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 懒汉式实现：<pre class="line-numbers language-none"><code class="language-none">import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class LazyMan &#123;
 
-    private static boolean qinjiang &#x3D; false;
+   private static boolean qinjiang &#x3D; false;
 
-    private LazyMan() &#123;
-        synchronized (LazyMan.class) &#123;
-            if (qinjiang &#x3D;&#x3D; false) &#123;
-                qinjiang &#x3D; true;
-            &#125; else &#123;
-                throw new RuntimeException(&quot;不要试图使用反射破坏异常&quot;);
-            &#125;
-        &#125;
-    &#125;
+   private LazyMan() &#123;
+       synchronized (LazyMan.class) &#123;
+           if (qinjiang &#x3D;&#x3D; false) &#123;
+               qinjiang &#x3D; true;
+           &#125; else &#123;
+               throw new RuntimeException(&quot;不要试图使用反射破坏异常&quot;);
+           &#125;
+       &#125;
+   &#125;
 
-    private volatile static LazyMan lazyMan;
+   private volatile static LazyMan lazyMan;
 
-    &#x2F;**
-     * 双重检测锁模式的懒汉式单例，简称为DCL懒汉式
-     *
-     * @return
-     *&#x2F;
-    public static LazyMan getInstance() &#123;
-        if (lazyMan &#x3D;&#x3D; null) &#123;
-            synchronized (LazyMan.class) &#123;
-                if (lazyMan &#x3D;&#x3D; null) &#123;
-                    &#x2F;&#x2F;不是一个原子性操作
-                    lazyMan &#x3D; new LazyMan();
-                    &#x2F;**
-                     * 1. 分配内存空间
-                     * 2. 执行构造方法，初始化对象
-                     * 3. 把这个对象指向这个空间
-                     *&#x2F;
-                &#125;
-            &#125;
-        &#125;
+   &#x2F;**
+    * 双重检测锁模式的懒汉式单例，简称为DCL懒汉式
+    *
+    * @return
+    *&#x2F;
+   public static LazyMan getInstance() &#123;
+       if (lazyMan &#x3D;&#x3D; null) &#123;
+           synchronized (LazyMan.class) &#123;
+               if (lazyMan &#x3D;&#x3D; null) &#123;
+                   &#x2F;&#x2F;不是一个原子性操作
+                   lazyMan &#x3D; new LazyMan();
+                   &#x2F;**
+                    * 1. 分配内存空间
+                    * 2. 执行构造方法，初始化对象
+                    * 3. 把这个对象指向这个空间
+                    *&#x2F;
+               &#125;
+           &#125;
+       &#125;
 
-        return lazyMan;
-    &#125;
+       return lazyMan;
+   &#125;
 
 &#x2F;&#x2F;    &#x2F;**
 &#x2F;&#x2F;     * 多线程并发
@@ -777,69 +790,100 @@ public class LazyMan &#123;
 &#x2F;&#x2F;        &#125;
 &#x2F;&#x2F;    &#125;
 
-    &#x2F;**
-     * 反射
-     *&#x2F;
-    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException &#123;
-        &#x2F;&#x2F;LazyMan instance &#x3D; LazyMan.getInstance();
-        Constructor&lt;LazyMan&gt; declaredConstructor &#x3D; LazyMan.class.getDeclaredConstructor(null);
-        declaredConstructor.setAccessible(true);
-        LazyMan instance &#x3D; declaredConstructor.newInstance();
-        LazyMan instance2 &#x3D; declaredConstructor.newInstance();
-        System.out.println(instance);
-        System.out.println(instance2);
-    &#125;
+   &#x2F;**
+    * 反射
+    *&#x2F;
+   public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException &#123;
+       &#x2F;&#x2F;LazyMan instance &#x3D; LazyMan.getInstance();
+       Constructor&lt;LazyMan&gt; declaredConstructor &#x3D; LazyMan.class.getDeclaredConstructor(null);
+       declaredConstructor.setAccessible(true);
+       LazyMan instance &#x3D; declaredConstructor.newInstance();
+       LazyMan instance2 &#x3D; declaredConstructor.newInstance();
+       System.out.println(instance);
+       System.out.println(instance2);
+   &#125;
 
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-在普通的懒汉式单例模式中，线程是不安全的，所以我们需要使用双重检测锁模式的懒汉式单例来解决问题，由于实例不能保持原子性，所以会导致指令重排的现象，于是我们会添加volatile关键字来保证原子性，这样既保证原子性又不会造成线程不安全的现象。<br>单例模式理解起来简单，但是具体实现起来还是有一定的难度。<br>synchronized关键字锁定的是对象，在用的时候，一定要在恰当的地方使用（注意需要使用锁的对象和过程，可能有的时候并不是整个对象及整个过程都需要锁）。</li>
+在普通的懒汉式单例模式中，线程是不安全的，所以我们需要使用双重检测锁模式的懒汉式单例来解决问题，由于实例不能保持原子性，所以会导致指令重排的现象，于是我们会添加volatile关键字来保证原子性，这样既保证原子性又不会造成线程不安全的现象。<br>枚举式单例模式：<pre class="line-numbers language-none"><code class="language-none">import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+&#x2F;**
+* enum 是一个什么？ 本身也是一个Class类
+*&#x2F;
+public enum  EnumSingle &#123;
+   &#x2F;**
+    *
+    *&#x2F;
+   INSTANCE;
+   public EnumSingle getInstance()&#123;
+       return INSTANCE;
+   &#125;
+&#125;
+
+class Test&#123;
+   public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException &#123;
+       EnumSingle instance1 &#x3D; EnumSingle.INSTANCE;
+       Constructor&lt;EnumSingle&gt; declaredConstructor &#x3D; EnumSingle.class.getDeclaredConstructor(String.class,int.class);
+       declaredConstructor.setAccessible(true);
+       EnumSingle instance2 &#x3D; declaredConstructor.newInstance();
+
+       &#x2F;&#x2F;java.lang.NoSuchMethodException: com.czu.single.EnumSingle.&lt;init&gt;()
+       System.out.println(instance1);
+       System.out.println(instance2);
+
+   &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+这种实现方式还没有被广泛采用，但这是实现单例模式的最佳方法。它更简洁，自动支持序列化机制，绝对防止多次实例化。这种方式是 Effective Java 作者 Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还自动支持序列化机制，防止反序列化重新创建新的对象，绝对防止多次实例化。<br>单例模式理解起来简单，但是具体实现起来还是有一定的难度。<br>synchronized关键字锁定的是对象，在用的时候，一定要在恰当的地方使用（注意需要使用锁的对象和过程，可能有的时候并不是整个对象及整个过程都需要锁）。</li>
 </ol>
-<h4 id="构建者模式"><a href="#构建者模式" class="headerlink" title="构建者模式"></a>构建者模式</h4><p>定义：将一个复杂对象的构建与其表示分离，使得同样的构建过程可以创建不同的表示。构建者模式隐藏了复杂对象的创建过程，它把复杂对象的创建过程加以抽象，通过子类继承或者重载的方式，动态的创建具有复合属性的对象。<br>适用场景：当一个类的构造函数参数个数超过4个，而且这些参数有些是可选的参数，考虑使用构造者模式。<br>当一个类的构造函数参数超过4个，而且这些参数有些是可选的时，我们通常有两种办法来构建它的对象。 例如我们现在有如下一个类计算机类Computer，其中cpu与ram是必填参数，而其他3个是可选参数，那么我们如何构造这个类的实例呢,通常有两种常用的方式：</p>
+</blockquote>
+<h4 id="构建者模式-Builder"><a href="#构建者模式-Builder" class="headerlink" title="构建者模式 Builder"></a>构建者模式 Builder</h4><blockquote>
+<p>定义：将一个复杂对象的构建与其表示分离，使得同样的构建过程可以创建不同的表示。构建者模式隐藏了复杂对象的创建过程，它把复杂对象的创建过程加以抽象，通过子类继承或者重载的方式，动态的创建具有复合属性的对象。<br>适用场景：当一个类的构造函数参数个数超过4个，而且这些参数有些是可选的参数，考虑使用构造者模式。<br>当一个类的构造函数参数超过4个，而且这些参数有些是可选的时，我们通常有两种办法来构建它的对象。 例如我们现在有如下一个类计算机类Computer，其中cpu与ram是必填参数，而其他3个是可选参数，那么我们如何构造这个类的实例呢,通常有两种常用的方式：</p>
 <pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
-    private String cpu;&#x2F;&#x2F;必须
-    private String ram;&#x2F;&#x2F;必须
-    private int usbCount;&#x2F;&#x2F;可选
-    private String keyboard;&#x2F;&#x2F;可选
-    private String display;&#x2F;&#x2F;可选
+   private String cpu;&#x2F;&#x2F;必须
+   private String ram;&#x2F;&#x2F;必须
+   private int usbCount;&#x2F;&#x2F;可选
+   private String keyboard;&#x2F;&#x2F;可选
+   private String display;&#x2F;&#x2F;可选
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>第一：折叠构造函数模式:</p>
 <pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
-     ...
-    public Computer(String cpu, String ram) &#123;
-        this(cpu, ram, 0);
-    &#125;
-    public Computer(String cpu, String ram, int usbCount) &#123;
-        this(cpu, ram, usbCount, &quot;罗技键盘&quot;);
-    &#125;
-    public Computer(String cpu, String ram, int usbCount, String keyboard) &#123;
-        this(cpu, ram, usbCount, keyboard, &quot;三星显示器&quot;);
-    &#125;
-    public Computer(String cpu, String ram, int usbCount, String keyboard, String display) &#123;
-        this.cpu &#x3D; cpu;
-        this.ram &#x3D; ram;
-        this.usbCount &#x3D; usbCount;
-        this.keyboard &#x3D; keyboard;
-        this.display &#x3D; display;
-    &#125;
+    ...
+   public Computer(String cpu, String ram) &#123;
+       this(cpu, ram, 0);
+   &#125;
+   public Computer(String cpu, String ram, int usbCount) &#123;
+       this(cpu, ram, usbCount, &quot;罗技键盘&quot;);
+   &#125;
+   public Computer(String cpu, String ram, int usbCount, String keyboard) &#123;
+       this(cpu, ram, usbCount, keyboard, &quot;三星显示器&quot;);
+   &#125;
+   public Computer(String cpu, String ram, int usbCount, String keyboard, String display) &#123;
+       this.cpu &#x3D; cpu;
+       this.ram &#x3D; ram;
+       this.usbCount &#x3D; usbCount;
+       this.keyboard &#x3D; keyboard;
+       this.display &#x3D; display;
+   &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>第二种：Javabean 模式:</p>
 <pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
-        ...
+       ...
 
-    public String getCpu() &#123;
-        return cpu;
-    &#125;
-    public void setCpu(String cpu) &#123;
-        this.cpu &#x3D; cpu;
-    &#125;
-    public String getRam() &#123;
-        return ram;
-    &#125;
-    public void setRam(String ram) &#123;
-        this.ram &#x3D; ram;
-    &#125;
-    public int getUsbCount() &#123;
-        return usbCount;
-    &#125;
+   public String getCpu() &#123;
+       return cpu;
+   &#125;
+   public void setCpu(String cpu) &#123;
+       this.cpu &#x3D; cpu;
+   &#125;
+   public String getRam() &#123;
+       return ram;
+   &#125;
+   public void setRam(String ram) &#123;
+       this.ram &#x3D; ram;
+   &#125;
+   public int getUsbCount() &#123;
+       return usbCount;
+   &#125;
 ...
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面两种方式弊端：<br>第一种使用及阅读不方便，当你要调用一个类的构造函数时，你首先要决定使用哪一个，然后里面又是一堆参数，如果这些参数的类型很多又都一样，你还要搞清楚这些参数的含义，很容易就传混了。<br>第二种方式在构建过程中对象的状态容易发生变化，造成错误。因为那个类中的属性是分步设置的，所以就容易出错。<br>builder模式实现：</p>
@@ -849,81 +893,84 @@ public class LazyMan &#123;
 <li>在Builder中创建一个public的构造函数，参数为Computer中必填的那些参数，cpu 和ram。</li>
 <li>在Builder中创建设置函数，对Computer中那些可选参数进行赋值，返回值为Builder类型的实例</li>
 <li>在Builder中创建一个build()方法，在其中构建Computer的实例并返回<pre class="line-numbers language-none"><code class="language-none">public class Computer &#123;
-    private final String cpu;&#x2F;&#x2F;必须
-    private final String ram;&#x2F;&#x2F;必须
-    private final int usbCount;&#x2F;&#x2F;可选
-    private final String keyboard;&#x2F;&#x2F;可选
-    private final String display;&#x2F;&#x2F;可选
+   private final String cpu;&#x2F;&#x2F;必须
+   private final String ram;&#x2F;&#x2F;必须
+   private final int usbCount;&#x2F;&#x2F;可选
+   private final String keyboard;&#x2F;&#x2F;可选
+   private final String display;&#x2F;&#x2F;可选
 
-    private Computer(Builder builder)&#123;
-        this.cpu&#x3D;builder.cpu;
-        this.ram&#x3D;builder.ram;
-        this.usbCount&#x3D;builder.usbCount;
-        this.keyboard&#x3D;builder.keyboard;
-        this.display&#x3D;builder.display;
-    &#125;
-    public static class Builder&#123;
-        private String cpu;&#x2F;&#x2F;必须
-        private String ram;&#x2F;&#x2F;必须
-        private int usbCount;&#x2F;&#x2F;可选
-        private String keyboard;&#x2F;&#x2F;可选
-        private String display;&#x2F;&#x2F;可选
+   private Computer(Builder builder)&#123;
+       this.cpu&#x3D;builder.cpu;
+       this.ram&#x3D;builder.ram;
+       this.usbCount&#x3D;builder.usbCount;
+       this.keyboard&#x3D;builder.keyboard;
+       this.display&#x3D;builder.display;
+   &#125;
+   public static class Builder&#123;
+       private String cpu;&#x2F;&#x2F;必须
+       private String ram;&#x2F;&#x2F;必须
+       private int usbCount;&#x2F;&#x2F;可选
+       private String keyboard;&#x2F;&#x2F;可选
+       private String display;&#x2F;&#x2F;可选
 
-        public Builder(String cup,String ram)&#123;
-            this.cpu&#x3D;cup;
-            this.ram&#x3D;ram;
-        &#125;
+       public Builder(String cup,String ram)&#123;
+           this.cpu&#x3D;cup;
+           this.ram&#x3D;ram;
+       &#125;
 
-        public Builder setUsbCount(int usbCount) &#123;
-            this.usbCount &#x3D; usbCount;
-            return this;
-        &#125;
-        public Builder setKeyboard(String keyboard) &#123;
-            this.keyboard &#x3D; keyboard;
-            return this;
-        &#125;
-        public Builder setDisplay(String display) &#123;
-            this.display &#x3D; display;
-            return this;
-        &#125;        
-        public Computer build()&#123;
-            return new Computer(this);
-        &#125;
-    &#125;
-  &#x2F;&#x2F;省略getter方法
+       public Builder setUsbCount(int usbCount) &#123;
+           this.usbCount &#x3D; usbCount;
+           return this;
+       &#125;
+       public Builder setKeyboard(String keyboard) &#123;
+           this.keyboard &#x3D; keyboard;
+           return this;
+       &#125;
+       public Builder setDisplay(String display) &#123;
+           this.display &#x3D; display;
+           return this;
+       &#125;        
+       public Computer build()&#123;
+           return new Computer(this);
+       &#125;
+   &#125;
+ &#x2F;&#x2F;省略getter方法
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 使用：链式调用，一步一步的把对象构建出来：<pre class="line-numbers language-none"><code class="language-none">Computer computer&#x3D;new Computer.Builder(&quot;因特尔&quot;,&quot;三星&quot;)
-                .setDisplay(&quot;三星24寸&quot;)
-                .setKeyboard(&quot;罗技&quot;)
-                .setUsbCount(2)
-                .build();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+               .setDisplay(&quot;三星24寸&quot;)
+               .setKeyboard(&quot;罗技&quot;)
+               .setUsbCount(2)
+               .build();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h4 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h4><p>原型模式虽然是创建型的模式，但是与工程模式没有关系，从名字即可看出，该模式的思想就是将一个对象作为原型，对其进行复制、克隆，产生一个和原对象类似的新对象。本小结会通过对象的复制，进行讲解。在Java中，复制对象是通过clone()实现的，先创建一个原型类：</p>
+</blockquote>
+<h4 id="原型模式-Prototype"><a href="#原型模式-Prototype" class="headerlink" title="原型模式 Prototype"></a>原型模式 Prototype</h4><blockquote>
+<p>原型模式虽然是创建型的模式，但是与工程模式没有关系，从名字即可看出，该模式的思想就是将一个对象作为原型，对其进行复制、克隆，产生一个和原对象类似的新对象。本小结会通过对象的复制，进行讲解。在Java中，复制对象是通过clone()实现的，先创建一个原型类：</p>
 <pre class="line-numbers language-none"><code class="language-none">public class Prototype implements Cloneable &#123;  
-  
-    public Object clone() throws CloneNotSupportedException &#123;  
-        Prototype proto &#x3D; (Prototype) super.clone();  
-        return proto;  
-    &#125;  
+ 
+   public Object clone() throws CloneNotSupportedException &#123;  
+       Prototype proto &#x3D; (Prototype) super.clone();  
+       return proto;  
+   &#125;  
 &#125;  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>原型模式优势和适用场景：<br>使用原型模式创建对象比直接new一个对象在性能上要好的多，因为Object类的clone方法是一个本地方法，它直接操作内存中的二进制流，特别是复制大对象时，性能的差别非常明显。<br>简化对象的创建，使得创建对象就像我们在编辑文档时的复制粘贴一样简单。<br>在需要重复地创建相似对象时可以考虑使用原型模式。比如需要在一个循环体内创建对象，假如对象创建过程比较复杂或者循环次数很多的话，使用原型模式不但可以简化创建过程，而且可以使系统的整体性能提高很多。<br>注意：</p>
 <ul>
 <li>使用原型模式复制对象不会调用类的构造方法。因为对象的复制是通过调用Object类的clone方法来完成的，它直接在内存中复制数据，因此不会调用到类的构造方法。不但构造方法中的代码不会执行，甚至连访问权限都对原型模式无效。还记得单例模式吗？单例模式中，只要将构造方法的访问权限设置为private型，就可以实现单例。但是clone方法直接无视构造方法的权限，所以，单例模式与原型模式是冲突的，在使用时要特别注意。</li>
 <li>深拷贝与浅拷贝。Object类的clone方法只会拷贝对象中的基本的数据类型，对于数组、容器对象、引用对象等都不会拷贝，这就是浅拷贝。如果要实现深拷贝，必须将原型模式中的数组、容器对象、引用对象等另行拷贝。例如：<pre class="line-numbers language-none"><code class="language-none">public class Prototype implements Cloneable &#123;
-	private ArrayList list &#x3D; new ArrayList();
-	public Prototype clone()&#123;
-		Prototype prototype &#x3D; null;
-		try&#123;
-			prototype &#x3D; (Prototype)super.clone();
-			prototype.list &#x3D; (ArrayList) this.list.clone();
-		&#125;catch(CloneNotSupportedException e)&#123;
-			e.printStackTrace();
-		&#125;
-		return prototype; 
+private ArrayList list &#x3D; new ArrayList();
+public Prototype clone()&#123;
+	Prototype prototype &#x3D; null;
+	try&#123;
+		prototype &#x3D; (Prototype)super.clone();
+		prototype.list &#x3D; (ArrayList) this.list.clone();
+	&#125;catch(CloneNotSupportedException e)&#123;
+		e.printStackTrace();
 	&#125;
+	return prototype; 
+&#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要我们自己实现深拷贝。<br>PS：深拷贝与浅拷贝问题中，会发生深拷贝的有java中的8中基本类型以及他们的封装类型，另外还有String类型。其余的都是浅拷贝。<br>&emsp;<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengzhb/article/details/7393528">https://blog.csdn.net/zhengzhb/article/details/7393528</a><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangerqing/article/details/8194653">https://blog.csdn.net/zhangerqing/article/details/8194653</a></li>
+ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要我们自己实现深拷贝。<br>PS：深拷贝与浅拷贝问题中，会发生深拷贝的有java中的8中基本类型以及他们的封装类型，另外还有String类型。其余的都是浅拷贝。<br>&emsp;<br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhengzhb/article/details/7393528">https://blog.csdn.net/zhengzhb/article/details/7393528</a><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangerqing/article/details/8194653">https://blog.csdn.net/zhangerqing/article/details/8194653</a><br>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hzyzzz/article/details/107496152">https://blog.csdn.net/hzyzzz/article/details/107496152</a></li>
 </ul>
+</blockquote>
 
                 
             </div>
@@ -983,18 +1030,17 @@ ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/11/01/design-patterns-1/">
+                <a href="/2021/11/02/design-patterns-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="设计模式">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="设计模式-结构型模式">
                         
-                        <span class="card-title">设计模式</span>
+                        <span class="card-title">设计模式-结构型模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1004,9 +1050,9 @@ ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要�
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-01
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1019,7 +1065,6 @@ ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要�
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1227,7 +1272,7 @@ ArrayList不是基本类型，所以成员变量list，不会被拷贝，需要�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">46.6k</span>&nbsp;字
+                class="white-color">49.8k</span>&nbsp;字
             
             
             
