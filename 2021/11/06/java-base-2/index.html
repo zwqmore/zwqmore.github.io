@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="springboot+aop实现验证jwt+全局异常处理, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="java-2, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>springboot+aop实现验证jwt+全局异常处理 | ZwqBlog</title>
+    <title>java-2 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">springboot+aop实现验证jwt+全局异常处理</h1>
+                    <h1 class="description center-align post-title">java-2</h1>
                 </div>
             </div>
         </div>
@@ -413,14 +413,6 @@
                                 <span class="chip bg-color">java</span>
                             </a>
                         
-                            <a href="/tags/jwt/">
-                                <span class="chip bg-color">jwt</span>
-                            </a>
-                        
-                            <a href="/tags/springboot/">
-                                <span class="chip bg-color">springboot</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -429,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/jwt/" class="post-category">
-                                jwt
+                            <a href="/categories/java/" class="post-category">
+                                java
                             </a>
                         
                     </div>
@@ -442,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-08
+                    2021-11-06
                 </div>
                 
 
@@ -451,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    4.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    15 分
                 </div>
                 
 
@@ -481,549 +473,103 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="springboot-aop实现验证jwt-全局异常处理"><a href="#springboot-aop实现验证jwt-全局异常处理" class="headerlink" title="springboot+aop实现验证jwt+全局异常处理"></a>springboot+aop实现验证jwt+全局异常处理</h1><h2 id="实现流程原理"><a href="#实现流程原理" class="headerlink" title="实现流程原理"></a>实现流程原理</h2><ol>
-<li>模拟用户发送id密码登录，请求登录接口，登录接口放行</li>
-<li>服务器验证密码，根据用户密码生成token并返回</li>
-<li>模拟用户执行操作，请求测试接口，aop进行拦截，获取请求携带的token并验证，如通过则放行。</li>
+                <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>外部类按常规的类访问方式使用内部类，唯一的差别是外部类可以访问内部 类的所有方法与属性， 包括私有方法与属性。<br>内部类创建实例 OutClass.InnerClass obj = outClassInstance.new InnerClass(); //注意是外部类实例.new，内部类<br>静态内部类创建实例 AAA.StaticInner in = new AAA.StaticInner();//注意是外部类本身，静态内部类<br>为什么要用内部类？</p>
+<ol>
+<li>内部类⼀般只为其外部类使用</li>
+<li>内部类提供了某种进入外部类的窗户</li>
+<li>也是最吸引人的原因，每个内部类都能独立地继承⼀个类，而无论外部类是否已经继承了某个类。 因此，内部类使多重继承的解决方案变得更加完整。</li>
 </ol>
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="/2021/09/08/jwt-springboot-aop/jwt1.png"></p>
-<h2 id="引入相关依赖"><a href="#引入相关依赖" class="headerlink" title="引入相关依赖"></a>引入相关依赖</h2><pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
-          &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;
-          &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;
-          &lt;version&gt;1.2.46&lt;&#x2F;version&gt;
-      &lt;&#x2F;dependency&gt;
-
-      &lt;dependency&gt;
-          &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;
-          &lt;artifactId&gt;jjwt&lt;&#x2F;artifactId&gt;
-          &lt;version&gt;0.9.1&lt;&#x2F;version&gt;
-      &lt;&#x2F;dependency&gt;
-
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.aspectj&lt;&#x2F;groupId&gt;
-          &lt;artifactId&gt;aspectjweaver&lt;&#x2F;artifactId&gt;
-          &lt;version&gt;1.9.6&lt;&#x2F;version&gt;
-      &lt;&#x2F;dependency&gt;
-
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.apache.commons&lt;&#x2F;groupId&gt;
-          &lt;artifactId&gt;commons-lang3&lt;&#x2F;artifactId&gt;
-          &lt;version&gt;3.10&lt;&#x2F;version&gt;
-      &lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="创建aspect包"><a href="#创建aspect包" class="headerlink" title="创建aspect包"></a>创建aspect包</h2><p>创建SafetyAspect类，（aop切面）</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.alibaba.fastjson.JSONObject;
-import com.example.testjwt.config.TokenCheckAnnotation;
-import com.example.testjwt.exception.AuthenticateException;
-import com.example.testjwt.utils.JwtTokenUtils;
-import com.example.testjwt.utils.response.ResponseServer;
-import com.example.testjwt.utils.response.ServerEnum;
-import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-&#x2F;**
- * description: 切面
- *
- * @author zwq
- * @date 2021&#x2F;5&#x2F;15 15:59
- *&#x2F;
-@Aspect
-@Component
-public class SafetyAspect &#123;
-    &#x2F;**
-     * Pointcut 切入点
-     * 匹配包下面的所有方法
-     *&#x2F;
-    @Pointcut(value &#x3D; &quot;execution(public * com.example.testjwt.controller.*.*(..))&amp;&amp; @annotation(tokenCheckAnnotation)&quot;)
-    public void safetyAspect(TokenCheckAnnotation tokenCheckAnnotation) &#123;
-    &#125;
-
-    &#x2F;**
-     * 环绕通知
-     *&#x2F;
-    @Around(value &#x3D; &quot;safetyAspect(tokenCheckAnnotation)&quot;)
-    public Object around(ProceedingJoinPoint pjp, TokenCheckAnnotation tokenCheckAnnotation) &#123;
-        System.out.println(&quot;截获&quot;);
-        &#x2F;&#x2F;验证信息，保证接口安全
-        ServletRequestAttributes attributes &#x3D; (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-
-        Object obj &#x3D; null;
-
-        &#x2F;&#x2F;方法的形参参数
-        Object[] args &#x3D; pjp.getArgs();
-
-        System.out.println(&quot;长度:&quot;+args.length);
-
-        if(args.length!&#x3D;1||!(JSONObject.class.isInstance(JSONObject.toJSON(args[0]))))&#123;
-            throw new AuthenticateException(ServerEnum.ERROR);
-        &#125;
-
-        JSONObject jsonObject &#x3D; (JSONObject)args[0];
-
-        System.out.println(&quot;元数据&quot;);
-        System.out.println(jsonObject.toJSONString());
-
-        String token &#x3D; (String)jsonObject.get(&quot;Authorization-token&quot;);
-
-        JSONObject data &#x3D; jsonObject.getJSONObject(&quot;data&quot;);
-
-        if(data &#x3D;&#x3D; null)&#123;
-            throw new AuthenticateException(ServerEnum.ERROR);
-        &#125;
-
-        Integer id &#x3D; (Integer)data.get(&quot;id&quot;);
-
-		&#x2F;&#x2F;String pass &#x3D; id+id+&quot;thisispass&quot;;
-        String pass &#x3D; &quot;zwqzwq&quot;;
-
-        &#x2F;&#x2F; 验证token是否为空
-        if (!StringUtils.isNotBlank(token)) &#123;
-            throw new AuthenticateException(ServerEnum.TOKEN_ISNULL);
-        &#125;
-
-        &#x2F;&#x2F; 验证token是否失效
-        ResponseServer responseServer &#x3D; JwtTokenUtils.resolverToken(token, pass);
-        if (responseServer.getCode() !&#x3D; 200) &#123;
-            throw new AuthenticateException(ServerEnum.LOGIN_EXPIRED);
-        &#125;
-
-        &#x2F;&#x2F; 执行目标方法
-        try &#123;
-            args[0] &#x3D;data;
-            obj &#x3D; pjp.proceed(args);
-        &#125; catch (Throwable throwable) &#123;
-            throwable.printStackTrace();
-        &#125;
-
-        return obj;
-
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="创建config包"><a href="#创建config包" class="headerlink" title="创建config包"></a>创建config包</h2><p>创建TokenCheckAnnotation注解，（自定义注解，用于标志接口是否需要验证）</p>
-<pre class="line-numbers language-none"><code class="language-none">import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-&#x2F;**
- * description: 是否需要验证注解
- *
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 15:01
- *&#x2F;
-@Target(ElementType.METHOD) &#x2F;&#x2F; 修饰范围
-@Retention(RetentionPolicy.RUNTIME) &#x2F;&#x2F; 用来描述注解的声明周期
-public @interface TokenCheckAnnotation &#123;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="创建exception包"><a href="#创建exception包" class="headerlink" title="创建exception包"></a>创建exception包</h2><p>创建AuthenticateException类（处理全局异常）</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.example.testjwt.utils.response.ServerEnum;
-
-&#x2F;**
- * description: 异常处理
- *
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 14:57
- *&#x2F;
-public class AuthenticateException extends RuntimeException&#123;
-    private Integer code;
-    public AuthenticateException(ServerEnum serverEnum) &#123;
-        super(serverEnum.getMsg());
-        this.code&#x3D;serverEnum.getCode();
-    &#125;
-    public Integer getCode() &#123;
-        return code;
-    &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="创建utils包"><a href="#创建utils包" class="headerlink" title="创建utils包"></a>创建utils包</h2><p>创建jwt工具类（生成token,验证token）</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.example.testjwt.utils.response.ResponseServer;
-import com.example.testjwt.utils.response.ServerEnum;
-import io.jsonwebtoken.*;
-import sun.misc.BASE64Encoder;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-&#x2F;**
- * description: jwt
- *
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 14:47
- *&#x2F;
-public class JwtTokenUtils &#123;
-
-    public static  String createToken(Map&lt;String,Object&gt; map,String pass)&#123;
-        &#x2F;&#x2F;声明头部信息
-        Map&lt;String,Object&gt; headerMap&#x3D;new HashMap&lt;String,Object&gt;();
-        headerMap.put(&quot;alg&quot;,&quot;HS256&quot;);
-        headerMap.put(&quot;typ&quot;,&quot;JWT&quot;);
-        Map&lt;String,Object&gt; payload&#x3D;new HashMap&lt;String,Object&gt;();
-        payload.putAll(map);
-        Long iat&#x3D;System.currentTimeMillis();
-        &#x2F;&#x2F;设置jwt的失效时间 一分钟
-        Long endTime &#x3D; iat+60000l;
-
-        &#x2F;&#x2F;签名值就是我们的安全密钥
-        String token&#x3D;Jwts.builder()
-                .setHeader(headerMap)
-                .setClaims(payload)
-                .setExpiration(new Date(endTime))
-                .signWith(SignatureAlgorithm.HS256,getSecretKey(pass))
-                .compact();
-        return token;
-    &#125;
-
-    public static ResponseServer resolverToken(String token ,String pass)&#123;
-        Claims claims&#x3D;null;
-        try &#123;
-            claims &#x3D; Jwts.parser()
-                    .setSigningKey(getSecretKey(pass))
-                    .parseClaimsJws(token)
-                    .getBody();
-
-        &#125;catch (ExpiredJwtException exp)&#123;
-            System.out.println(&quot;token超时，token失效了&quot;);
-            return ResponseServer.error(ServerEnum.TOKEN_TIMEOUT);
-        &#125;catch (SignatureException sing)&#123;
-            System.out.println(&quot;token解析失败&quot;);
-            return ResponseServer.error(ServerEnum.SAFETY_ERROR);
-        &#125;
-        return ResponseServer.success(claims);
-    &#125;
-    private static String getSecretKey(String key)&#123;
-        return new BASE64Encoder().encode(key.getBytes());
-    &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;<br>创建response包<br>包里面创建两个类:ResponseServer(返回数据的封装)、ServerEnum(状态码)</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;**
- * description: 返回的数据
- *
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 14:56
- *&#x2F;
-public class ResponseServer &#123;
-
-    private Integer code;
-
-    private String msg;
-
-    private Object data;
-
-
-    private ResponseServer()&#123;
-
-    &#125;
-    private ResponseServer(Integer code,String msg)&#123;
-        this.code&#x3D;code;
-        this.msg&#x3D;msg;
-
-    &#125;
-    private ResponseServer(Integer code,String msg,Object data)&#123;
-        this.code&#x3D;code;
-        this.msg&#x3D;msg;
-        this.data&#x3D;data;
-    &#125;
-
-    &#x2F;**
-     * 返回默认的 成功状态 200
-     * @return
-     *&#x2F;
-    public static  ResponseServer success()&#123;
-        return new ResponseServer(ServerEnum.SUCCESS.getCode(),ServerEnum.SUCCESS.getMsg());
-    &#125;
-
-    &#x2F;**
-     * 返回默认的带数据 成功状态 200
-     * @param data
-     * @return
-     *&#x2F;
-    public static  ResponseServer success(Object data)&#123;
-        return new ResponseServer(ServerEnum.SUCCESS.getCode(),ServerEnum.SUCCESS.getMsg(),data);
-    &#125;
-
-    &#x2F;**
-     * 其他特殊类型的成功状态，
-     * @param serverEnum
-     * @return
-     *&#x2F;
-    public static  ResponseServer success(ServerEnum serverEnum)&#123;
-        return new ResponseServer(serverEnum.getCode(),serverEnum.getMsg());
-    &#125;
-
-    &#x2F;**
-     * 带返回数据的其他特殊类型的成功状态
-     * @param serverEnum
-     * @param data
-     * @return
-     *&#x2F;
-    public static  ResponseServer success(ServerEnum serverEnum,Object data)&#123;
-        return new ResponseServer(serverEnum.getCode(),serverEnum.getMsg(),data);
-    &#125;
-
-    &#x2F;&#x2F;失败
-    public static ResponseServer error(Integer code,String msg)&#123;
-        return new ResponseServer(code,msg);
-    &#125;
-    &#x2F;**
-     +     * @return
-     *&#x2F;
-    public static  ResponseServer error()&#123;
-        return new ResponseServer(ServerEnum.ERROR.getCode(),ServerEnum.ERROR.getMsg());
-    &#125;
-
-    &#x2F;**
-     * 返回默认的带数据 失败状态 500
-     * @param data
-     * @return
-     *&#x2F;
-    public static  ResponseServer error(Object data)&#123;
-        return new ResponseServer(ServerEnum.ERROR.getCode(),ServerEnum.ERROR.getMsg(),data);
-    &#125;
-
-    &#x2F;**
-     * 其他特殊类型的失败状态，
-     * @param serverEnum
-     * @return
-     *&#x2F;
-    public static  ResponseServer error(ServerEnum serverEnum)&#123;
-        return new ResponseServer(serverEnum.getCode(),serverEnum.getMsg());
-    &#125;
-
-    &#x2F;**
-     * 带返回数据的其他特殊类型的失败状态
-     * @param serverEnum
-     * @param data
-     * @return
-     *&#x2F;
-    public static  ResponseServer error(ServerEnum serverEnum,Object data)&#123;
-        return new ResponseServer(serverEnum.getCode(),serverEnum.getMsg(),data);
-    &#125;
-
-    public Integer getCode() &#123;
-        return code;
-    &#125;
-
-    public String getMsg() &#123;
-        return msg;
-    &#125;
-
-    public Object getData() &#123;
-        return data;
-    &#125;
-
-    public void setCode(Integer code) &#123;
-        this.code &#x3D; code;
-    &#125;
-
-    public void setMsg(String msg) &#123;
-        this.msg &#x3D; msg;
-    &#125;
-
-    public void setData(Object data) &#123;
-        this.data &#x3D; data;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;**
- * description: 状态码
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 15:00
- *&#x2F;
-public enum ServerEnum &#123;
-    SUCCESS(200,&quot;操作成功&quot;),
-    DEL_DEPT_SCUCCESS(201,&quot;删除部门成功&quot;),
-    LOGIN_ISNULL(5000,&quot;用户名或者密码为空&quot;),
-    PHONE_ISNULL(5007,&quot;手机号不能为空&quot;),
-    USERNAME_NOTEXIST(5001,&quot;用户名输入有误。&quot;),
-    PASSWORD_WRONG(5002,&quot;密码输入错误，请检查&quot;),
-    LOGIN_SUCCESS(5003,&quot;登陆成功&quot;),
-    LOGIN_EXPIRED(5004,&quot;登录超时，请重新登陆&quot;),
-    SECRET_ERROR(5005,&quot;传入的token值有误，不能通过签名验证&quot;),
-    TOKEN_TIMEOUT(5006,&quot;登录失效，请重新登录&quot;),
-    TOKEN_ISNULL(5008,&quot;获取到的Token值为空&quot;),
-    NO_MENU_RIGHT(6000,&quot;没有权限访问该菜单，请联系管理员&quot;),
-    NOT_DATA(7001,&quot;没有要导出的数据&quot;),
-    HTTP_URL_ISNULL(8002,&quot;你传递的URL路径为空了&quot;),
-    SERVER_TIMEOUT(8004,&quot;服务连接请求超时&quot;),
-    HTTP_ERROR(8003,&quot;接口访问失败&quot;),
-    SERVER_STOP(8005,&quot;服务连接不上&quot;),
-    SAFETY_ERROR(9000,&quot;接口验签失败&quot;),
-    SAFETY_BAD(9001,&quot;接口被非法攻击&quot;),
-    SAFETY_TIMEOUT(9002,&quot;接口访问超时&quot;),
-    SAFETY_INVALID(9003,&quot;签名值无效&quot;),
-    SAFETY_REPLAY_ATTACK(9004,&quot;接口被重放攻击&quot;),
-    LOGIN_PHONEORCODE_INNULL(10000,&quot;手机号或者验证码为空了&quot;),
-    LOGIN_CODE_ERROR(10001,&quot;手机验证码输入有误&quot;),
-    ALL_STOCK_NULL(20001,&quot;商品的库存都不足了&quot;),
-    NO_ORDER_TO_PAY(20002,&quot;没有要支付的订单&quot;),
-    CRATER_PAY_ERROR(20003,&quot;生成支付二维码失败&quot;),
-    PAY_TIMEOUT(20004,&quot;支付超时请刷新页面&quot;),
-    ERROR(500,&quot;操作失败&quot;);
-
-    private ServerEnum(int code ,String msg)&#123;
-        this.code&#x3D;code;
-        this.msg&#x3D;msg;
-    &#125;
-
-    private Integer code;
-
-    private String msg;
-
-    public Integer getCode() &#123;
-        return code;
-    &#125;
-
-    public String getMsg() &#123;
-        return msg;
-    &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="创建pojo包"><a href="#创建pojo包" class="headerlink" title="创建pojo包"></a>创建pojo包</h2><p>创建用户类User:</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;**
- * description: 用户类
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 14:46
- *&#x2F;
-public class User &#123;
-    private Long userId;
-    private String userName;
-    private String password;
-
-    public Long getUserId() &#123;
-        return userId;
-    &#125;
-
-    public void setUserId(Long userId) &#123;
-        this.userId &#x3D; userId;
-    &#125;
-
-    public String getUserName() &#123;
-        return userName;
-    &#125;
-
-    public void setUserName(String userName) &#123;
-        this.userName &#x3D; userName;
-    &#125;
-
-    public String getPassword() &#123;
-        return password;
-    &#125;
-
-    public void setPassword(String password) &#123;
-        this.password &#x3D; password;
-    &#125;
-
-    @Override
-    public String toString() &#123;
-        return &quot;User&#123;&quot; +
-                &quot;userId&#x3D;&quot; + userId +
-                &quot;, userName&#x3D;&#39;&quot; + userName + &#39;\&#39;&#39; +
-                &quot;, password&#x3D;&#39;&quot; + password + &#39;\&#39;&#39; +
-                &#39;&#125;&#39;;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="创建controller包"><a href="#创建controller包" class="headerlink" title="创建controller包"></a>创建controller包</h2><p>创建全局异常处理类：GlobalExceptionHandler</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.example.testjwt.exception.AuthenticateException;
-import com.example.testjwt.utils.response.ResponseServer;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-&#x2F;**
- * description: 全局异常处理
- *
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 14:58
- *&#x2F;
-@RestControllerAdvice
-public class GlobalExceptionHandler &#123;
-
-    @ExceptionHandler(AuthenticateException.class)
-    public ResponseServer authenticateException(AuthenticateException e, HttpServletRequest request, HttpServletResponse response)&#123;
-        return ResponseServer.error(e.getCode(),e.getMessage());
-    &#125;
-
-    @ExceptionHandler(Exception.class)
-    public ResponseServer exceptionHandler(Exception e,HttpServletRequest request, HttpServletResponse response)&#123;
-        e.printStackTrace();
-        System.out.println(&quot;全局异常&quot;);
-        return ResponseServer.error();
-
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;<br>创建testController接口:</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.alibaba.fastjson.JSONObject;
-import com.example.testjwt.config.TokenCheckAnnotation;
-import com.example.testjwt.utils.JwtTokenUtils;
-import com.example.testjwt.utils.response.ResponseServer;
-import netscape.javascript.JSObject;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
-
-&#x2F;**
- * description: 测试
- * @author zwq
- * @date 2021&#x2F;9&#x2F;8 14:34
- *&#x2F;
-@RestController
-public class TestController &#123;
-
-    @RequestMapping(value &#x3D; &quot;&#x2F;get&quot;, method &#x3D; RequestMethod.POST)
-    public String getToken(@RequestBody JSONObject jsonObject) &#123;
-        JSONObject data &#x3D; jsonObject.getJSONObject(&quot;data&quot;);
-        boolean a &#x3D; Integer.valueOf(1).equals(data.get(&quot;id&quot;));
-        boolean b &#x3D; &quot;zwqzwq&quot;.equals(data.get(&quot;pass&quot;));
-        System.out.println(&quot;a,b:&quot; + a + b);
-        if (a &amp;&amp; b) &#123;
-            Map&lt;String, Object&gt; map;
-            map &#x3D; new HashMap();
-            map.put(&quot;uid&quot;, 1);
-            String token &#x3D; JwtTokenUtils.createToken(map, &quot;zwqzwq&quot;);
-            System.out.println(token);
-            return token;
-        &#125;
-        return &quot;error&quot;;
-    &#125;
-
-    @TokenCheckAnnotation
-    @RequestMapping(value &#x3D; &quot;&#x2F;test&quot;, method &#x3D; RequestMethod.POST)
-    public void test(@RequestBody JSONObject jsonObject) &#123;
-        System.out.println(&quot;接口数据&quot;);
-        System.out.println(jsonObject.toJSONString());
-    &#125;
-
-    @RequestMapping(value &#x3D; &quot;&#x2F;test2&quot;, method &#x3D; RequestMethod.POST)
-    public ResponseServer test2(@RequestBody JSONObject jsonObject) &#123;
-        String sss &#x3D; (String) jsonObject.get(&quot;fdsdf&quot;);
-        sss.equals(&quot;99&quot;);
-        System.out.println(&quot;异常后&quot;);
-
-        System.out.println(&quot;接口里面&quot;);
-        return ResponseServer.success();
-    &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a target="_blank" rel="noopener" href="https://github.com/zwqmore/springboot-jwt.git">https://github.com/zwqmore/springboot-jwt.git</a></p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制 形参具体限制的类型）。也就是说在泛型使⽤过程中，操作的数据类型被指定为⼀个参数，这种参数类 型可以⽤在类、接⼝和⽅法中，分别被称为泛型类、泛型接⼝、泛型⽅法。<br>例子：</p>
+<pre class="line-numbers language-none"><code class="language-none">List arrayList &#x3D; new ArrayList(); 
+arrayList.add(&quot;aaaa&quot;); 
+arrayList.add(100); 
+for(int i &#x3D; 0; i&lt; arrayList.size();i++)&#123; 
+	String item &#x3D; (String)arrayList.get(i); 
+	Log.d(&quot;泛型测试&quot;,&quot;item &#x3D; &quot; + item); 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ArrayList可以存放任意类型，例⼦中添加了⼀个String类型，添加了⼀个Integer类型，再使⽤时都以 String的⽅式使⽤，因此程序崩溃了。为了解决类似这样的问题（在编译阶段就可以解决），泛型应运⽽⽣。<br>List<String> arrayList = new ArrayList<String>();<br>&emsp;<br>Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦出，并且在对象进⼊和离开⽅法的 边界处添加类型检查和类型转换的⽅法。也就是说，泛型信息不会进⼊到运⾏时阶段。<br>泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。</String></String></p>
+<h2 id="Java-finally语句到底是在return之前还-是之后执行？"><a href="#Java-finally语句到底是在return之前还-是之后执行？" class="headerlink" title="Java finally语句到底是在return之前还 是之后执行？"></a>Java finally语句到底是在return之前还 是之后执行？</h2><p>以下情况finally语句不会执行：</p>
+<ul>
+<li>执行到try语句块之前就return，当然不会执行finally</li>
+<li>在try块中有System.exit(0);这样的语句，System.exit(0);是终⽌Java虚拟机JVM的，连JVM都停⽌ 了，所有都结束了，当然finally语句也不会被执⾏到。<br>&emsp;<br>finally语句在return语句执⾏之后return返回之前执⾏的。<br>就是return语句已经在try执⾏了再去执⾏finally语句，不过并没有直接返回，⽽是等finally语句执⾏完了再返回结果。<br>另外，如果finally里面也有return，那么就直接返回，覆盖掉try里面的return<br>然后如果finally里面不使用return，而是修改try里面return返回的值。那么返回的是修改之前，还是修改之后？<br>这取决于Java传值还是传址，传值就不会更改，传址就会更改。<br>那么如果异常，不执行try，执行catch，catch里面也有return，那么这里的return和try里的性质一样，执行了再去执行finally，也没有直接返回，而是等finally执行完在返回结果。</li>
+</ul>
+<h2 id="Java对象初始化过程"><a href="#Java对象初始化过程" class="headerlink" title="Java对象初始化过程"></a>Java对象初始化过程</h2><p>Person jack = new Person();</p>
+<ol>
+<li>new ⽤到了Person.class,所以会先找到Person.class⽂件，并加载到内存中(⽤到类中的内容类就会被加载)</li>
+<li>执⾏该对象的static代码块(静态初始块)。(如果有的话，给Person.class类进⾏初始化)</li>
+<li>在堆内存中开辟空间，分配内存地址</li>
+<li>在堆内存中建⽴对象特有属性，并进⾏默认初始化</li>
+<li>对属性进⾏显示初始化(声明成员属性并赋值)</li>
+<li>执⾏普通初始块</li>
+<li>执⾏构造函数</li>
+<li>将内存地址赋值给栈内存中的jack变量</li>
+</ol>
+<h2 id="面向接口编程"><a href="#面向接口编程" class="headerlink" title="面向接口编程"></a>面向接口编程</h2><p>⾯向接⼝编程和⾯向对象编程并不是平级的，它并不是⽐⾯向对象编程更先进的⼀种独⽴的编程思想，⽽是附属于面向对象思想体系，属于其⼀部分。或者说，它是⾯向对象编程体系中的思想精髓之⼀。<br>接⼝是⼀组规则的集合，它规定了实现本接⼝的类或接⼝必须拥有的⼀ 组规则。<br>接⼝是在⼀定粒度视图上同类事物的抽象表示。<br>⾯向对象的精髓是模拟现实，多从现实中思考⾯向对象的东⻄，对提⾼系统分析设计能⼒⼤有脾益。<br>单从具体功能来看， 除多重继承外，抽象类似乎完全能取代接⼝。但是，难道接⼝的存在是为了实现多重继承？当然不是。抽象类和接⼝的区别在于使⽤动机。使⽤抽象类是为了代码的复⽤，⽽使⽤接⼝的动机是为了实现多态性。</p>
+<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>ArrayList继承⾃ AbstractList，实现了 List 接⼝。底层基于数组实现容量⼤⼩动态变化。允许 null 的存在。同时还实现了 RandomAccess、Cloneable、 Serializable 接⼝，所以ArrayList 是⽀持快速访问、复制、序列化的。<br><img src="/2021/11/06/java-base-2/java-1.png"></p>
+<ol>
+<li>ArrayList是内部是以动态数组的形式来存储数据的、这⾥的动态数组不是意味着去改变原有内部⽣成的数组的⻓度、⽽是保留原有数组的引⽤、将其指向新 ⽣成的数组对象、这样会造成数组的⻓度可变的假象。</li>
+<li>ArrayList具有数组所具有的特性、通过索引⽀持随机访问、所以通过随机访问ArrayList中的元素 效率⾮常⾼、但是执⾏插⼊、删除时效率⽐较地下。</li>
+<li>ArrayList实现了AbstractList抽象类、List接⼝、所以其更具有了AbstractList和List的功能、前⾯我们知道AbstractList内部已经实现了获取Iterator和ListIterator的⽅法、所以ArrayList只需关⼼对数组操作的⽅法的实现</li>
+<li>ArrayList实现了RandomAccess接⼝、此接⼝只有声明、没有⽅法体、表示ArrayList⽀持随机访问。</li>
+<li>ArrayList实现了Cloneable接⼝、此接⼝只有声明、没有⽅法体、表示ArrayList⽀持克隆。 </li>
+<li>ArrayList实现了Serializable接⼝、此接⼝只有声明、没有⽅法体、表示ArrayList⽀持序列化、即 可以将ArrayList以流的形式通过ObjectInputStream/ObjectOutputStream来写/读。<br>remove:<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;arrayList中的值为 [a,a,c,a,a] 
+for (int i &#x3D; 0; i &lt; arrayList.size(); i++) &#123; 
+	if (arrayList.get(i) &#x3D;&#x3D; &quot;a&quot;) &#123; 
+		arrayList.remove(i); 
+		&#125; 
+	&#125; 
+System.out.println(arrayList);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+在调⽤remove()⽅法时List的⻓度会发⽣变化⽽且元素 的位置会发⽣移动，从⽽在遍历时list实际上是变化的。最终达不到效果。<br>解决：<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;逆向遍历
+for (int i &#x3D; arrayList.size()-1; i &gt;&#x3D;0 ; i--) &#123;
+	if (arrayList.get(i) &#x3D;&#x3D; &quot;a&quot;) &#123;
+		arrayList.remove(i);
+	&#125;
+&#125;
+System.out.println(arrayList);
+&#x2F;&#x2F;迭代器
+Iterator&lt;String&gt; ite &#x3D; arrayList.listIterator();
+while (ite.hasNext())&#123;
+	if(ite.next() &#x3D;&#x3D; &quot;a&quot;)
+	ite.remove();
+&#125;
+System.out.println(arrayList);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>Map 是 Key-Value 对映射的抽象接⼝，该映射不包括重复的键，即⼀个键对应⼀个值。HashMap 是基于哈希表的 Map 接⼝的实现，以 Key-Value 的形式存在，即存储的对象是 Entry (同时 包含了 Key 和 Value) 。在HashMap中，其会根据hash算法来计算key-value的存储位置并进⾏快速存取。特别地，HashMap最多只允许⼀条Entry的键为Null(多条会覆盖)，但允许多条Entry的值为Null。此 外，HashMap 是 Map 的⼀个⾮同步的实现。<br><img src="/2021/11/06/java-base-2/java-2.png"><br>需要注意，虽然容器号称存储的是 Java 对象，但实际上并不会真正将 Java 对象放⼊容器中，只是在容器中保留这些对象的引⽤。也就是说，Java 容器实际上包含的是引⽤变量，⽽这些引⽤变量指向了我 们要实际保存的 Java 对象。</p>
+<pre class="line-numbers language-none"><code class="language-none">HashMap&lt;String, Integer&gt; map &#x3D; new HashMap&lt;String, Integer&gt;();
+map.put(&quot;语文&quot;,1);
+map.put(&quot;数学&quot;,2);
+map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/2021/11/06/java-base-2/java-3.png" alt="HashMap"><br>put的实现：</p>
+<ol>
+<li>对key的hashCode()做hash，然后再计算index;</li>
+<li>如果没碰撞直接放到bucket⾥；</li>
+<li>如果碰撞了，以链表的形式存在buckets后；</li>
+<li>如果碰撞导致链表过⻓(⼤于等于TREEIFY_THRESHOLD)，就把链表转换成红⿊树；</li>
+<li>如果节点已经存在就替换old value(保证key的唯⼀性)</li>
+<li>如果bucket满了(超过load factor*current capacity)，就要resize。<br>&emsp;<br>get的实现：</li>
+<li>bucket⾥的第⼀个节点，直接命中；</li>
+<li>如果有冲突，则通过key.equals(k)去查找对应的entry</li>
+<li>若为树，则在树中通过key.equals(k)查找，O(logn)；</li>
+<li>若为链表，则在链表中通过key.equals(k)查找，O(n)。<br>&emsp;<br>HashMap的⼯作原理:<br>通过hash的⽅法，通过put和get存储和获取对象。存储对象时，我们将K/V传给put⽅法时，它调⽤ hashCode计算hash从⽽得到bucket位置，进⼀步存储，HashMap会根据当前bucket的占⽤情况⾃动调整容量(超过Load Facotr则resize为原来的2倍)。获取对象时，我们将K传给get，它调⽤hashCode计算 hash从⽽得到bucket位置，并进⼀步调⽤equals()⽅法确定键值对。如果发⽣碰撞的时候，Hashmap通 过链表将产⽣碰撞冲突的元素组织起来，在Java 8中，如果⼀个bucket中碰撞冲突的元素超过某个限制 (默认是8)，则使⽤红⿊树来替换链表，从⽽提⾼速度。<br>哈希表每次增删改查的代价可以说是O（1）,当有hash冲突时，会在后面建立单链表，这时插入和查找以及删除操作消耗的时间会达到O(n)。每次扩容的代价是O（logn）<br>&emsp;<br>equals()和hashCode()的都有什么作⽤？<br>通过对key的hashCode()进⾏hashing，并计算下标( n-1 &amp; hash)，从⽽获得buckets的位置。如果产⽣ 碰撞，则利⽤key.equals()⽅法去链表或树中去查找对应的节点<br>&emsp;<br>hash的实现吗？为什么要这样实现？<br>在Java 1.8的实现中，是通过hashCode()的⾼16位异或低16位实现的：(h = k.hashCode()) ^ (h &gt;&gt;&gt; 16)，主要是从速度、功效、质量来考虑的，这么做可以在bucket的n⽐较⼩的时候，也能保证考虑到⾼低 bit都参与到hash的计算中，同时不会有太⼤的开销。</li>
+</ol>
+<h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><p>字节流和字符流的区别：<br>读写单位不同：字节流以字节（8bit）为单位，字符流以字符为单位，根据码表映射字符，⼀次可能读多个字节。<br>处理对象不同：字节流能处理所有类型的数据（如图片、avi等），而字符流只能处理字符类型的数据。<br>只要是处理纯⽂本数据，就优先考虑使⽤字符流。 除此之外都使⽤字节流。</p>
+<h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p>NIO主要有三⼤核⼼部分：Channel(通道)，Buffer(缓冲区), Selector。传统IO基于字节流和字符流进⾏ 操作，⽽NIO基于Channel和Buffer(缓冲区)进⾏操作，数据总是从通道读取到缓冲区中，或者从缓冲区写 ⼊到通道中。Selector(选择区)⽤于监听多个通道的事件（⽐如：连接打开，数据到达）。因此，单个线程 可以监听多个数据通道。<br>NIO 和 IO：<br>IO是⾯向流的，NIO是⾯向缓冲区的。 Java IO⾯向流意味着每次从流中读⼀个或多个字节，直⾄读取所有字节，它们没有被缓存在任何地⽅。此外，它不能前后移动流中的数据。如果需要前后移动从流中读取的数据，需要先将它缓存到⼀个缓冲区。NIO的缓冲导向⽅法略有不同。数据读取到⼀个它稍后处理的缓冲区，需要时可在缓冲区中前后移动。这就增加了处理过程中的灵活性。但是，还需要检查是否该缓冲区中包含所有您需要处理的数据。⽽且，需确保当更多的数据读⼊缓冲区时，不要覆盖缓冲区⾥尚未处理的数据。<br>IO的各种流是阻塞的。这意味着，当⼀个线程调⽤read() 或 write()时，该线程被阻塞，直到有⼀些数据 被读取，或数据完全写⼊。该线程在此期间不能再⼲任何事情了。 NIO的⾮阻塞模式，使⼀个线程从某通 道发送请求读取数据，但是它仅能得到⽬前可⽤的数据，如果⽬前没有数据可⽤时，就什么都不会获取。⽽不是保持线程阻塞，所以直⾄数据变的可以读取之前，该线程可以继续做其他的事情。线程通常将⾮阻塞IO的空闲时间⽤于在其它通道上执⾏IO操作，所以⼀个单独的线程现在可以管理多个输 ⼊和输出通道（channel）。<br>&emsp;<br>Channel:<br>Channel和IO中的Stream(流)是差不多⼀个等级的。只不 过Stream是单向的，譬如：InputStream, OutputStream.⽽Channel是双向的，既可以⽤来进⾏读操作，⼜可以⽤来进⾏写操作。<br>NIO中的Channel的主要实现有： FileChannel DatagramChannel SocketChannel ServerSocketChannel<br>Buffer:<br>NIO中的关键Buffer实现有：ByteBuffer, CharBuffer, DoubleBuffer, FloatBuffer, IntBuffer, LongBuffer, ShortBuffer，分别对应基本数据类型: byte, char, double, float, int, long, short<br>Selector:<br>Selector运⾏单线程处理多个Channel，如果你的应⽤打开了多个通道，但每个连接的流量都很低，使⽤ Selector就会很⽅便。例如在⼀个聊天服务器中。要使⽤Selector, 得向Selector注册Channel，然后调⽤ 它的select()⽅法。这个⽅法会⼀直阻塞到某个注册的通道有事件就绪。⼀旦这个⽅法返回，线程就可以处 理这些事件，事件的例⼦有如新的连接进来、数据接收等。<br>Buffer步骤:<br>分配空间（ByteBuffer buf = ByteBuffer.allocate(1024); 还有⼀种allocateDirector后⾯再陈述）<br>写⼊数据到Buffer(int bytesRead = fileChannel.read(buf);)<br>调⽤filp()⽅法（ buf.flip();）<br>从Buffer中读取数据（System.out.print((char)buf.get());）<br>调⽤clear()⽅法或者compact()⽅法<br><img src="/2021/11/06/java-base-2/java-4.png"></p>
+<h2 id="进程线程"><a href="#进程线程" class="headerlink" title="进程线程"></a>进程线程</h2><p>现在的操作系统是多任务操作系统。多线程是实现多任务的⼀种⽅式。<br>进程是指⼀个内存中运⾏的应⽤程序，每个进程都有⾃⼰独⽴的⼀块内存空间，⼀个进程中可以启动多个 线程。⽐如在Windows系统中，⼀个运⾏的exe就是⼀个进程。<br>线程是指进程中的⼀个执⾏流程，⼀个进程中可以运⾏多个线程。⽐如java.exe进程中可以运⾏很多线 程。线程总是属于某个进程，进程中的多个线程共享进程的内存。<br>在java中要想实现多线程，有两种⼿段，⼀种是继续Thread类，另外⼀种是实现Runable接⼝，当然准确来讲还有实现Callable接⼝，并与Future、线程池结合使⽤<br>&emsp;<br>Java线程状态：<br>线程的⽣命周期及五种基本状态:<br><img src="/2021/11/06/java-base-2/java-5.png"></p>
+<ul>
+<li>新建状态（New）：当线程对象对创建后，即进⼊了新建状态，如：Thread t = new MyThread();</li>
+<li>就绪状态（Runnable）：当调⽤线程对象的start()⽅法（t.start();），线程即进⼊就绪状态。处于就绪状 态的线程，只是说明此线程已经做好了准备，随时等待CPU调度执⾏，并不是说执⾏了t.start()此线程⽴ 即就会执⾏；</li>
+<li>运⾏状态（Running）：当CPU开始调度处于就绪状态的线程时，此时线程才得以真正执⾏，即进⼊到运⾏状态。注：就绪状态是进⼊到运⾏状态的唯⼀⼊⼝，也就是说，线程要想进⼊运⾏状态执⾏，⾸先必须处于就绪状态中；</li>
+<li>阻塞状态（Blocked）：处于运⾏状态中的线程由于某种原因，暂时放弃对CPU的使⽤权，停⽌执⾏，此时进⼊阻塞状态，直到其进⼊到就绪状态，才有机会再次被CPU调⽤以进⼊到运⾏状态。根据阻塞产⽣的 原因不同，阻塞状态⼜可以分为三种：<ul>
+<li>等待阻塞: 运⾏状态中的线程执⾏wait()⽅法，使本线程进⼊到等待阻塞状态；</li>
+<li>同步阻塞: 线程在获取synchronized同步锁失败(因为锁被其它线程所占⽤)，它会进⼊同步阻塞状态；</li>
+<li>其他阻塞: 通过调⽤线程的sleep()或join()或发出了I/O请求时，线程会进⼊到阻塞状态。当 sleep()状态超时、join()等待线程终⽌或者超时、或者I/O处理完毕时，线程重新转⼊就绪状态。</li>
+</ul>
+</li>
+<li>死亡状态（Dead）：线程执⾏完了或者因异常退出了run()⽅法，该线程结束⽣命周期。<br>&emsp;<br>常用线程函数：<br>sleep: 在指定的毫秒数内让当前正在执⾏的线程休眠（暂停执⾏）<br>join: 指等待t线程终⽌。即join()的作⽤是：“等待该线程终⽌”，这⾥需要理解的就是该线程是指的主线程等待⼦线程的终⽌。也就是在⼦线程调⽤了join()⽅法后⾯的代码，只有等到⼦线程结束了才能执⾏。<br>yield():暂停当前正在执⾏的线程对象，并执⾏其他线程。yield()应该做的是让当前运⾏线程回到可运⾏状态，以允许具有相同优先级的其他线程获得运⾏机会。<br>setPriority(): 更改线程的优先级，</li>
+<li>MIN_PRIORITY = 1</li>
+<li>NORM_PRIORITY = 5</li>
+<li>MAX_PRIORITY = 10<br>interrupt():不要以为它是中断某个线程！它只是向线程发送⼀个中断信号，让线程在⽆限等待时（如死锁时）能抛出，从⽽结束线程，但是如果你吃掉了这个异常，那么这个线程还是不会中断的！<br>wait()：wait就是说线程在获取对象锁后，主动释放对象锁，同时本线程休眠。直到有其它线程调⽤对象的notify()唤醒该线程，才能继续获取对象锁，并继续执⾏。<br>Thread.sleep()与Object.wait()⼆者都可以 暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制。</li>
+</ul>
 
                 
             </div>
@@ -1040,14 +586,6 @@ public class TestController &#123;
                             
                                 <a href="/tags/java/">
                                     <span class="chip bg-color">java</span>
-                                </a>
-                            
-                                <a href="/tags/jwt/">
-                                    <span class="chip bg-color">jwt</span>
-                                </a>
-                            
-                                <a href="/tags/springboot/">
-                                    <span class="chip bg-color">springboot</span>
                                 </a>
                             
                         </div>
@@ -1091,46 +629,48 @@ public class TestController &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/09/13/linux-create-yum/">
+                <a href="/2021/11/06/java-base-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="centos7搭建本地yum源">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="java-2">
                         
-                        <span class="card-title">centos7搭建本地yum源</span>
+                        <span class="card-title">java-2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本地yum源搭建
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
                 </div>
@@ -1144,13 +684,13 @@ public class TestController &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/07/jwt-study/">
+                <a href="/2021/11/02/design-patterns-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="理解jwt">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="设计模式-结构型模式">
                         
-                        <span class="card-title">理解jwt</span>
+                        <span class="card-title">设计模式-结构型模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1161,14 +701,14 @@ public class TestController &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/jwt/" class="post-category">
-                                    jwt
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
                                 </a>
                             
                             
@@ -1178,8 +718,8 @@ public class TestController &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/jwt/">
-                        <span class="chip bg-color">jwt</span>
+                    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">设计模式</span>
                     </a>
                     
                 </div>
