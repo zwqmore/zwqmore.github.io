@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -514,6 +514,32 @@ public Person personSingleton() &#123;
 <pre class="line-numbers language-none"><code class="language-none">public List&lt;Teacher&gt; getKlassRelatedTeachers(
         @PathVariable(&quot;klassId&quot;) Long klassId,
         @RequestParam(value &#x3D; &quot;type&quot;, required &#x3D; false) String type )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="SpringBoot开启事务的支持"><a href="#SpringBoot开启事务的支持" class="headerlink" title="SpringBoot开启事务的支持"></a>SpringBoot开启事务的支持</h2><blockquote>
+<ol>
+<li>在main方法加上@EnableTransactionManagement注解：<pre class="line-numbers language-none"><code class="language-none">@SpringBootApplication
+@EnableTransactionManagement&#x2F;&#x2F;开启事物的管理支持
+public class Application &#123;
+
+   public static void main(String[] args) &#123;
+       SpringApplication.run(Application.class, args);
+   &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>在需要管理的方法上加上@Transactional注解：一般用在插入或者更新等方法上<pre class="line-numbers language-none"><code class="language-none">@Service
+public class DriverServiceImpl implements DriverService &#123;
+
+   @Autowired
+   private DMMapper dmMapper;
+
+   @Override
+   @Transactional  &#x2F;&#x2F;事物管理的方法，如果这个方法抛出异常，事务就会回滚
+   public DM getDMById(Integer id) &#123;
+       return dmMapper.selectById(id);
+   &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 </blockquote>
 <h2 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h2><blockquote>
 <p>body 部分并且Content-Type 为 application/json 格式的数据，接收到数据之后会自动将数据绑定到 Java 对象上<br>系统会使用HttpMessageConverter或者自定义的HttpMessageConverter将请求的 body 中的 json 字符串转换为 java 对象。</p>
@@ -894,7 +920,7 @@ private Date date;<span aria-hidden="true" class="line-numbers-rows"><span></s
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">54.6k</span>&nbsp;字
+                class="white-color">58k</span>&nbsp;字
             
             
             

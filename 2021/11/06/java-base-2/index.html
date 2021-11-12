@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    6.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    23 分
                 </div>
                 
 
@@ -473,7 +473,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>外部类按常规的类访问方式使用内部类，唯一的差别是外部类可以访问内部 类的所有方法与属性， 包括私有方法与属性。<br>内部类创建实例 OutClass.InnerClass obj = outClassInstance.new InnerClass(); //注意是外部类实例.new，内部类<br>静态内部类创建实例 AAA.StaticInner in = new AAA.StaticInner();//注意是外部类本身，静态内部类<br>为什么要用内部类？</p>
+                <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="数组（Array）与列表（ArrayList）的区别"><a href="#数组（Array）与列表（ArrayList）的区别" class="headerlink" title="数组（Array）与列表（ArrayList）的区别"></a>数组（Array）与列表（ArrayList）的区别</h2><p>空间大小：<br>Array的空间大小是固定的，空间不够时也不能再次申请，所以需要事前确定合适的空间大小。<br>ArrayList的空间是动态增长的，如果空间不够，它会创建一个空间比原空间大0.5倍的新数组，然后将所有元素复制到新数组中，接着抛弃旧数组。而且，每次添加新的元素的时候都会检查内部数组的空间是否足够。<br>存储内容：<br>Array数组可以包含基本类型和对象类型<br>ArrayList却只能包含对象类型<br>方法：<br>ArrayList作为Array的增强版，方法上比Array多样化。比如添加全部addAll()、删除全部removeAll()、返回迭代器iterator()等。</p>
+<h2 id="mybatis中-与-的区别"><a href="#mybatis中-与-的区别" class="headerlink" title="mybatis中#与$的区别"></a>mybatis中#与$的区别</h2><p>MyBatis中使用parameterType向SQL语句传参，parameterType支持的类型可以是基本类型int,String,HashMap和java自定义类型。<br>在SQL中引用这些参数的时候，可以使用两种方式：<br>‘#{parameterName}’<br>‘${parameterName}’</p>
+<ol>
+<li>使用#{parameterName}引用参数的时候，Mybatis会把这个参数认为是一个字符串，并自动加上’’，例如传入参数是“Smith”，那么在下面SQL中：<br>Select * from emp where name = ‘Smith’; </li>
+<li>使用${parameterName},会转换成：<br>Select * from emp where name = Smith;<br>简单说#{}是经过预编译的,是安全的。<br>而${}是未经过预编译的,仅仅是取变量的值,是非安全的,存在SQL注入。</li>
+</ol>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>外部类按常规的类访问方式使用内部类，唯一的差别是外部类可以访问内部 类的所有方法与属性， 包括私有方法与属性。<br>内部类创建实例 OutClass.InnerClass obj = outClassInstance.new InnerClass(); //注意是外部类实例.new，内部类<br>静态内部类创建实例 AAA.StaticInner in = new AAA.StaticInner();//注意是外部类本身，静态内部类<br>为什么要用内部类？</p>
 <ol>
 <li>内部类⼀般只为其外部类使用</li>
 <li>内部类提供了某种进入外部类的窗户</li>
@@ -534,27 +540,33 @@ while (ite.hasNext())&#123;
 &#125;
 System.out.println(arrayList);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>Map 是 Key-Value 对映射的抽象接⼝，该映射不包括重复的键，即⼀个键对应⼀个值。HashMap 是基于哈希表的 Map 接⼝的实现，以 Key-Value 的形式存在，即存储的对象是 Entry (同时 包含了 Key 和 Value) 。在HashMap中，其会根据hash算法来计算key-value的存储位置并进⾏快速存取。特别地，HashMap最多只允许⼀条Entry的键为Null(多条会覆盖)，但允许多条Entry的值为Null。此 外，HashMap 是 Map 的⼀个⾮同步的实现。<br><img src="/2021/11/06/java-base-2/java-2.png"><br>需要注意，虽然容器号称存储的是 Java 对象，但实际上并不会真正将 Java 对象放⼊容器中，只是在容器中保留这些对象的引⽤。也就是说，Java 容器实际上包含的是引⽤变量，⽽这些引⽤变量指向了我 们要实际保存的 Java 对象。</p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>Map 是 Key-Value 对映射的抽象接⼝，该映射不包括重复的键，即⼀个键对应⼀个值。HashMap 是基于哈希表的 Map 接⼝的实现，以 Key-Value 的形式存在，即存储的对象是 Entry (同时 包含了 Key 和 Value) 。在HashMap中，其会根据hash算法来计算key-value的存储位置并进⾏快速存取。特别地，HashMap最多只允许⼀条Entry的键为Null(多条会覆盖)，但允许多条Entry的值为Null。此 外，HashMap 是 Map 的⼀个⾮同步的实现。<br><img src="/2021/11/06/java-base-2/java-2.png"><br>需要注意，虽然容器号称存储的是 Java 对象，但实际上并不会真正将 Java 对象放⼊容器中，只是在容器中保留这些对象的引⽤。也就是说，Java 容器实际上包含的是引⽤变量，⽽这些引⽤变量指向了我们要实际保存的 Java 对象。</p>
 <pre class="line-numbers language-none"><code class="language-none">HashMap&lt;String, Integer&gt; map &#x3D; new HashMap&lt;String, Integer&gt;();
 map.put(&quot;语文&quot;,1);
 map.put(&quot;数学&quot;,2);
 map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/2021/11/06/java-base-2/java-3.png" alt="HashMap"><br>put的实现：</p>
+<p><img src="/2021/11/06/java-base-2/java-3.png" alt="HashMap"><br><strong>put的实现：</strong></p>
 <ol>
 <li>对key的hashCode()做hash，然后再计算index;</li>
 <li>如果没碰撞直接放到bucket⾥；</li>
 <li>如果碰撞了，以链表的形式存在buckets后；</li>
 <li>如果碰撞导致链表过⻓(⼤于等于TREEIFY_THRESHOLD)，就把链表转换成红⿊树；</li>
 <li>如果节点已经存在就替换old value(保证key的唯⼀性)</li>
-<li>如果bucket满了(超过load factor*current capacity)，就要resize。<br>&emsp;<br>get的实现：</li>
+<li>如果bucket满了(超过load factor*current capacity)，就要resize。</li>
+</ol>
+<p><strong>get的实现：</strong></p>
+<ol>
 <li>bucket⾥的第⼀个节点，直接命中；</li>
 <li>如果有冲突，则通过key.equals(k)去查找对应的entry</li>
 <li>若为树，则在树中通过key.equals(k)查找，O(logn)；</li>
-<li>若为链表，则在链表中通过key.equals(k)查找，O(n)。<br>&emsp;<br>HashMap的⼯作原理:<br>通过hash的⽅法，通过put和get存储和获取对象。存储对象时，我们将K/V传给put⽅法时，它调⽤ hashCode计算hash从⽽得到bucket位置，进⼀步存储，HashMap会根据当前bucket的占⽤情况⾃动调整容量(超过Load Facotr则resize为原来的2倍)。获取对象时，我们将K传给get，它调⽤hashCode计算 hash从⽽得到bucket位置，并进⼀步调⽤equals()⽅法确定键值对。如果发⽣碰撞的时候，Hashmap通 过链表将产⽣碰撞冲突的元素组织起来，在Java 8中，如果⼀个bucket中碰撞冲突的元素超过某个限制 (默认是8)，则使⽤红⿊树来替换链表，从⽽提⾼速度。<br>哈希表每次增删改查的代价可以说是O（1）,当有hash冲突时，会在后面建立单链表，这时插入和查找以及删除操作消耗的时间会达到O(n)。每次扩容的代价是O（logn）<br>&emsp;<br>equals()和hashCode()的都有什么作⽤？<br>通过对key的hashCode()进⾏hashing，并计算下标( n-1 &amp; hash)，从⽽获得buckets的位置。如果产⽣ 碰撞，则利⽤key.equals()⽅法去链表或树中去查找对应的节点<br>&emsp;<br>hash的实现吗？为什么要这样实现？<br>在Java 1.8的实现中，是通过hashCode()的⾼16位异或低16位实现的：(h = k.hashCode()) ^ (h &gt;&gt;&gt; 16)，主要是从速度、功效、质量来考虑的，这么做可以在bucket的n⽐较⼩的时候，也能保证考虑到⾼低 bit都参与到hash的计算中，同时不会有太⼤的开销。</li>
+<li>若为链表，则在链表中通过key.equals(k)查找，O(n)。</li>
 </ol>
+<p><strong>HashMap的⼯作原理:</strong><br>通过hash的⽅法，通过put和get存储和获取对象。存储对象时，我们将K/V传给put⽅法时，它调⽤ hashCode计算hash从⽽得到bucket位置，进⼀步存储，HashMap会根据当前bucket的占⽤情况⾃动调整容量(超过Load Facotr则resize为原来的2倍)。获取对象时，我们将K传给get，它调⽤hashCode计算 hash从⽽得到bucket位置，并进⼀步调⽤equals()⽅法确定键值对。如果发⽣碰撞的时候，Hashmap通 过链表将产⽣碰撞冲突的元素组织起来，在Java 8中，如果⼀个bucket中碰撞冲突的元素超过某个限制 (默认是8)，则使⽤红⿊树来替换链表，从⽽提⾼速度。<br>哈希表每次增删改查的代价可以说是O（1）,当有hash冲突时，会在后面建立单链表，这时插入和查找以及删除操作消耗的时间会达到O(n)。每次扩容的代价是O（logn）</p>
+<p><strong>equals()和hashCode()的都有什么作用？</strong><br>通过对key的hashCode()进⾏hashing，并计算下标( n-1 &amp; hash)，从⽽获得buckets的位置。如果产⽣ 碰撞，则利⽤key.equals()⽅法去链表或树中去查找对应的节点<br>&emsp;<br><strong>hash的实现吗？为什么要这样实现？</strong><br>在Java 1.8的实现中，是通过hashCode()的⾼16位异或低16位实现的：(h = k.hashCode()) ^ (h &gt;&gt;&gt; 16)，主要是从速度、功效、质量来考虑的，这么做可以在bucket的n⽐较⼩的时候，也能保证考虑到⾼低 bit都参与到hash的计算中，同时不会有太⼤的开销。</p>
 <h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><p>字节流和字符流的区别：<br>读写单位不同：字节流以字节（8bit）为单位，字符流以字符为单位，根据码表映射字符，⼀次可能读多个字节。<br>处理对象不同：字节流能处理所有类型的数据（如图片、avi等），而字符流只能处理字符类型的数据。<br>只要是处理纯⽂本数据，就优先考虑使⽤字符流。 除此之外都使⽤字节流。</p>
 <h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p>NIO主要有三⼤核⼼部分：Channel(通道)，Buffer(缓冲区), Selector。传统IO基于字节流和字符流进⾏ 操作，⽽NIO基于Channel和Buffer(缓冲区)进⾏操作，数据总是从通道读取到缓冲区中，或者从缓冲区写 ⼊到通道中。Selector(选择区)⽤于监听多个通道的事件（⽐如：连接打开，数据到达）。因此，单个线程 可以监听多个数据通道。<br>NIO 和 IO：<br>IO是⾯向流的，NIO是⾯向缓冲区的。 Java IO⾯向流意味着每次从流中读⼀个或多个字节，直⾄读取所有字节，它们没有被缓存在任何地⽅。此外，它不能前后移动流中的数据。如果需要前后移动从流中读取的数据，需要先将它缓存到⼀个缓冲区。NIO的缓冲导向⽅法略有不同。数据读取到⼀个它稍后处理的缓冲区，需要时可在缓冲区中前后移动。这就增加了处理过程中的灵活性。但是，还需要检查是否该缓冲区中包含所有您需要处理的数据。⽽且，需确保当更多的数据读⼊缓冲区时，不要覆盖缓冲区⾥尚未处理的数据。<br>IO的各种流是阻塞的。这意味着，当⼀个线程调⽤read() 或 write()时，该线程被阻塞，直到有⼀些数据 被读取，或数据完全写⼊。该线程在此期间不能再⼲任何事情了。 NIO的⾮阻塞模式，使⼀个线程从某通 道发送请求读取数据，但是它仅能得到⽬前可⽤的数据，如果⽬前没有数据可⽤时，就什么都不会获取。⽽不是保持线程阻塞，所以直⾄数据变的可以读取之前，该线程可以继续做其他的事情。线程通常将⾮阻塞IO的空闲时间⽤于在其它通道上执⾏IO操作，所以⼀个单独的线程现在可以管理多个输 ⼊和输出通道（channel）。<br>&emsp;<br>Channel:<br>Channel和IO中的Stream(流)是差不多⼀个等级的。只不 过Stream是单向的，譬如：InputStream, OutputStream.⽽Channel是双向的，既可以⽤来进⾏读操作，⼜可以⽤来进⾏写操作。<br>NIO中的Channel的主要实现有： FileChannel DatagramChannel SocketChannel ServerSocketChannel<br>Buffer:<br>NIO中的关键Buffer实现有：ByteBuffer, CharBuffer, DoubleBuffer, FloatBuffer, IntBuffer, LongBuffer, ShortBuffer，分别对应基本数据类型: byte, char, double, float, int, long, short<br>Selector:<br>Selector运⾏单线程处理多个Channel，如果你的应⽤打开了多个通道，但每个连接的流量都很低，使⽤ Selector就会很⽅便。例如在⼀个聊天服务器中。要使⽤Selector, 得向Selector注册Channel，然后调⽤ 它的select()⽅法。这个⽅法会⼀直阻塞到某个注册的通道有事件就绪。⼀旦这个⽅法返回，线程就可以处 理这些事件，事件的例⼦有如新的连接进来、数据接收等。<br>Buffer步骤:<br>分配空间（ByteBuffer buf = ByteBuffer.allocate(1024); 还有⼀种allocateDirector后⾯再陈述）<br>写⼊数据到Buffer(int bytesRead = fileChannel.read(buf);)<br>调⽤filp()⽅法（ buf.flip();）<br>从Buffer中读取数据（System.out.print((char)buf.get());）<br>调⽤clear()⽅法或者compact()⽅法<br><img src="/2021/11/06/java-base-2/java-4.png"></p>
-<h2 id="进程线程"><a href="#进程线程" class="headerlink" title="进程线程"></a>进程线程</h2><p>现在的操作系统是多任务操作系统。多线程是实现多任务的⼀种⽅式。<br>进程是指⼀个内存中运⾏的应⽤程序，每个进程都有⾃⼰独⽴的⼀块内存空间，⼀个进程中可以启动多个 线程。⽐如在Windows系统中，⼀个运⾏的exe就是⼀个进程。<br>线程是指进程中的⼀个执⾏流程，⼀个进程中可以运⾏多个线程。⽐如java.exe进程中可以运⾏很多线 程。线程总是属于某个进程，进程中的多个线程共享进程的内存。<br>在java中要想实现多线程，有两种⼿段，⼀种是继续Thread类，另外⼀种是实现Runable接⼝，当然准确来讲还有实现Callable接⼝，并与Future、线程池结合使⽤<br>&emsp;<br>Java线程状态：<br>线程的⽣命周期及五种基本状态:<br><img src="/2021/11/06/java-base-2/java-5.png"></p>
+<h2 id="进程线程"><a href="#进程线程" class="headerlink" title="进程线程"></a>进程线程</h2><p>现在的操作系统是多任务操作系统。多线程是实现多任务的⼀种⽅式。<br>进程是指⼀个内存中运⾏的应⽤程序，每个进程都有⾃⼰独⽴的⼀块内存空间，⼀个进程中可以启动多个 线程。⽐如在Windows系统中，⼀个运⾏的exe就是⼀个进程。<br>线程是指进程中的⼀个执⾏流程，⼀个进程中可以运⾏多个线程。⽐如java.exe进程中可以运⾏很多线 程。线程总是属于某个进程，进程中的多个线程共享进程的内存。<br>在java中要想实现多线程，有两种⼿段，⼀种是继续Thread类，另外⼀种是实现Runable接⼝，当然准确来讲还有实现Callable接⼝，并与Future、线程池结合使⽤<br>&emsp;</p>
+<h3 id="Java线程状态："><a href="#Java线程状态：" class="headerlink" title="Java线程状态："></a>Java线程状态：</h3><p>线程的⽣命周期及五种基本状态:<br><img src="/2021/11/06/java-base-2/java-5.png"></p>
 <ul>
 <li>新建状态（New）：当线程对象对创建后，即进⼊了新建状态，如：Thread t = new MyThread();</li>
 <li>就绪状态（Runnable）：当调⽤线程对象的start()⽅法（t.start();），线程即进⼊就绪状态。处于就绪状 态的线程，只是说明此线程已经做好了准备，随时等待CPU调度执⾏，并不是说执⾏了t.start()此线程⽴ 即就会执⾏；</li>
@@ -565,11 +577,35 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
 <li>其他阻塞: 通过调⽤线程的sleep()或join()或发出了I/O请求时，线程会进⼊到阻塞状态。当 sleep()状态超时、join()等待线程终⽌或者超时、或者I/O处理完毕时，线程重新转⼊就绪状态。</li>
 </ul>
 </li>
-<li>死亡状态（Dead）：线程执⾏完了或者因异常退出了run()⽅法，该线程结束⽣命周期。<br>&emsp;<br>常用线程函数：<br>sleep: 在指定的毫秒数内让当前正在执⾏的线程休眠（暂停执⾏）<br>join: 指等待t线程终⽌。即join()的作⽤是：“等待该线程终⽌”，这⾥需要理解的就是该线程是指的主线程等待⼦线程的终⽌。也就是在⼦线程调⽤了join()⽅法后⾯的代码，只有等到⼦线程结束了才能执⾏。<br>yield():暂停当前正在执⾏的线程对象，并执⾏其他线程。yield()应该做的是让当前运⾏线程回到可运⾏状态，以允许具有相同优先级的其他线程获得运⾏机会。<br>setPriority(): 更改线程的优先级，</li>
+<li>死亡状态（Dead）：线程执⾏完了或者因异常退出了run()⽅法，该线程结束⽣命周期。<br>&emsp;<h3 id="常用线程函数："><a href="#常用线程函数：" class="headerlink" title="常用线程函数："></a>常用线程函数：</h3>sleep: 在指定的毫秒数内让当前正在执⾏的线程休眠（暂停执⾏）<br>join: 指等待t线程终⽌。即join()的作⽤是：“等待该线程终⽌”，这⾥需要理解的就是该线程是指的主线程等待⼦线程的终⽌。也就是在⼦线程调⽤了join()⽅法后⾯的代码，只有等到⼦线程结束了才能执⾏。<br>yield():暂停当前正在执⾏的线程对象，并执⾏其他线程。yield()应该做的是让当前运⾏线程回到可运⾏状态，以允许具有相同优先级的其他线程获得运⾏机会。<br>setPriority(): 更改线程的优先级，</li>
 <li>MIN_PRIORITY = 1</li>
 <li>NORM_PRIORITY = 5</li>
-<li>MAX_PRIORITY = 10<br>interrupt():不要以为它是中断某个线程！它只是向线程发送⼀个中断信号，让线程在⽆限等待时（如死锁时）能抛出，从⽽结束线程，但是如果你吃掉了这个异常，那么这个线程还是不会中断的！<br>wait()：wait就是说线程在获取对象锁后，主动释放对象锁，同时本线程休眠。直到有其它线程调⽤对象的notify()唤醒该线程，才能继续获取对象锁，并继续执⾏。<br>Thread.sleep()与Object.wait()⼆者都可以 暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制。</li>
+<li>MAX_PRIORITY = 10<br>interrupt():不要以为它是中断某个线程！它只是向线程发送⼀个中断信号，让线程在⽆限等待时（如死锁时）能抛出，从⽽结束线程，但是如果你吃掉了这个异常，那么这个线程还是不会中断的！<br>wait()：wait就是说线程在获取对象锁后，主动释放对象锁，同时本线程休眠。直到有其它线程调⽤对象的notify()唤醒该线程，才能继续获取对象锁，并继续执⾏。<br>Thread.sleep()与Object.wait()⼆者都可以暂停当前线程，释放CPU控制权，主要的区别在于Object.wait()在释放CPU同时，释放了对象锁的控制。</li>
 </ul>
+<h3 id="wait和sleep区别："><a href="#wait和sleep区别：" class="headerlink" title="wait和sleep区别："></a>wait和sleep区别：</h3><p>相同点：</p>
+<ul>
+<li>他们都是在多线程的环境下，都可以在程序的调⽤处阻塞指定的毫秒数，并返回。</li>
+<li>wait()和sleep()都可以通过interrupt()⽅法 打断线程的暂停状态 ，从⽽使线程⽴刻抛出 InterruptedException。如果线程A希望⽴即结束线程B，则可以对线程B对应的Thread实例调⽤interrupt⽅法。如果此刻 线程B正在wait/sleep /join，则线程B会⽴刻抛出InterruptedException，在catch() {} 中直接 return即可安全地结束线程。需要注意的是，InterruptedException是线程⾃⼰从内部抛出的，并不是interrupt()⽅法抛出的。 对某⼀线程调⽤ interrupt()时，如果该线程正在执⾏普通的代码，那么该线程根本就不会抛出 InterruptedException。<br>不同点：</li>
+<li>Thread类的⽅法：sleep(),yield()等</li>
+<li>Object的⽅法：wait()和notify()等</li>
+<li>每个对象都有⼀个锁来控制同步访问。Synchronized关键字可以和对象的锁交互，来实现线程的 同步。sleep⽅法没有释放锁，⽽wait方法释放了锁，使得其他线程可以使⽤同步控制块或者⽅法。</li>
+<li>wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用</li>
+</ul>
+<p>sleep():</p>
+<ul>
+<li>sleep()使当前线程进⼊停滞状态（阻塞当前线程），让出CUP的使用、目的是不让当前线程独⾃霸占 该进程所获的CPU资源，以留⼀定时间给其他线程执⾏的机会;</li>
+<li>sleep()是Thread类的Static(静态)的⽅法；因此他不能改变对象的机锁，所以当在⼀个Synchronized 块中调⽤Sleep()⽅法是，线程虽然休眠了，但是对象的机锁并⽊有被释放，其他线程⽆法访问这个对 象（即使睡着也持有对象锁）。</li>
+<li>在sleep()休眠时间期满后，该线程不⼀定会立即执行，这是因为其它线程可能正在运⾏,除非此线程具有更高的优先级。<br>wait():</li>
+<li>wait()⽅法是Object类⾥的方法；当⼀个线程执行到wait()方法时，它就进入到⼀个和该对象相关的等 待池中，同时失去（释放）了对象的机锁（暂时失去机锁，wait(long timeout)超时时间到后还需要返 还对象锁）；</li>
+<li>wait()使⽤notify或者notifyAlll或者指定睡眠时间来唤醒当前等待池中的线程。</li>
+<li>wiat()必须放在synchronized block中，否则会在program runtime时扔 出”java.lang.IllegalMonitorStateException“异常。</li>
+</ul>
+<h3 id="悲观锁与乐观锁："><a href="#悲观锁与乐观锁：" class="headerlink" title="悲观锁与乐观锁："></a>悲观锁与乐观锁：</h3><p>悲观锁：<br>cpu是时分复用的，也就是把cpu的时间片，分配给不同的thread/process轮流执行，时间片与时间片之间，需要进行cpu切换，也就是会发生进程的切换。<br>切换涉及到清空寄存器，缓存数据。然后重新加载新的thread所需数据。当⼀个线程被挂起时，加⼊到阻塞队列，再通过 notify()，notifyAll()唤醒回来。在某个资源不可⽤的时候，就将cpu让出，把当前等待线程切换为阻塞状态。等到资源(⽐如⼀个共享数据）可⽤了，那么就将线程唤醒，让他进⼊runnable状态等待cpu调度。<br>独占锁是⼀种悲观锁，synchronized就是⼀种独占锁，它假设最坏的情况，并 且只有在确保其它线程不会造成⼲扰的情况下执⾏，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。<br>悲观锁缺点：<br>由于在进程挂起和恢复执行过程中存在着很大的开销。当⼀个线程正在等待锁时，它不能做任何事，所以悲观锁有很大的缺点。举个例子，如果⼀个线程需要某个资源，但是这个资源的占⽤时间很短， 当线程第⼀次抢占这个资源时，可能这个资源被占⽤，如果此时挂起这个线程，可能⽴刻就发现资源可用，然后又需要花费很⻓的时间重新抢占锁，时间代价就会非常高。<br>&emsp;<br>乐观锁：它的核心思路就是，每次不加锁而是假设没有冲突⽽去完成某项操作，如果因 为冲突失败就重试，直到成功为⽌。<br>在上面的例子中，某个线程可以不让出cpu,而是⼀直while循环，如果 失败就重试，直到成功为止。所以，当数据争⽤不严重时，乐观锁效果更好。⽐如CAS就是⼀种乐观锁思想的应⽤。</p>
+<h3 id="Java8基于CAS的ConcurrentHashMap"><a href="#Java8基于CAS的ConcurrentHashMap" class="headerlink" title="Java8基于CAS的ConcurrentHashMap"></a>Java8基于CAS的ConcurrentHashMap</h3><p>Java 8为进⼀步提高并发性，摒弃了分段锁的方案，而是直接使用一个大的数组。同时为了提高哈希碰撞下的寻址性能，Java 8在链表⻓度超过⼀定阈值（8）时将链表（寻址时间复杂度为O(N)）转换为红黑树（寻址时间复杂度为O(log(N))）。其数据结构如下图所示：<br><img src="/2021/11/06/java-base-2/java-6.png"><br><strong>寻址方式</strong><br>Java 8的ConcurrentHashMap同样是通过Key的哈希值与数组⻓度取模确定该Key在数组中的索引。同样为了避免不太好的Key的hashCode设计，它通过如下⽅法计算得到Key的最终哈希值。Java 8 的ConcurrentHashMap作者认为引⼊红⿊树后，即使哈希冲突⽐较严重，寻址效率也⾜够⾼，所以作者并未在哈希值的计算上做过多设计，只是将Key的hashCode值与其⾼16位作异或并保证最⾼位为0（从⽽保证最终结果为正整数）。</p>
+<pre class="line-numbers language-none"><code class="language-none">static final int spread(int h) &#123; 
+	return (h ^ (h &gt;&gt;&gt; 16)) &amp; HASH_BITS; 
+	&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;<br><strong>同步方式</strong><br>put操作：如果Key对应的数组元素为null，则通过CAS操作将其设置为当前值。如果Key对应的数组 元素（也即链表表头或者树的根元素）不为null，则对该元素使⽤synchronized关键字申请锁，然后进行操作。如果该put操作使得当前链表⻓度超过⼀定阈值，则将该链表转换为树，提高寻址效率。<br>&emsp;<br>读操作：由于数组被volatile关键字修饰，因此不⽤担⼼数组的可见性问题。同时每个元素是⼀个Node实例（Java 7中每个元素是⼀个HashEntry），它的Key值和hash值都由final修饰，不可变更，⽆须关⼼它们被修改后的可见性问题。⽽其Value及对下⼀个元素的引⽤由volatile修饰，可见性也有保障。<br>&emsp;<br>size操作：put⽅法和remove⽅法都会通过addCount⽅法维护Map的size。size⽅法通过sumCount获取由 addCount⽅法维护的Map的size。</p>
 
                 
             </div>
@@ -869,7 +905,7 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">54.6k</span>&nbsp;字
+                class="white-color">58k</span>&nbsp;字
             
             
             

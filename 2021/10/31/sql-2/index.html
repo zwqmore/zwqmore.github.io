@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    14 分
                 </div>
                 
 
@@ -571,6 +571,45 @@ delimiter ;<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 </li>
 </ul>
 <p>InnoDB表的行锁是通过对索引施加锁的方式实现的，这就是说，只有通过索引字段检索数据的查询语句或者更新语句，才可能施加行级锁。否则InnoDB将使用表级锁，会降低表的并发访问性能。<br>3. 页锁：页级锁开锁和加锁时间介于表级锁和行级锁之间，会出现死锁，锁定粒度介于表级锁和行级锁之间。<br>上述三种锁的特性可大致归纳如下：<br>表级锁：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低。<br>行级锁：开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度也最高。<br>页面锁：开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般。</p>
+</blockquote>
+<h2 id="分表分库"><a href="#分表分库" class="headerlink" title="分表分库"></a>分表分库</h2><h3 id="什么是分表分库？"><a href="#什么是分表分库？" class="headerlink" title="什么是分表分库？"></a>什么是分表分库？</h3><blockquote>
+<p>就是把原本存储于一个库的数据分块存储到多个库上，把原本存储于一个表的数据分块存储到多个表上。</p>
+</blockquote>
+<h3 id="为什么要分库分表？"><a href="#为什么要分库分表？" class="headerlink" title="为什么要分库分表？"></a>为什么要分库分表？</h3><blockquote>
+<p>数据库中的数据量不一定是可控的，在未进行分库分表的情况下，随着时间和业务的发展，库中的表会越来越多，表中的数据量也会越来越大。<br>数据操作的开销也会越来越大。而且一台服务器的资源（CPU、磁盘、内存、IO等）是有限的，最终数据库所能承载的数据量、数据处理能力都将遭遇瓶颈。</p>
+</blockquote>
+<h3 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h3><blockquote>
+<p>就是把一个表的数据放到多个表中，然后查询的时候你就查一个表。比如按照用户 id 来分表，将一个用户的数据就放在一个表中。然后操作的时候你对一个用户就操作那个表就好了。这样可以控制每个表的数据量在可控的范围内。</p>
+</blockquote>
+<h3 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h3><blockquote>
+<p>一般数据库最多支撑到并发 2000，一定要扩容了，而且一个健康的单库并发值你最好保持在每秒 1000 左右。所以需要将一个库的数据拆分到多个库中，访问的时候就访问一个库好了。</p>
+</blockquote>
+<h3 id="垂直切分"><a href="#垂直切分" class="headerlink" title="垂直切分"></a>垂直切分</h3><blockquote>
+<p>把一个有很多字段的表给拆分成多个表，或者是多个库上去。每个库表的结构都不一样，每个库表都包含部分字段。一般来说，会将较少的访问频率很高的字段放到一个表里去，然后将较多的访问频率很低的字段放到另外一个表里去。因为数据库是有缓存的，你访问频率高的行字段越少，就可以在缓存里缓存更多的行，性能就越好。这个一般在表层面做的较多一些。<br>将表按照功能模块、关系密切程度划分出来，部署到不同的库上。例如，我们会建立定义数据库workDB、商品数据库payDB、用户数据库userDB、日志数据库logDB等，分别用于存储项目数据定义表、商品定义表、用户数据表、日志数据表等。</p>
+</blockquote>
+<h3 id="水平切分"><a href="#水平切分" class="headerlink" title="水平切分"></a>水平切分</h3><blockquote>
+<p>把一个表的数据给弄到多个库的多个表里去，但是每个库的表结构都一样，只不过每个库表放的数据是不同的，所有库表的数据加起来就是全部数据。水平拆分的意义，就是将数据均匀放更多的库里，然后用多个库来扛更高的并发，还有就是用多个库的存储容量来进行扩容。</p>
+</blockquote>
+<h3 id="分库分表中间件"><a href="#分库分表中间件" class="headerlink" title="分库分表中间件"></a>分库分表中间件</h3><blockquote>
+<ul>
+<li>sharding-jdbc：属于 client 层方案。 SQL 语法支持也比较多，没有太多限制。持分库分表、读写分离、分布式 id 生成、柔性事务（最大努力送达型事务、TCC 事务）。</li>
+<li>mycat：属于 proxy 层方案，支持的功能非常完善，相比于 sharding jdbc 来说，年轻一些，经历的锤炼少一些。</li>
+<li>区别：<ul>
+<li>sharding-jdbc 这种 client 层方案的优点在于不用部署，运维成本低，不需要代理层的二次转发请求，性能很高，但是如果遇到升级啥的需要各个系统都重新升级版本再发布，各个系统都需要耦合 sharding-jdbc 的依赖。适合中小型公司。</li>
+<li>mycat 这种 proxy 层方案的缺点在于需要部署，自己运维一套中间件，运维成本高，但是好处在于对于各个项目是透明的，如果遇到升级之类的都是自己中间件那里搞就行了。适合大型公司</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><blockquote>
+<p>如果数据库是因为表太多而造成海量数据，并且项目的各项业务逻辑划分清晰、低耦合，那么规则简单明了、容易实施的垂直切分必是首选。<br>如果数据库中的表并不多，但单表的数据量很大、或数据热度很高，这种情况之下就应该选择水平切分。</p>
+</blockquote>
+<h3 id="分库分表的问题"><a href="#分库分表的问题" class="headerlink" title="分库分表的问题"></a>分库分表的问题</h3><blockquote>
+<ul>
+<li>事务问题：数据存储到了不同的库上，事务管理出现困难。</li>
+<li>跨库跨表的join问题：执行了分库分表之后，难以避免会将原本逻辑关联性很强的数据划分到不同的表、不同的库上。无法join位于不同分库的表，可能需要多次查询才能完成。</li>
+<li>额外的数据管理负担和数据运算压力：比如查看前100条数据，分表前只需一个order by，分表后需要查出每个分表的前100，然后再合并整理。</li>
+</ul>
 </blockquote>
 
                 
@@ -877,7 +916,7 @@ delimiter ;<span aria-hidden="true" class="line-numbers-rows"><span></span><span
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">54.6k</span>&nbsp;字
+                class="white-color">58k</span>&nbsp;字
             
             
             
