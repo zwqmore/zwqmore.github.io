@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.3k
+                    8.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    23 分
+                    29 分
                 </div>
                 
 
@@ -601,11 +601,35 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
 <li>wiat()必须放在synchronized block中，否则会在program runtime时扔 出”java.lang.IllegalMonitorStateException“异常。</li>
 </ul>
 <h3 id="悲观锁与乐观锁："><a href="#悲观锁与乐观锁：" class="headerlink" title="悲观锁与乐观锁："></a>悲观锁与乐观锁：</h3><p>悲观锁：<br>cpu是时分复用的，也就是把cpu的时间片，分配给不同的thread/process轮流执行，时间片与时间片之间，需要进行cpu切换，也就是会发生进程的切换。<br>切换涉及到清空寄存器，缓存数据。然后重新加载新的thread所需数据。当⼀个线程被挂起时，加⼊到阻塞队列，再通过 notify()，notifyAll()唤醒回来。在某个资源不可⽤的时候，就将cpu让出，把当前等待线程切换为阻塞状态。等到资源(⽐如⼀个共享数据）可⽤了，那么就将线程唤醒，让他进⼊runnable状态等待cpu调度。<br>独占锁是⼀种悲观锁，synchronized就是⼀种独占锁，它假设最坏的情况，并 且只有在确保其它线程不会造成⼲扰的情况下执⾏，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。<br>悲观锁缺点：<br>由于在进程挂起和恢复执行过程中存在着很大的开销。当⼀个线程正在等待锁时，它不能做任何事，所以悲观锁有很大的缺点。举个例子，如果⼀个线程需要某个资源，但是这个资源的占⽤时间很短， 当线程第⼀次抢占这个资源时，可能这个资源被占⽤，如果此时挂起这个线程，可能⽴刻就发现资源可用，然后又需要花费很⻓的时间重新抢占锁，时间代价就会非常高。<br>&emsp;<br>乐观锁：它的核心思路就是，每次不加锁而是假设没有冲突⽽去完成某项操作，如果因 为冲突失败就重试，直到成功为⽌。<br>在上面的例子中，某个线程可以不让出cpu,而是⼀直while循环，如果 失败就重试，直到成功为止。所以，当数据争⽤不严重时，乐观锁效果更好。⽐如CAS就是⼀种乐观锁思想的应⽤。</p>
+<h3 id="Java中CAS实现"><a href="#Java中CAS实现" class="headerlink" title="Java中CAS实现"></a>Java中CAS实现</h3><p>CAS就是Compare and Swap的意思，⽐较并操作。很多的cpu直接⽀持CAS指令。CAS是项乐观锁技术，当多个线程尝试使⽤CAS同时更新同⼀个变量时，只有其中⼀个线程能更新变量的值，⽽其它线程都 失败，失败的线程并不会被挂起，⽽是被告知这次竞争中失败，并可以再次尝试。CAS有3个操作数，内存 值V，旧的预期值A，要修改的新值B。当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么 都不做。<br>在 java.util.concurrent.atomic包下⾯的所有的原⼦变量类型中，⽐如AtomicInteger，都使⽤了这些底层的 JVM⽀持为数字类型的引⽤类型提供⼀种⾼效的CAS操作。<br>在CAS操作中，会出现ABA问题。就是如果V的值先由A变成B，再由B变成A，那么仍然认为是发⽣了变 化，并需要重新执⾏算法中的步骤。有简单的解决⽅案：不是更新某个引⽤的值，⽽是更新两个值，包括 ⼀个引⽤和⼀个版本号，即使这个值由A变为B，然后为变为A，版本号也是不同的。</p>
+<h3 id="AtomicInteger的实现"><a href="#AtomicInteger的实现" class="headerlink" title="AtomicInteger的实现"></a>AtomicInteger的实现</h3><p>AtomicInteger 是⼀个⽀持原⼦操作的 Integer 类，就是保证对AtomicInteger类型变量的增加和减少操 作是原⼦性的，不会出现多个线程下的数据不⼀致问题。如果不使⽤ AtomicInteger，要实现⼀个按顺序 获取的 ID，就必须在每次获取时进⾏加锁操作，以避免出现并发时获取到同样的 ID 的现象。</p>
 <h3 id="Java8基于CAS的ConcurrentHashMap"><a href="#Java8基于CAS的ConcurrentHashMap" class="headerlink" title="Java8基于CAS的ConcurrentHashMap"></a>Java8基于CAS的ConcurrentHashMap</h3><p>Java 8为进⼀步提高并发性，摒弃了分段锁的方案，而是直接使用一个大的数组。同时为了提高哈希碰撞下的寻址性能，Java 8在链表⻓度超过⼀定阈值（8）时将链表（寻址时间复杂度为O(N)）转换为红黑树（寻址时间复杂度为O(log(N))）。其数据结构如下图所示：<br><img src="/2021/11/06/java-base-2/java-6.png"><br><strong>寻址方式</strong><br>Java 8的ConcurrentHashMap同样是通过Key的哈希值与数组⻓度取模确定该Key在数组中的索引。同样为了避免不太好的Key的hashCode设计，它通过如下⽅法计算得到Key的最终哈希值。Java 8 的ConcurrentHashMap作者认为引⼊红⿊树后，即使哈希冲突⽐较严重，寻址效率也⾜够⾼，所以作者并未在哈希值的计算上做过多设计，只是将Key的hashCode值与其⾼16位作异或并保证最⾼位为0（从⽽保证最终结果为正整数）。</p>
 <pre class="line-numbers language-none"><code class="language-none">static final int spread(int h) &#123; 
 	return (h ^ (h &gt;&gt;&gt; 16)) &amp; HASH_BITS; 
 	&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>&emsp;<br><strong>同步方式</strong><br>put操作：如果Key对应的数组元素为null，则通过CAS操作将其设置为当前值。如果Key对应的数组 元素（也即链表表头或者树的根元素）不为null，则对该元素使⽤synchronized关键字申请锁，然后进行操作。如果该put操作使得当前链表⻓度超过⼀定阈值，则将该链表转换为树，提高寻址效率。<br>&emsp;<br>读操作：由于数组被volatile关键字修饰，因此不⽤担⼼数组的可见性问题。同时每个元素是⼀个Node实例（Java 7中每个元素是⼀个HashEntry），它的Key值和hash值都由final修饰，不可变更，⽆须关⼼它们被修改后的可见性问题。⽽其Value及对下⼀个元素的引⽤由volatile修饰，可见性也有保障。<br>&emsp;<br>size操作：put⽅法和remove⽅法都会通过addCount⽅法维护Map的size。size⽅法通过sumCount获取由 addCount⽅法维护的Map的size。</p>
+<h3 id="Java并发：CopyOnWriteArrayList实现原理"><a href="#Java并发：CopyOnWriteArrayList实现原理" class="headerlink" title="Java并发：CopyOnWriteArrayList实现原理"></a>Java并发：CopyOnWriteArrayList实现原理</h3><p>CopyOnWriteArrayList是Java并发包中提供的⼀个并发容器，它是个线程安全且读操作⽆锁的 ArrayList，写操作则通过创建底层数组的新副本来实现，是⼀种读写分离的并发策略。<br>实现原理：<br>ArrayList是⾮线程安全的，Vector虽是线程安全的，但由于简单粗暴的锁同步 机制，性能较差。⽽CopyOnWriteArrayList则提供了另⼀种不同的并发处理策略：<br>CopyOnWriteArrayList容器允许并发读，读操作 是⽆锁的，性能较⾼。⾄于写操作，⽐如向容器中添加⼀个元素，则⾸先将当前容器复制⼀份，然后在新 副本上执⾏写操作，结束之后再将原容器的引⽤指向新容器。<br><img src="/2021/11/06/java-base-2/java-7.png"><br>优点：读操作性能很⾼，因为⽆需任何同步措施，⽐较适⽤于读多写少的并发场景。<br>缺点：</p>
+<ul>
+<li>内存占⽤问题，毕竟每次执⾏写操作都要将原容器拷⻉⼀份，数据量⼤时，对内存压 ⼒较⼤，可能会引起频繁GC。</li>
+<li>⽆法保证实时性，Vector对于读写操作均加锁同步，可以保证读和写的 强⼀致性。⽽CopyOnWriteArrayList由于其实现策略的原因，写和读分别作⽤在新⽼不同容器上，读的时候是老容器的数据。</li>
+</ul>
+<h3 id="CAS详解"><a href="#CAS详解" class="headerlink" title="CAS详解"></a>CAS详解</h3><p>在JDK 5之前Java是靠synchronized关键字保证同步的，这会导致有锁。</p>
+<ul>
+<li>锁机制的问题<ul>
+<li>在多线程竞争下，加锁、释放锁会导致⽐较多的上下⽂切换和调度延时，引起性能问题。</li>
+<li>⼀个线程持有锁会导致其它所有需要此锁的线程挂起。</li>
+<li>如果⼀个优先级⾼的线程等待⼀个优先级低的线程释放锁会导致优先级倒置，引起性能⻛险。</li>
+</ul>
+</li>
+</ul>
+<p>volatile是不错的机制，但是volatile不能保证原⼦性。因此对于同步最终还是要回到锁机制上来。</p>
+<h4 id="什么是CAS"><a href="#什么是CAS" class="headerlink" title="什么是CAS"></a>什么是CAS</h4><p>在Java发展初期，java语⾔是不能够利⽤硬件提供的这些便利来提升系统的性能的。⽽随着java不断的发 展,Java本地⽅法(JNI)的出现，使得java程序越过JVM直接调⽤本地⽅法提供了⼀种便捷的⽅式，因⽽java 在并发的⼿段上也多了起来。⽽在Doug Lea提供的cucurenct包中，CAS理论是它实现整个java包的基 ⽯。<br>CAS 操作包含三个操作数 —— 内存位置（V）、预期原值（A）和新值(B)。 如果内存位置的值与预期原 值相匹配，那么处理器会⾃动将该位置值更新为新值 。否则，处理器不做任何操作。⽆论哪种情况，它都 会在 CAS 指令之前返回该 位置的值。（在 CAS 的⼀些特殊情况下将仅返回 CAS 是否成功，⽽不提取当 前值。）CAS 有效地说明了“我认为位置 V 应该包含值 A；如果包含该值，则将 B 放到这个位置；否 则，不要更改该位置，只告诉我这个位置现在的值即可。<br>通常将 CAS ⽤于同步的⽅式是从地址 V 读取值 A，执⾏多步计算来获得新 值 B，然后使⽤ CAS 将 V 的值从 A 改为 B。如果 V 处的值尚未同时更改，则 CAS 操作成功。<br>类似于 CAS 的指令允许算法执⾏读-修改-写操作，⽽⽆需害怕其他线程同时修改变量，因为如果其他线程修改变量，那么 CAS 会检测它（并失败），算法可以对该操作重新计算。</p>
+<h4 id="CAS的⽬的"><a href="#CAS的⽬的" class="headerlink" title="CAS的⽬的"></a>CAS的⽬的</h4><p>利⽤CPU的CAS指令，同时借助JNI来完成Java的⾮阻塞算法。其它原⼦操作都是利⽤类似的特性完成的。</p>
+<h4 id="CAS存在的问题"><a href="#CAS存在的问题" class="headerlink" title="CAS存在的问题"></a>CAS存在的问题</h4><ol>
+<li>ABA问题：因为CAS需要在操作值的时候检查下值有没有发⽣变化，如果没有发⽣变化则更新，但是如 果⼀个值原来是A，变成了B，⼜变成了A，那么使⽤CAS进⾏检查时会发现它的值没有发⽣变化，但是实 际上却变化了。ABA问题的解决思路就是使⽤版本号。在变量前⾯追加上版本号，每次变量更新的时候把 版本号加⼀，那么A－B－A 就会变成1A-2B－3A。</li>
+<li>循环时间⻓开销大：自旋CAS如果⻓时间不成功，会给CPU带来⾮常⼤的执⾏开销。如果JVM能⽀持处 理器提供的pause指令那么效率会有⼀定的提升，pause指令有两个作⽤，第⼀它可以延迟流⽔线执⾏指令 （de-pipeline）,使CPU不会消耗过多的执⾏资源，延迟的时间取决于具体实现的版本，在⼀些处理器上 延迟时间是零。第⼆它可以避免在退出循环的时候因内存顺序冲突（memory order violation）⽽引起 CPU流⽔线被清空（CPU pipeline flush），从⽽提⾼CPU的执⾏效率</li>
+<li>只能保证⼀个共享变量的原⼦操作。当对⼀个共享变量执⾏操作时，我们可以使⽤循环CAS的⽅式来保 证原⼦操作，但是对多个共享变量操作时，循环CAS就⽆法保证操作的原⼦性，这个时候就可以⽤锁，或者有⼀个取巧的办法，就是把多个共享变量合并成⼀个共享变量来操作。⽐如有两个共享变量i＝2,j=a，合 并⼀下ij=2a，然后⽤CAS来操作ij。从Java1.5开始JDK提供了AtomicReference类来保证引⽤对象之间 的原⼦性，你可以把多个变量放在⼀个对象⾥来进⾏CAS操作。</li>
+</ol>
 
                 
             </div>
@@ -665,18 +689,17 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/11/06/java-base-2/">
+                <a href="/2021/11/14/java-base-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="java-2">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="java-3">
                         
-                        <span class="card-title">java-2</span>
+                        <span class="card-title">java-3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -686,9 +709,9 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -701,7 +724,6 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -905,7 +927,7 @@ map.put(&quot;化学&quot;,3	);<span aria-hidden="true" class="line-numbers-rows
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">58k</span>&nbsp;字
+                class="white-color">62.3k</span>&nbsp;字
             
             
             
