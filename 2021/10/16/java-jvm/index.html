@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="java8内存结构, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="Java8内存结构, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>java8内存结构 | ZwqBlog</title>
+    <title>Java8内存结构 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">java8内存结构</h1>
+                    <h1 class="description center-align post-title">Java8内存结构</h1>
                 </div>
             </div>
         </div>
@@ -409,12 +409,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
-                            <a href="/tags/jvm/">
-                                <span class="chip bg-color">jvm</span>
+                            <a href="/tags/JVM/">
+                                <span class="chip bg-color">JVM</span>
                             </a>
                         
                     </div>
@@ -425,8 +425,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/java/" class="post-category">
-                                java
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -483,13 +483,13 @@
 <h2 id="虚拟机内存与本地内存的区别"><a href="#虚拟机内存与本地内存的区别" class="headerlink" title="虚拟机内存与本地内存的区别?"></a>虚拟机内存与本地内存的区别?</h2><blockquote>
 <p>Java虚拟机在执行的时候会把管理的内存分配成不同的区域，这些区域被称为虚拟机内存，<br>同时，对于虚拟机没有直接管理的物理内存，也有一定的利用，我们称它为本地内存。</p>
 </blockquote>
-<h3 id="jvm内存"><a href="#jvm内存" class="headerlink" title="jvm内存"></a>jvm内存</h3><blockquote>
+<h3 id="JVM内存"><a href="#JVM内存" class="headerlink" title="JVM内存"></a>JVM内存</h3><blockquote>
 <p>受虚拟机内存大小的参数控制，当大小超过参数设置的大小时就会报OOM</p>
 </blockquote>
 <h3 id="本地内存"><a href="#本地内存" class="headerlink" title="本地内存"></a>本地内存</h3><blockquote>
 <p>本地内存不受虚拟机内存参数的限制，只受物理内存容量的限制<br>虽然不受参数的限制，但是如果内存的占用超出物理内存的大小，同样也会报OOM</p>
 </blockquote>
-<h2 id="java运行时数据区域"><a href="#java运行时数据区域" class="headerlink" title="java运行时数据区域"></a>java运行时数据区域</h2><h3 id="程序计数器（Program-Counter-Register）"><a href="#程序计数器（Program-Counter-Register）" class="headerlink" title="程序计数器（Program Counter Register）"></a>程序计数器（Program Counter Register）</h3><blockquote>
+<h2 id="Java运行时数据区域"><a href="#Java运行时数据区域" class="headerlink" title="Java运行时数据区域"></a>Java运行时数据区域</h2><h3 id="程序计数器（Program-Counter-Register）"><a href="#程序计数器（Program-Counter-Register）" class="headerlink" title="程序计数器（Program Counter Register）"></a>程序计数器（Program Counter Register）</h3><blockquote>
 <p>程序计数器就是当前线程所执行的字节码的行号指示器，通过改变计数器的值，来选取下一行指令，通过他来实现跳转、循环、恢复线程等功能。<br>在任何时刻，一个处理器内核只能运行一个线程，多线程是通过线程轮流切换，分配时间来完成的，这就需要有一个标志来记住每个线程执行到了哪里，这里便需要到了程序计数器。<br>所以，程序计数器是线程私有的，每个线程都已自己的程序计数器。</p>
 </blockquote>
 <h3 id="虚拟机栈（JVM-Stacks）"><a href="#虚拟机栈（JVM-Stacks）" class="headerlink" title="虚拟机栈（JVM Stacks）"></a>虚拟机栈（JVM Stacks）</h3><blockquote>
@@ -647,12 +647,12 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
-                                <a href="/tags/jvm/">
-                                    <span class="chip bg-color">jvm</span>
+                                <a href="/tags/JVM/">
+                                    <span class="chip bg-color">JVM</span>
                                 </a>
                             
                         </div>
@@ -704,9 +704,9 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="java工具类">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Java工具类">
                         
-                        <span class="card-title">java工具类</span>
+                        <span class="card-title">Java工具类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -723,8 +723,8 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category">
-                                    java
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -734,12 +734,12 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
-                    <a href="/tags/utils/">
-                        <span class="chip bg-color">utils</span>
+                    <a href="/tags/Utils/">
+                        <span class="chip bg-color">Utils</span>
                     </a>
                     
                 </div>
@@ -757,9 +757,9 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="springboot注解篇">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="SpringBoot注解篇">
                         
-                        <span class="card-title">springboot注解篇</span>
+                        <span class="card-title">SpringBoot注解篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -776,8 +776,8 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/springboot/" class="post-category">
-                                    springboot
+                            <a href="/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
                                 </a>
                             
                             
@@ -787,8 +787,8 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/springboot/">
-                        <span class="chip bg-color">springboot</span>
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
@@ -938,7 +938,7 @@ String b&#x3D;&quot;iloveu&quot;;&#x2F;&#x2F;iloveu便是字面量<span aria-hid
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">62.3k</span>&nbsp;字
+                class="white-color">64.8k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="java-3, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="Java-线程, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>java-3 | ZwqBlog</title>
+    <title>Java-线程 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">java-3</h1>
+                    <h1 class="description center-align post-title">Java-线程</h1>
                 </div>
             </div>
         </div>
@@ -409,8 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/java/">
-                                <span class="chip bg-color">java</span>
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -421,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/java/" class="post-category">
-                                java
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    20 分
                 </div>
                 
 
@@ -473,7 +473,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="concurrent包的实现"><a href="#concurrent包的实现" class="headerlink" title="concurrent包的实现"></a>concurrent包的实现</h2><p>由于java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下⾯四种⽅式：</p>
+                <h1 id="Java线程"><a href="#Java线程" class="headerlink" title="Java线程"></a>Java线程</h1><h2 id="concurrent包的实现"><a href="#concurrent包的实现" class="headerlink" title="concurrent包的实现"></a>concurrent包的实现</h2><blockquote>
+<p>由于Java的CAS同时具有 volatile 读和volatile写的内存语义，因此Java线程之间的通信现在有了下⾯四种⽅式：</p>
 <ol>
 <li>A线程写volatile变量，随后B线程读这个volatile变量。</li>
 <li>A线程写volatile变量，随后B线程⽤CAS更新这个volatile变量。</li>
@@ -487,8 +488,12 @@
 <li>同时，配合以volatile的读/写和CAS所具有的volatile读和写的内存语义来实现线程之间的通信。</li>
 </ul>
 <p>AQS，非阻塞数据结构和原子变量类（java.util.concurrent.atomic包中的类），这些concurrent包中的基础类都是使⽤这种模式来实现的，⽽concurrent包中的⾼层类⼜是依赖于这些基础类来实现的。从整体来看，concurrent包的实现示意图如下：<br><img src="/2021/11/14/java-base-3/java-1.png"></p>
-<h2 id="Java线程池详解"><a href="#Java线程池详解" class="headerlink" title="Java线程池详解"></a>Java线程池详解</h2><p>线程的创建和销毁，都涉及到系统调⽤，⽐较消耗系统资源，那么有没有⼀种办法使得线程可以复⽤，就 是执⾏完⼀个任务，并不被销毁，⽽是可以继续执⾏其他的任务？所以就引⼊了线程池技术，避免频繁的 线程创建和销毁。<br>在Java中有⼀个Executors⼯具类，可以为我们创建⼀个线程池，其本质就是new了⼀个 ThreadPoolExecutor对象</p>
-<h3 id="ThreadPoolExecutor类"><a href="#ThreadPoolExecutor类" class="headerlink" title="ThreadPoolExecutor类"></a>ThreadPoolExecutor类</h3><p>java.uitl.concurrent.ThreadPoolExecutor类是线程池中最核⼼的⼀个类，因此如果要透彻地了解Java中 的线程池，必须先了解这个类。<br>ThreadPoolExecutor类中提供了四个构造⽅法：</p>
+</blockquote>
+<h2 id="Java线程池详解"><a href="#Java线程池详解" class="headerlink" title="Java线程池详解"></a>Java线程池详解</h2><blockquote>
+<p>线程的创建和销毁，都涉及到系统调⽤，⽐较消耗系统资源，那么有没有⼀种办法使得线程可以复⽤，就 是执⾏完⼀个任务，并不被销毁，⽽是可以继续执⾏其他的任务？所以就引⼊了线程池技术，避免频繁的 线程创建和销毁。<br>在Java中有⼀个Executors⼯具类，可以为我们创建⼀个线程池，其本质就是new了⼀个 ThreadPoolExecutor对象</p>
+</blockquote>
+<h3 id="ThreadPoolExecutor类"><a href="#ThreadPoolExecutor类" class="headerlink" title="ThreadPoolExecutor类"></a>ThreadPoolExecutor类</h3><blockquote>
+<p>java.uitl.concurrent.ThreadPoolExecutor类是线程池中最核⼼的⼀个类，因此如果要透彻地了解Java中 的线程池，必须先了解这个类。<br>ThreadPoolExecutor类中提供了四个构造⽅法：</p>
 <pre class="line-numbers language-none"><code class="language-none">public ThreadPoolExecutor(int corePoolSize,
                              int maximumPoolSize,
                              long keepAliveTime,
@@ -570,6 +575,8 @@ TimeUnit.NANOSECONDS; &#x2F;&#x2F;纳秒<span aria-hidden="true" class="line-num
 </ul>
 </li>
 </ul>
+</blockquote>
+<blockquote>
 <p>线程池的执⾏流程：<br><img src="/2021/11/14/java-base-3/java-2.png"><br>任务被提交到线程池，会先判断当前线程数量是否⼩于corePoolSize，如果⼩于则创建线程来执⾏提交的 任务，否则将任务放⼊workQueue队列，如果workQueue满了，则判断当前线程数量是否⼩于 maximumPoolSize,如果⼩于则创建线程执⾏任务，否则就会调⽤handler，以表示线程池拒绝接收任务。<br>&emsp;<br>线程池的execute方法:</p>
 <pre class="line-numbers language-none"><code class="language-none">int c &#x3D; ctl.get();
 if (workerCountOf(c) &lt; corePoolSize) &#123;
@@ -588,78 +595,78 @@ else if (!addWorker(command, false))
     reject(command);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>判断当前活跃线程数是否⼩于corePoolSize,如果⼩于，则调⽤addWorker创建线程执⾏任务<br>如果不⼩于corePoolSize，则将任务添加到workQueue队列。<br>如果放⼊workQueue失败，则创建线程执⾏任务，如果这时创建线程失败(当前线程数不⼩于 maximumPoolSize时)，就会调⽤reject(内部调⽤handler)拒绝接受任务。<br>&emsp;<br>addWorker方法：</p>
 <pre class="line-numbers language-none"><code class="language-none">private boolean addWorker(Runnable firstTask, boolean core) &#123;
-        retry:
-        for (;;) &#123;
-            int c &#x3D; ctl.get();
-            int rs &#x3D; runStateOf(c);
+       retry:
+       for (;;) &#123;
+           int c &#x3D; ctl.get();
+           int rs &#x3D; runStateOf(c);
 
-            &#x2F;&#x2F; Check if queue empty only if necessary.
-            if (rs &gt;&#x3D; SHUTDOWN &amp;&amp;
-                ! (rs &#x3D;&#x3D; SHUTDOWN &amp;&amp;
-                   firstTask &#x3D;&#x3D; null &amp;&amp;
-                   ! workQueue.isEmpty()))
-                return false;
+           &#x2F;&#x2F; Check if queue empty only if necessary.
+           if (rs &gt;&#x3D; SHUTDOWN &amp;&amp;
+               ! (rs &#x3D;&#x3D; SHUTDOWN &amp;&amp;
+                  firstTask &#x3D;&#x3D; null &amp;&amp;
+                  ! workQueue.isEmpty()))
+               return false;
 
-            for (;;) &#123;
-                int wc &#x3D; workerCountOf(c);
-                if (wc &gt;&#x3D; CAPACITY ||
-                    wc &gt;&#x3D; (core ? corePoolSize : maximumPoolSize))
-                    return false;
-                if (compareAndIncrementWorkerCount(c))
-                    break retry;
-                c &#x3D; ctl.get();  &#x2F;&#x2F; Re-read ctl
-                if (runStateOf(c) !&#x3D; rs)
-                    continue retry;
-                &#x2F;&#x2F; else CAS failed due to workerCount change; retry inner loop
-            &#125;
-        &#125;
+           for (;;) &#123;
+               int wc &#x3D; workerCountOf(c);
+               if (wc &gt;&#x3D; CAPACITY ||
+                   wc &gt;&#x3D; (core ? corePoolSize : maximumPoolSize))
+                   return false;
+               if (compareAndIncrementWorkerCount(c))
+                   break retry;
+               c &#x3D; ctl.get();  &#x2F;&#x2F; Re-read ctl
+               if (runStateOf(c) !&#x3D; rs)
+                   continue retry;
+               &#x2F;&#x2F; else CAS failed due to workerCount change; retry inner loop
+           &#125;
+       &#125;
 
-        boolean workerStarted &#x3D; false;
-        boolean workerAdded &#x3D; false;
-        Worker w &#x3D; null;
-        try &#123;
-            w &#x3D; new Worker(firstTask);
-            final Thread t &#x3D; w.thread;
-            if (t !&#x3D; null) &#123;
-                final ReentrantLock mainLock &#x3D; this.mainLock;
-                mainLock.lock();
-                try &#123;
-                    &#x2F;&#x2F; Recheck while holding lock.
-                    &#x2F;&#x2F; Back out on ThreadFactory failure or if
-                    &#x2F;&#x2F; shut down before lock acquired.
-                    int rs &#x3D; runStateOf(ctl.get());
+       boolean workerStarted &#x3D; false;
+       boolean workerAdded &#x3D; false;
+       Worker w &#x3D; null;
+       try &#123;
+           w &#x3D; new Worker(firstTask);
+           final Thread t &#x3D; w.thread;
+           if (t !&#x3D; null) &#123;
+               final ReentrantLock mainLock &#x3D; this.mainLock;
+               mainLock.lock();
+               try &#123;
+                   &#x2F;&#x2F; Recheck while holding lock.
+                   &#x2F;&#x2F; Back out on ThreadFactory failure or if
+                   &#x2F;&#x2F; shut down before lock acquired.
+                   int rs &#x3D; runStateOf(ctl.get());
 
-                    if (rs &lt; SHUTDOWN ||
-                        (rs &#x3D;&#x3D; SHUTDOWN &amp;&amp; firstTask &#x3D;&#x3D; null)) &#123;
-                        if (t.isAlive()) &#x2F;&#x2F; precheck that t is startable
-                            throw new IllegalThreadStateException();
-                        workers.add(w);
-                        int s &#x3D; workers.size();
-                        if (s &gt; largestPoolSize)
-                            largestPoolSize &#x3D; s;
-                        workerAdded &#x3D; true;
-                    &#125;
-                &#125; finally &#123;
-                    mainLock.unlock();
-                &#125;
-                if (workerAdded) &#123;
-                    t.start();
-                    workerStarted &#x3D; true;
-                &#125;
-            &#125;
-        &#125; finally &#123;
-            if (! workerStarted)
-                addWorkerFailed(w);
-        &#125;
-        return workerStarted;
-    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                   if (rs &lt; SHUTDOWN ||
+                       (rs &#x3D;&#x3D; SHUTDOWN &amp;&amp; firstTask &#x3D;&#x3D; null)) &#123;
+                       if (t.isAlive()) &#x2F;&#x2F; precheck that t is startable
+                           throw new IllegalThreadStateException();
+                       workers.add(w);
+                       int s &#x3D; workers.size();
+                       if (s &gt; largestPoolSize)
+                           largestPoolSize &#x3D; s;
+                       workerAdded &#x3D; true;
+                   &#125;
+               &#125; finally &#123;
+                   mainLock.unlock();
+               &#125;
+               if (workerAdded) &#123;
+                   t.start();
+                   workerStarted &#x3D; true;
+               &#125;
+           &#125;
+       &#125; finally &#123;
+           if (! workerStarted)
+               addWorkerFailed(w);
+       &#125;
+       return workerStarted;
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-none"><code class="language-none">wc &gt;&#x3D; (core ? corePoolSize : maximumPoolSize))
-                    return false;
+                   return false;
 &#x2F;&#x2F;这块代码是在创建非核心线程时，即core等于false。
 &#x2F;&#x2F;判断当前线程数是否大于等于maximumPoolSize， 如果大于等于则返回false，
 &#x2F;&#x2F;即上边说到的addWorker(command, false)中创建线程失败的情况。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-none"><code class="language-none">w &#x3D; new Worker(firstTask);
-            final Thread t &#x3D; w.thread;
+           final Thread t &#x3D; w.thread;
 &#x2F;&#x2F;创建Worker对象，同时也会实例化⼀个Thread对象。
 
 t.start();
@@ -708,63 +715,113 @@ public void run() &#123;
           &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>线程调⽤runWoker，会while循环调⽤getTask⽅法从workerQueue⾥读取任务，然后执⾏任务。只要 getTask⽅法不返回null,此线程就不会退出。<br>&emsp;<br>看getTask⽅法实现:</p>
 <pre class="line-numbers language-none"><code class="language-none">private Runnable getTask() &#123;
-        boolean timedOut &#x3D; false; &#x2F;&#x2F; Did the last poll() time out?
+       boolean timedOut &#x3D; false; &#x2F;&#x2F; Did the last poll() time out?
 
-        for (;;) &#123;
-            int c &#x3D; ctl.get();
-            int rs &#x3D; runStateOf(c);
+       for (;;) &#123;
+           int c &#x3D; ctl.get();
+           int rs &#x3D; runStateOf(c);
 
-            &#x2F;&#x2F; Check if queue empty only if necessary.
-            if (rs &gt;&#x3D; SHUTDOWN &amp;&amp; (rs &gt;&#x3D; STOP || workQueue.isEmpty())) &#123;
-                decrementWorkerCount();
-                return null;
-            &#125;
+           &#x2F;&#x2F; Check if queue empty only if necessary.
+           if (rs &gt;&#x3D; SHUTDOWN &amp;&amp; (rs &gt;&#x3D; STOP || workQueue.isEmpty())) &#123;
+               decrementWorkerCount();
+               return null;
+           &#125;
 
-            int wc &#x3D; workerCountOf(c);
+           int wc &#x3D; workerCountOf(c);
 
-            &#x2F;&#x2F; Are workers subject to culling?
-            boolean timed &#x3D; allowCoreThreadTimeOut || wc &gt; corePoolSize;
+           &#x2F;&#x2F; Are workers subject to culling?
+           boolean timed &#x3D; allowCoreThreadTimeOut || wc &gt; corePoolSize;
 
-            if ((wc &gt; maximumPoolSize || (timed &amp;&amp; timedOut))
-                &amp;&amp; (wc &gt; 1 || workQueue.isEmpty())) &#123;
-                if (compareAndDecrementWorkerCount(c))
-                    return null;
-                continue;
-            &#125;
+           if ((wc &gt; maximumPoolSize || (timed &amp;&amp; timedOut))
+               &amp;&amp; (wc &gt; 1 || workQueue.isEmpty())) &#123;
+               if (compareAndDecrementWorkerCount(c))
+                   return null;
+               continue;
+           &#125;
 
-            try &#123;
-                Runnable r &#x3D; timed ?
-                    workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
-                    workQueue.take();
-                if (r !&#x3D; null)
-                    return r;
-                timedOut &#x3D; true;
-            &#125; catch (InterruptedException retry) &#123;
-                timedOut &#x3D; false;
-            &#125;
-        &#125;
-    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+           try &#123;
+               Runnable r &#x3D; timed ?
+                   workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+                   workQueue.take();
+               if (r !&#x3D; null)
+                   return r;
+               timedOut &#x3D; true;
+           &#125; catch (InterruptedException retry) &#123;
+               timedOut &#x3D; false;
+           &#125;
+       &#125;
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-none"><code class="language-none">boolean timed &#x3D; allowCoreThreadTimeOut || wc &gt; corePoolSize;
 &#x2F;&#x2F;allowCoreThreadTimeOut,这个变量默认值是false。wc&gt;corePoolSize则是判断当前线 程数是否⼤于corePoolSize。
 
 Runnable r &#x3D; timed ?
-    workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
-    workQueue.take(); 
+   workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+   workQueue.take(); 
 &#x2F;&#x2F;如果当前线程数⼤于corePoolSize，则会调⽤workQueue的poll⽅法获取任务，超时时间是 keepAliveTime。
 &#x2F;&#x2F;如果超过keepAliveTime时⻓，poll返回了null，上边提到的while循序就会退出，线程也就执⾏完了。
 &#x2F;&#x2F;如果当前线程数⼩于corePoolSize，则会调⽤workQueue的take⽅法阻塞在当前。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="Synchronized原理和优化"><a href="#Synchronized原理和优化" class="headerlink" title="Synchronized原理和优化"></a>Synchronized原理和优化</h2><blockquote>
+<p>Synchronized是Java中解决并发问题的⼀种最常⽤的⽅法，也是最简单的⼀种⽅法。Synchronized的作用主要有三个：</p>
+<ol>
+<li>确保线程互斥的访问同步代码</li>
+<li>保证共享变量的修改能够及时可⻅</li>
+<li>有效解决 重排序问题。</li>
+</ol>
+<p><strong>Synchronized如何实现同步</strong><br>每个对象有⼀个监视器锁（monitor）。当monitor被占⽤时就会处于锁定状态，线程执⾏monitorenter指 令时尝试获取monitor的所有权，过程如下：</p>
+<ol>
+<li>如果monitor的进⼊数为0，则该线程进⼊monitor，然后将进⼊数设置为1，该线程即为monitor的所有者</li>
+<li>如果线程已经占有该monitor，只是重新进⼊，则进⼊monitor的进⼊数加1.</li>
+<li>如果其他线程已经占⽤了monitor，则该线程进⼊阻塞状态，直到monitor的进⼊数为0，再重新尝试获 取monitor的所有权。</li>
+</ol>
+<p>执⾏monitorexit的线程必须是objectref所对应的monitor的所有者<br>指令执⾏时，monitor的进⼊数减1，如果减1后进⼊数为0，那线程退出monitor，不再是这个monitor的所 有者。其他被这个monitor阻塞的线程可以尝试去获取这个 monitor 的所有权。<br>Synchronized的语义底层是通过 ⼀个monitor的对象来完成，其实wait/notify等⽅法也依赖于monitor对象，这就是为什么只有在同步的块 或者方法中才能调⽤wait/notify等方法，否则会抛出java.lang.IllegalMonitorStateException的异常的 原因。</p>
+<p><strong>同步⽅法:</strong><br>方法的同步并没有通过指令monitorenter和monitorexit来完成（理论上其实也可以 通过这两条指令来实现），不过相对于普通⽅法，其常量池中多了ACC_SYNCHRONIZED标示符。JVM就 是根据该标示符来实现方法的同步的：当方法调用时，调用指令将会检查⽅法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执⾏线程将先获取monitor，获取成功之后才能执行方法体，方法执行完后再释放monitor。在方法执行期间，其他任何线程都无法再获得同⼀个monitor对象。 其实本质上没 有区别，只是⽅法的同步是⼀种隐式的⽅式来实现，⽆需通过字节码来完成。</p>
+<p><strong>重量级锁</strong><br>Synchronized是通过对象内部的⼀个叫做监视器锁（monitor）来实现的。但是监视器锁本质⼜是依赖于 底层的操作系统的Mutex Lock来实现的。⽽操作系统实现线程之间的切换这就需要从⽤户态转换到核⼼态，这个成本⾮常⾼，状态之间的转换需要相对⽐较⻓的时间，这就是为什么Synchronized效率低的原 因。<br>依赖于操作系统Mutex Lock所实现的锁我们称之为“重量级锁”。<br>JDK1.6以后，为了减少获得锁和释放锁所带来 的性能消耗，提高性能，引入了“轻量级锁”和“偏向锁”。</p>
+<p><strong>轻量级锁</strong><br>“轻量级”是相对于使⽤操作系统互斥量来实现的传统锁⽽⾔的。但是，⾸先需要强调⼀点的是，轻量级锁 并不是⽤来代替重量级锁的，它的本意是在没有多线程竞争的前提下，减少传统的重量级锁使⽤产⽣的性 能消耗。在解释轻量级锁的执⾏过程之前，先明⽩⼀点，轻量级锁所适应的场景是线程交替执⾏同步块的 情况，如果存在同⼀时间访问同⼀锁的情况，就会导致轻量级锁膨胀为重量级锁。</p>
+<p><strong>偏向锁</strong><br>引⼊偏向锁是为了在⽆多线程竞争的情况下尽量减少不必要的轻量级锁执⾏路径，因为轻量级锁的获取及 释放依赖多次CAS原⼦指令，⽽偏向锁只需要在置换ThreadID的时候依赖⼀次CAS原⼦指令（由于⼀旦出 现多线程竞争的情况就必须撤销偏向锁，所以偏向锁的撤销操作的性能损耗必须⼩于节省下来的CAS原⼦ 指令的性能消耗）。上⾯说过，轻量级锁是为了在线程交替执⾏同步块时提⾼性能，⽽偏向锁则是在只有 ⼀个线程执⾏同步块时进⼀步提⾼性能。</p>
+<p>比较上面的三种锁：<br><img src="/2021/11/14/java-base-3/java-3.png"></p>
+</blockquote>
+<h2 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h2><blockquote>
+<p><strong>适应性自旋（Adaptive Spinning）：</strong><br>从轻量级锁获取的流程中我们知道，当线程在获取轻量级锁的过程中执行CAS操作失败时，是要通过自旋来获取重量级锁的。问题在于，自旋是需要消耗CPU的，如果⼀直获取不到锁的话，那该线程就⼀直处在⾃旋状态，白白浪费CPU资源。解决这个问题最简单的办法就是 指定自旋的次数，例如让其循环10次，如果还没获取到锁就进入阻塞状态。但是JDK采⽤了更聪明的⽅式 ——适应性自旋，简单来说就是线程如果自旋成功了，则下次自旋的次数会更多，如果自旋失败了，则自旋的次数就会减少。<br><strong>锁粗化（Lock Coarsening）：</strong><br>锁粗化的概念应该⽐较好理解，就是将多次连接在⼀起的加锁、解锁 操作合并为⼀次，将多个连续的锁扩展成⼀个范围更⼤的锁。举个例⼦：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class StringBufferTest &#123;
+StringBuffer stringBuffer &#x3D; new StringBuffer();
 
-
-
-
-
-
-
-
-
-
-
-
+public void append()&#123;
+	stringBuffer.append(&quot;a&quot;);
+	stringBuffer.append(&quot;b&quot;);
+&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这⾥每次调⽤stringBuffer.append⽅法都需要加锁和解锁，如果虚拟机检测到有⼀系列连串的对同⼀个对象加锁和解锁操作，就会将其合并成⼀次范围更⼤的加锁和解锁操作，即在第⼀次append⽅法时进⾏加锁，最后⼀次append⽅法结束后进⾏解锁。<br><strong>锁消除（Lock Elimination）：</strong><br>锁消除即删除不必要的加锁操作。根据代码逃逸技术，如果判断到⼀段代码中，堆上的数据不会逃逸出当前线程，那么可以认为这段代码是线程安全的，不必要加锁。</p>
+</blockquote>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><blockquote>
+<ul>
+<li>Synchronized⽤于线程间的数据共享，⽽ThreadLocal则⽤于线 程间的数据隔离。所以ThreadLocal的应⽤场合，最适合的是按线程多实例（每个线程对应⼀个实例）的 对象的访问，并且这个对象很多地⽅都要⽤到。</li>
+<li>Thread有个TheadLocalMap类型的属性，叫做threadLocals，该属性⽤ 来保存该线程本地变量。这样每个线程都有⾃⼰的数据，就做到了不同线程间数据的隔离，保证了数据安 全。</li>
+<li>当使⽤ThreadLocal维护变量时，ThreadLocal为每个使⽤该变量的线程提供独⽴的变量副本，所以每⼀个线程都可以独⽴地改变⾃⼰的副本，⽽不会影响其它线程所对应的副本。</li>
+<li>从线程的⻆度看，⽬标变量就象是线程的本地变量，这也是类名中“Local”所要表达的意思。</li>
+</ul>
+</blockquote>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
+<ul>
+<li>ThreadLocal，连接ThreadLocalMap和Thread。来处理Thread的TheadLocalMap属性，包括init初始 化属性赋值、get对应的变量，set设置变量等。通过当前线程，获取线程上的ThreadLocalMap属性，对 数据进⾏get、set等操作。</li>
+<li>ThreadLocalMap，⽤来存储数据，采⽤类似hashmap机制，存储了以threadLocal为key，需要隔离的数 据为value的Entry键值对数组结构。</li>
+<li>ThreadLocal，有个ThreadLocalMap类型的属性，存储的数据就放在这⼉。</li>
+</ul>
+</blockquote>
+<h3 id="ThreadLocal、ThreadLocal、Thread之间的关系"><a href="#ThreadLocal、ThreadLocal、Thread之间的关系" class="headerlink" title="ThreadLocal、ThreadLocal、Thread之间的关系"></a>ThreadLocal、ThreadLocal、Thread之间的关系</h3><blockquote>
+<p>ThreadLocalMap是ThreadLocal内部类，由ThreadLocal创建，Thread有 ThreadLocal.ThreadLocalMap类型的属性</p>
+</blockquote>
+<h3 id="Thread同步机制的⽐较"><a href="#Thread同步机制的⽐较" class="headerlink" title="Thread同步机制的⽐较"></a>Thread同步机制的⽐较</h3><blockquote>
+<p><strong>ThreadLocal和线程同步机制相⽐有什么优势呢？</strong><br>Synchronized⽤于线程间的数据共享，⽽ThreadLocal则⽤于线程间的数据隔离。</p>
+<ul>
+<li>在同步机制中，通过对象的锁机制保证同⼀时间只有⼀个线程访问变量。这时该变量是多个线程共享的， 使⽤同步机制要求程序慎密地分析什么时候对变量进⾏读写，什么时候需要锁定某个对象，什么时候释放 对象锁等繁杂的问题，程序设计和编写难度相对较⼤。</li>
+<li>ThreadLocal则从另⼀个⻆度来解决多线程的并发访问。ThreadLocal会为每⼀个线程提供⼀个独⽴的 变量副本，从⽽隔离了多个线程对数据的访问冲突。因为每⼀个线程都拥有⾃⼰的变量副本，从⽽也就没 有必要对该变量进⾏同步了。ThreadLocal提供了线程安全的共享对象，在编写多线程代码时，可以把不 安全的变量封装进ThreadLocal。</li>
+<li>概括起来说，对于多线程资源共享的问题，同步机制采⽤了“以时间换空间”的⽅式，⽽ThreadLocal采⽤ 了“以空间换时间”的⽅式。前者仅提供⼀份变量，让不同的线程排队访问，⽽后者为每⼀个线程都提供了 ⼀份变量，因此可以同时访问⽽互不影响。</li>
+</ul>
+</blockquote>
+<h3 id="线程隔离的实现"><a href="#线程隔离的实现" class="headerlink" title="线程隔离的实现"></a>线程隔离的实现</h3><blockquote>
+<p>在于上述叙述的ThreadLocalMap这个类。ThreadLocalMap是ThreadLocal类的⼀个静态内部 类，它实现了键值对的设置和获取（对⽐Map对象来理解），每个线程中都有⼀个独⽴的 ThreadLocalMap副本，它所存储的值，只能被当前线程读取和修改。ThreadLocal类通过操作每⼀个线 程特有的ThreadLocalMap副本，从⽽实现了变量访问在不同线程中的隔离。因为每个线程的变量都是⾃ ⼰特有的，完全不会有并发错误。还有⼀点就是，ThreadLocalMap存储的键值对中的键是this对象指向 的ThreadLocal对象，⽽值就是你所设置的对象了。<br>ThreadLocal是解决线程安全问题⼀个很好的思路，它通过为每个线程提供⼀个独⽴的变量副本解决了变 量并发访问的冲突问题。在很多情况下，ThreadLocal⽐直接使⽤synchronized同步机制解决线程安全问 题更简单，更⽅便，且结果程序拥有更⾼的并发性。</p>
+</blockquote>
 
                 
             </div>
@@ -779,8 +836,8 @@ Runnable r &#x3D; timed ?
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/java/">
-                                    <span class="chip bg-color">java</span>
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                         </div>
@@ -833,9 +890,9 @@ Runnable r &#x3D; timed ?
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="java-3">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Java-线程">
                         
-                        <span class="card-title">java-3</span>
+                        <span class="card-title">Java-线程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -852,8 +909,8 @@ Runnable r &#x3D; timed ?
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category">
-                                    java
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -864,8 +921,8 @@ Runnable r &#x3D; timed ?
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -883,9 +940,9 @@ Runnable r &#x3D; timed ?
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="java-2">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Java-2">
                         
-                        <span class="card-title">java-2</span>
+                        <span class="card-title">Java-2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -902,8 +959,8 @@ Runnable r &#x3D; timed ?
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category">
-                                    java
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -913,8 +970,8 @@ Runnable r &#x3D; timed ?
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -1064,7 +1121,7 @@ Runnable r &#x3D; timed ?
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">62.3k</span>&nbsp;字
+                class="white-color">64.8k</span>&nbsp;字
             
             
             
