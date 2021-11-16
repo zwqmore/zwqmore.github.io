@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="SpringCloud-微服务-Hystrix, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="Git命令, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SpringCloud-微服务-Hystrix | ZwqBlog</title>
+    <title>Git命令 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SpringCloud-微服务-Hystrix</h1>
+                    <h1 class="description center-align post-title">Git命令</h1>
                 </div>
             </div>
         </div>
@@ -409,16 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                                <span class="chip bg-color">微服务</span>
-                            </a>
-                        
-                            <a href="/tags/SpringBoot/">
-                                <span class="chip bg-color">SpringBoot</span>
-                            </a>
-                        
-                            <a href="/tags/SpringCloud/">
-                                <span class="chip bg-color">SpringCloud</span>
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -429,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SpringCloud/" class="post-category">
-                                SpringCloud
+                            <a href="/categories/Git/" class="post-category">
+                                Git
                             </a>
                         
                     </div>
@@ -442,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-21
+                    2021-11-16
                 </div>
                 
 
@@ -451,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    8 分
                 </div>
                 
 
@@ -481,62 +473,275 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="熔断器-Hystrix"><a href="#熔断器-Hystrix" class="headerlink" title="熔断器 Hystrix"></a>熔断器 Hystrix</h1><h2 id="什么是Hystrix"><a href="#什么是Hystrix" class="headerlink" title="什么是Hystrix"></a>什么是Hystrix</h2><p>在分布式系统中，服务与服务之间的依赖错综复杂，一种不可避免的情况就是某些服务<br>出现故障，导致依赖于它们的其他服务出现远程调度的线程阻塞。 Hystrix Netflix 公司开<br>源的一个项目，它提供了熔断器功能，能够阻止分布式系统中出现联动故障 Hystrix 是通过<br>隔离服务的访问点阻止联动故障的，并提供了故障的解决方案，从而提高了整个分布式系统<br>的弹性。</p>
-<h2 id="为什么要有Hystrix"><a href="#为什么要有Hystrix" class="headerlink" title="为什么要有Hystrix"></a>为什么要有Hystrix</h2><p>在微服务系统中，一个用户请求可能需要调用几个服务才能完成。当某一个服务，出现网络延迟或者故障时，<br>整个用户请求会处于阻塞状态，其他服务需要等待。在高并发的情况下，单个服务的延迟会导致整个请求都处于延迟状态，可能在几秒钟就使<br>整个服务处于线程负载饱和的状态。某个服务的单个点的请求故障会导致用户的请求处于阻塞状态，最终的结果就是整个服务<br>的线程资源消耗殆尽。导致整个微服务系统都不可用，即雪崩效应。为了防止雪崩效应，因而产生了熔断器模型。 Hystrix 是在业界表现非常好的一个熔断器<br>模型实现的开源组件，它是 Spring Cloud 组件不可缺少的一部分。</p>
-<h2 id="Hystrix的设计原则"><a href="#Hystrix的设计原则" class="headerlink" title="Hystrix的设计原则"></a>Hystrix的设计原则</h2><ol>
-<li>防止单个服务的故障耗尽整个服务的 Servlet 容器（例如 Tomcat ）的线程资源。</li>
-<li>快速失败机制，如果某个服务出现了故障，则调用该服务的请求快速失败，而不是线程等待。</li>
-<li>提供回退（ fallback ）方案，在请求发生故障时，提供设定好的回退方案。</li>
-<li>使用熔断机制，防止故障扩散到其他服务。</li>
-<li>提供熔断器的监控组件 Hystrix Dashboard ，可以实时监控熔断器的状态。</li>
+                <h1 id="Git基础"><a href="#Git基础" class="headerlink" title="Git基础"></a>Git基础</h1><h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p><img src="/2021/11/16/git-1/git-1.png"></p>
+<ul>
+<li>workspace：工作区</li>
+<li>Index/Stage：暂存区</li>
+<li>Repository：仓库区（或本地仓库）</li>
+<li>Remote：远程仓库</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>设置git自己的名字和电子邮件:</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --global user.name &quot;bryan sun&quot;
+git config --global user.email &quot;hitsjt@gmail.com&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>git config命令的–global参数:表示这台机器上所有的Git仓库都会使用这个配置，也可以对某个仓库指定不同的用户名和Email地址。<br>查看配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">git config -l<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>git init - 初始化仓库。<br>生成.git  - 如果我们想删除代码仓库只需把这个文件夹删掉即可！<br>git add . - 添加全部文件到暂存区。<br>git add readme.txt  - 添加一个。<br>可以创建.gitignore忽略上传文件和目录例如：/java/<br>可能存在的错误:</p>
+<pre class="line-numbers language-none"><code class="language-none">warning: LF will be replaced by CRLF in ......  
+The file will have its original line endings in your working directory.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>解决方法：</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --global core.autocrlf false<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>提交代码到本地仓库：（本地仓库其实就是.git暂存区也在.git）-m后面是备注</p>
+<pre class="line-numbers language-none"><code class="language-none">git commit -m &quot;Wrote a readme file&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>git ls -files  - 查看暂存区的文件<br>git status  - 查看Git存储库当前状态</p>
+<h2 id="新建代码库"><a href="#新建代码库" class="headerlink" title="新建代码库"></a>新建代码库</h2><pre class="line-numbers language-none"><code class="language-none"># 在当前目录新建一个Git代码库
+$ git init
+# 新建一个目录，将其初始化为Git代码库
+$ git init [project-name]
+# 下载一个项目和它的整个代码历史
+$ git clone [url]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="增加删除文件"><a href="#增加删除文件" class="headerlink" title="增加删除文件"></a>增加删除文件</h2><pre class="line-numbers language-none"><code class="language-none"># 添加指定文件到暂存区
+$ git add [file1] [file2] ...
+
+# 添加指定目录到暂存区，包括子目录
+$ git add [dir]
+
+# 添加当前目录的所有文件到暂存区
+$ git add .
+
+# 添加每个变化前，都会要求确认
+# 对于同一个文件的多处变化，可以实现分次提交
+$ git add -p
+
+# 删除工作区文件，并且将这次删除放入暂存区
+$ git rm [file1] [file2] ...
+
+# 停止追踪指定文件，但该文件会保留在工作区
+$ git rm --cached [file]
+
+# 改名文件，并且将这个改名放入暂存区
+$ git mv [file-original] [file-renamed]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h2><pre class="line-numbers language-none"><code class="language-none"># 提交暂存区到仓库区
+$ git commit -m [message]
+ 
+# 提交暂存区的指定文件到仓库区
+$ git commit [file1] [file2] ... -m [message]
+ 
+# 提交工作区自上次commit之后的变化，直接到仓库区
+$ git commit -a
+ 
+# 提交时显示所有diff信息
+$ git commit -v
+ 
+# 使用一次新的commit，替代上一次提交
+# 如果代码没有任何新变化，则用来改写上一次commit的提交信息
+$ git commit --amend -m [message]
+ 
+# 重做上一次commit，并包括指定文件的新变化
+$ git commit --amend [file1] [file2] ...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><pre class="line-numbers language-none"><code class="language-none"># 列出所有本地分支
+$ git branch
+ 
+# 列出所有远程分支
+$ git branch -r
+ 
+# 列出所有本地分支和远程分支
+$ git branch -a
+ 
+# 新建一个分支，但依然停留在当前分支
+$ git branch [branch-name]
+ 
+# 以远程分支为基础新建一个分支，并切换到该分支
+$ git checkout -b [branch] origin&#x2F;[remote-branch]
+ 
+# 新建一个分支，指向指定commit
+$ git branch [branch] [commit]
+ 
+# 新建一个分支，与指定的远程分支建立追踪关系
+$ git branch --track [branch] [remote-branch]
+ 
+# 切换到指定分支，并更新工作区
+$ git checkout [branch-name]
+ 
+# 切换到上一个分支
+$ git checkout -
+ 
+# 建立追踪关系，在现有分支与指定的远程分支之间
+$ git branch --set-upstream [branch] [remote-branch]
+ 
+# 合并指定分支到当前分支
+$ git merge [branch]
+ 
+# 选择一个commit，合并进当前分支
+$ git cherry-pick [commit]
+ 
+# 删除分支
+$ git branch -d [branch-name]
+ 
+# 删除远程分支
+$ git push origin --delete [branch-name]
+$ git branch -dr [remote&#x2F;branch]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><pre class="line-numbers language-none"><code class="language-none"># 列出所有tag
+$ git tag
+ 
+# 新建一个tag在当前commit
+$ git tag [tag]
+ 
+# 新建一个tag在指定commit
+$ git tag [tag] [commit]
+ 
+# 删除本地tag
+$ git tag -d [tag]
+ 
+# 删除远程tag
+$ git push origin :refs&#x2F;tags&#x2F;[tagName]
+ 
+# 查看tag信息
+$ git show [tag]
+ 
+# 提交指定tag
+$ git push [remote] [tag]
+ 
+# 提交所有tag
+$ git push [remote] --tags
+ 
+# 新建一个分支，指向某个tag
+$ git checkout -b [branch] [tag]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h2><pre class="line-numbers language-none"><code class="language-none"># 显示有变更的文件
+$ git status
+ 
+# 显示当前分支的版本历史
+$ git log
+ 
+# 显示commit历史，以及每次commit发生变更的文件
+$ git log --stat
+ 
+# 搜索提交历史，根据关键词
+$ git log -S [keyword]
+ 
+# 显示某个commit之后的所有变动，每个commit占据一行
+$ git log [tag] HEAD --pretty&#x3D;format:%s
+ 
+# 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件
+$ git log [tag] HEAD --grep feature
+ 
+# 显示某个文件的版本历史，包括文件改名
+$ git log --follow [file]
+$ git whatchanged [file]
+ 
+# 显示指定文件相关的每一次diff
+$ git log -p [file]
+ 
+# 显示过去5次提交
+$ git log -5 --pretty --oneline
+ 
+# 显示所有提交过的用户，按提交次数排序
+$ git shortlog -sn
+ 
+# 显示指定文件是什么人在什么时间修改过
+$ git blame [file]
+ 
+# 显示暂存区和工作区的差异
+$ git diff
+ 
+# 显示暂存区和上一个commit的差异
+$ git diff --cached [file]
+ 
+# 显示工作区与当前分支最新commit之间的差异
+$ git diff HEAD
+ 
+# 显示两次提交之间的差异
+$ git diff [first-branch]...[second-branch]
+ 
+# 显示今天你写了多少行代码
+$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;
+ 
+# 显示某次提交的元数据和内容变化
+$ git show [commit]
+ 
+# 显示某次提交发生变化的文件
+$ git show --name-only [commit]
+ 
+# 显示某次提交时，某个文件的内容
+$ git show [commit]:[filename]
+ 
+# 显示当前分支的最近几次提交
+$ git reflog<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h2><pre class="line-numbers language-none"><code class="language-none"># 下载远程仓库的所有变动
+$ git fetch [remote]
+ 
+# 显示所有远程仓库
+$ git remote -v
+ 
+# 显示某个远程仓库的信息
+$ git remote show [remote]
+ 
+# 增加一个新的远程仓库，并命名
+$ git remote add [shortname] [url]
+ 
+# 取回远程仓库的变化，并与本地分支合并
+$ git pull [remote] [branch]
+ 
+# 上传本地指定分支到远程仓库
+$ git push [remote] [branch]
+ 
+# 强行推送当前分支到远程仓库，即使有冲突
+$ git push [remote] --force
+ 
+# 推送所有分支到远程仓库
+$ git push [remote] --all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h2><pre class="line-numbers language-none"><code class="language-none">#git回退到上个版本
+git reset --hard HEAD^
+git reset --hard HEAD~3 - （前3次）
+
+#git回退指定版本
+git log -查看sha码
+git show dde8c25694f34acf8971f0782b1a676f39bf0a46
+git reset --hard dde8c25694f34acf8971f0782b1a676f39bf0a46  - 回退
+
+# 恢复暂存区的指定文件到工作区
+$ git checkout [file]
+ 
+# 恢复某个commit的指定文件到暂存区和工作区
+$ git checkout [commit] [file]
+ 
+# 恢复暂存区的所有文件到工作区
+$ git checkout .
+ 
+# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
+$ git reset [file]
+ 
+# 重置暂存区与工作区，与上一次commit保持一致
+$ git reset --hard
+ 
+# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
+$ git reset [commit]
+ 
+# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
+$ git reset --hard [commit]
+ 
+# 重置当前HEAD为指定commit，但保持暂存区和工作区不变
+$ git reset --keep [commit]
+ 
+# 新建一个commit，用来撤销指定commit
+# 后者的所有变化都将被前者抵消，并且应用到当前分支
+$ git revert [commit]
+ 
+# 暂时将未提交的变化移除，稍后再移入
+$ git stash
+$ git stash pop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="版本回退-撤销文件修改"><a href="#版本回退-撤销文件修改" class="headerlink" title="版本回退-撤销文件修改"></a>版本回退-撤销文件修改</h2><p>git checkout – readme.txt  - 把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+<ol>
+<li>readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态</li>
+<li>readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。总之，就是让这个文件回到最近一次git commit或git add时的状态<br>git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区<br>git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。<br>Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示</li>
 </ol>
-<h2 id="RestTemplate-和-Ribbon上使用熔断器"><a href="#RestTemplate-和-Ribbon上使用熔断器" class="headerlink" title="RestTemplate 和 Ribbon上使用熔断器"></a>RestTemplate 和 Ribbon上使用熔断器</h2><h3 id="Hystrix配置"><a href="#Hystrix配置" class="headerlink" title="Hystrix配置"></a>Hystrix配置</h3><p>在上个项目基础上，修改eureka-ribbon-client配置文件：引入依赖：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
-       &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
-       &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;&#x2F;artifactId&gt;
-   &lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在启动类上添加@EnableHystrix注解开启Hystrix熔断功能。<br>修改RibbonService：</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-&#x2F;**
- * description: RibbonService
- * @author zwq
- * @date 2021&#x2F;10&#x2F;20 22:07
- *&#x2F;
-@Service
-public class RibbonService &#123;
-
-    @Autowired
-    RestTemplate restTemplate;
-
-    @HystrixCommand(fallbackMethod &#x3D; &quot;hiError&quot;)
-    public String hi(String name) &#123;
-        return restTemplate.getForObject(&quot;http:&#x2F;&#x2F;eureka-client&#x2F;hi?name&#x3D;&quot;+name,String.class);
-    &#125;
-
-    public String hiError(String name)&#123;
-        return &quot;hi,&quot;+name+&quot;,error&quot;;
-    &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>加上@HystrixCommand 注解，hi方法就能启动Hystrix熔断器功能。<br>其中，fallbackMethod 为处理回退（ fallback ）逻辑的方法。</p>
-<h3 id="启动服务，测试"><a href="#启动服务，测试" class="headerlink" title="启动服务，测试"></a>启动服务，测试</h3><p>依次启动eureka-server、eureka-client、eureka-ribbon-client。<br>访问<a target="_blank" rel="noopener" href="http://localhost:8764/hi">http://localhost:8764/hi</a><br><img src="/2021/10/21/springcloud-4/hystrix1.png"><br>关闭eureka-client，可以看到：<br><img src="/2021/10/21/springcloud-4/hystrix2.png"><br>由此可见，当eureka-client不可用时，开启了熔断器，最后进入fallbackMethod。<br>这样的好处就是通过快速失败，请求能够得到及时处理，线程不在阻塞。</p>
-<h2 id="Hystrix-Dashboard监控熔断状态"><a href="#Hystrix-Dashboard监控熔断状态" class="headerlink" title="Hystrix Dashboard监控熔断状态"></a>Hystrix Dashboard监控熔断状态</h2><p>Hystrix Dashboard 是监控 Hystrix 的熔断器状况的一个组件，提供了数据监控和友好的图形化展示界面</p>
-<h3 id="新增依赖"><a href="#新增依赖" class="headerlink" title="新增依赖"></a>新增依赖</h3><pre class="line-numbers language-none"><code class="language-none">&lt;!--hy图形界面--&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
-          &lt;artifactId&gt;spring-cloud-starter-hystrix-dashboard&lt;&#x2F;artifactId&gt;
-      &lt;&#x2F;dependency&gt;
-
-      &lt;!--hy图形界面--&gt;
-      &lt;dependency&gt;
-          &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-          &lt;artifactId&gt;spring-boot-starter-actuator&lt;&#x2F;artifactId&gt;
-      &lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在启动类加上@EnableHystrixDashboard注解<br>依次启动eureka-server,eureka-client,eureka-ribbon-client服务。<br>访问：<a target="_blank" rel="noopener" href="http://localhost:8764/hi">http://localhost:8764/hi</a><br>访问：<a target="_blank" rel="noopener" href="http://localhost:8764/hystrix.stream">http://localhost:8764/hystrix.stream</a> ,查看熔断器数据指标。<br><img src="/2021/10/21/springcloud-4/hystrix3.png"><br>访问：<a target="_blank" rel="noopener" href="http://localhost:8764/hystrix">http://localhost:8764/hystrix</a> ,然后在界面上填写<a target="_blank" rel="noopener" href="http://localhost:8764/hystrix.stream">http://localhost:8764/hystrix.stream</a> 、2000、zwq(这个随意填)<br><img src="/2021/10/21/springcloud-4/hystrix4.png"><br>点击monitor，进入页面：<br><img src="/2021/10/21/springcloud-4/hystrix5.png"><br>该页面显示了熔断器的各种数据指标</p>
 
                 
             </div>
@@ -551,16 +756,8 @@ public class RibbonService &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                                    <span class="chip bg-color">微服务</span>
-                                </a>
-                            
-                                <a href="/tags/SpringBoot/">
-                                    <span class="chip bg-color">SpringBoot</span>
-                                </a>
-                            
-                                <a href="/tags/SpringCloud/">
-                                    <span class="chip bg-color">SpringCloud</span>
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -604,17 +801,18 @@ public class RibbonService &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/21/springcloud-5/">
+                <a href="/2021/11/16/git-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="SpringCloud-微服务-Zuul">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Git命令">
                         
-                        <span class="card-title">SpringCloud-微服务-Zuul</span>
+                        <span class="card-title">Git命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -624,34 +822,27 @@ public class RibbonService &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/springcloud/" class="post-category">
-                                    springcloud
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                        <span class="chip bg-color">微服务</span>
-                    </a>
-                    
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
-                    </a>
-                    
-                    <a href="/tags/SpringCloud/">
-                        <span class="chip bg-color">SpringCloud</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
@@ -665,13 +856,13 @@ public class RibbonService &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/20/springcloud-3/">
+                <a href="/2021/11/14/java-base-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="SpringCloud-微服务-Ribbon">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Java-线程">
                         
-                        <span class="card-title">SpringCloud-微服务-Ribbon</span>
+                        <span class="card-title">Java-线程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -682,14 +873,14 @@ public class RibbonService &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/SpringCloud/" class="post-category">
-                                    SpringCloud
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -699,16 +890,8 @@ public class RibbonService &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
-                        <span class="chip bg-color">微服务</span>
-                    </a>
-                    
-                    <a href="/tags/SpringBoot/">
-                        <span class="chip bg-color">SpringBoot</span>
-                    </a>
-                    
-                    <a href="/tags/SpringCloud/">
-                        <span class="chip bg-color">SpringCloud</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
