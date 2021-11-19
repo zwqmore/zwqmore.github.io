@@ -298,7 +298,7 @@
       
       <categories>
           
-          <category> springcloud </category>
+          <category> SpringCloud </category>
           
       </categories>
       
@@ -538,7 +538,7 @@
     
     
     <entry>
-      <title>python使用socket编程</title>
+      <title>Python使用Socket编程</title>
       <link href="/2021/10/15/python-socket/"/>
       <url>/2021/10/15/python-socket/</url>
       
@@ -556,7 +556,7 @@
             
             <tag> 网络编程 </tag>
             
-            <tag> python </tag>
+            <tag> Python </tag>
             
         </tags>
       
