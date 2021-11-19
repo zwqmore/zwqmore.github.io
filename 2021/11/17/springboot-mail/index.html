@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="数据库范式设计, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="Springboot使用JavaMail发送邮件, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库范式设计 | ZwqBlog</title>
+    <title>Springboot使用JavaMail发送邮件 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库范式设计</h1>
+                    <h1 class="description center-align post-title">Springboot使用JavaMail发送邮件</h1>
                 </div>
             </div>
         </div>
@@ -409,8 +409,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
+                            <a href="/tags/SpringBoot/">
+                                <span class="chip bg-color">SpringBoot</span>
+                            </a>
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -421,8 +425,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/SpringBoot/" class="post-category">
+                                SpringBoot
                             </a>
                         
                     </div>
@@ -434,7 +438,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-15
+                    2021-11-17
                 </div>
                 
 
@@ -443,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    180
+                    459
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -473,16 +477,134 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库范式设计"><a href="#数据库范式设计" class="headerlink" title="数据库范式设计"></a>数据库范式设计</h1><h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h2><blockquote>
-<p>确保每列保持原子性<br>举例：<br>地址这个属性可以分出为省份和城市，那么地址和省份就不能共同存在，需要分出来。</p>
-</blockquote>
-<h2 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h2><blockquote>
-<p>确保数据库表中的每一列都和主键相关，而不能只与主键的某一部分相关(主要针对联合主键而言)<br>举例:<br><img src="/2021/10/15/sql-nf/sql-nf1.png"><br>订单金额和订单时间仅与“订单号”相关，与“产品号”无关，不满足2nf<br>更改：（分出来）<br><img src="/2021/10/15/sql-nf/sql-nf2.png"></p>
-</blockquote>
-<h2 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h2><blockquote>
-<p>确保数据表中的每一列数据都和主键直接相关，而不能间接相关<br>举例:<br><img src="/2021/10/15/sql-nf/sql-nf3.png"><br>班主任性别，年龄与 姓名 相关，不满足3nf<br>更改：（分出来）<br><img src="/2021/10/15/sql-nf/sql-nf4.png"></p>
-</blockquote>
+                <h1 id="Springboot使用JavaMail发送邮件"><a href="#Springboot使用JavaMail发送邮件" class="headerlink" title="Springboot使用JavaMail发送邮件"></a>Springboot使用JavaMail发送邮件</h1><h2 id="开启邮箱POP3服务"><a href="#开启邮箱POP3服务" class="headerlink" title="开启邮箱POP3服务"></a>开启邮箱POP3服务</h2><p><img src="/2021/11/17/springboot-mail/mail-1.png"><br>记住授权码</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>项目结构：<br><img src="/2021/11/17/springboot-mail/mail-2.png"><br>JavaMail依赖：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
 
+&lt;!--lombok--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
+    &lt;optional&gt;true&lt;&#x2F;optional&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>配置yml:</p>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+  mail:
+    #smtp服务主机  qq邮箱则为smtp.qq.com
+    host: smtp.qq.com
+    #服务协议
+    protocol: smtp
+    # 编码集
+    default-encoding: UTF-8
+    #发送邮件的账户
+    username: xxxx@qq.com
+    #授权码
+    password: xxxx
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>定义一个邮件类MailSenderEntity：</p>
+<pre class="line-numbers language-none"><code class="language-none">import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+&#x2F;**
+ * description: 邮件
+ *
+ * @author zwq
+ * @date 2021&#x2F;11&#x2F;17 17:11
+ *&#x2F;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class MailSenderEntity &#123;
+
+    &#x2F;*发送方*&#x2F;
+    private String from;
+    &#x2F;*标题*&#x2F;
+    private String title;
+    &#x2F;*内容*&#x2F;
+    private String content;
+    &#x2F;*接收方*&#x2F;
+    private String[] tos;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Service层：</p>
+<pre class="line-numbers language-none"><code class="language-none">import com.zwq.main.constant.MailSenderEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+&#x2F;**
+ * description: 发送邮件
+ *
+ * @author zwq
+ * @date 2021&#x2F;11&#x2F;17 17:08
+ *&#x2F;
+@Service
+public class MailService &#123;
+
+	&#x2F;* 注入JavaMail *&#x2F;
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    public void sendMail(MailSenderEntity mailSenderEntity)&#123;
+        SimpleMailMessage simpleMailMessage &#x3D; new SimpleMailMessage();
+        simpleMailMessage.setFrom(mailSenderEntity.getFrom());
+        simpleMailMessage.setSubject(mailSenderEntity.getTitle());
+        simpleMailMessage.setText(mailSenderEntity.getContent());
+        simpleMailMessage.setTo(mailSenderEntity.getTos());
+        javaMailSender.send(simpleMailMessage);
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Controller层：</p>
+<pre class="line-numbers language-none"><code class="language-none">import com.zwq.main.constant.MailSenderEntity;
+import com.zwq.main.service.MailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+&#x2F;**
+ * description: 发送邮件
+ *
+ * @author zwq
+ * @date 2021&#x2F;11&#x2F;17 17:06
+ *&#x2F;
+@RestController
+@RequestMapping(&quot;&#x2F;main&quot;)
+public class SendController &#123;
+
+    @Autowired
+    private MailService mailService;
+
+    @PostMapping(&quot;&#x2F;simple&quot;)
+    public void sendSimpleMail(@RequestBody MailSenderEntity mailSenderEntity)&#123;
+        mailService.sendMail(mailSenderEntity);
+    &#125;
+
+	&#x2F;* 测试发送邮件请求 *&#x2F;
+    @GetMapping(&quot;&#x2F;test&quot;)
+    public void send()&#123;
+        MailSenderEntity mailSenderEntity &#x3D; new MailSenderEntity();
+        mailSenderEntity.setFrom(&quot;xxxx@qq.com&quot;);
+        mailSenderEntity.setTitle(&quot;测试&quot;);
+        mailSenderEntity.setContent(&quot;第一次发送邮件&quot;);
+        String[] strings &#x3D; &#123;&quot;xxxx@qq.com&quot;&#125;;
+        mailSenderEntity.setTos(strings);
+        mailService.sendMail(mailSenderEntity);
+    &#125;
+    
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -496,8 +618,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
+                                <a href="/tags/SpringBoot/">
+                                    <span class="chip bg-color">SpringBoot</span>
+                                </a>
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
                                 </a>
                             
                         </div>
@@ -541,17 +667,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/15/springboot-note/">
+                <a href="/2021/11/17/springboot-mail/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="SpringBoot注解篇">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Springboot使用JavaMail发送邮件">
                         
-                        <span class="card-title">SpringBoot注解篇</span>
+                        <span class="card-title">Springboot使用JavaMail发送邮件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -561,9 +688,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -576,11 +703,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/SpringBoot/">
                         <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
@@ -594,13 +726,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/15/python-socket/">
+                <a href="/2021/11/17/linux-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="python使用socket编程">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Linux-基础">
                         
-                        <span class="card-title">python使用socket编程</span>
+                        <span class="card-title">Linux-基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -611,14 +743,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-category">
-                                    网络编程
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -628,12 +760,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
-                        <span class="chip bg-color">网络编程</span>
-                    </a>
-                    
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>

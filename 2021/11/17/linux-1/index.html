@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="数据库范式设计, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="Linux-基础, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据库范式设计 | ZwqBlog</title>
+    <title>Linux-基础 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据库范式设计</h1>
+                    <h1 class="description center-align post-title">Linux-基础</h1>
                 </div>
             </div>
         </div>
@@ -409,8 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                <span class="chip bg-color">数据库</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -421,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                数据库
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -434,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-15
+                    2021-11-17
                 </div>
                 
 
@@ -443,7 +443,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    180
+                    435
                 </div>
                 
 
@@ -473,15 +473,53 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="数据库范式设计"><a href="#数据库范式设计" class="headerlink" title="数据库范式设计"></a>数据库范式设计</h1><h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h2><blockquote>
-<p>确保每列保持原子性<br>举例：<br>地址这个属性可以分出为省份和城市，那么地址和省份就不能共同存在，需要分出来。</p>
-</blockquote>
-<h2 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h2><blockquote>
-<p>确保数据库表中的每一列都和主键相关，而不能只与主键的某一部分相关(主要针对联合主键而言)<br>举例:<br><img src="/2021/10/15/sql-nf/sql-nf1.png"><br>订单金额和订单时间仅与“订单号”相关，与“产品号”无关，不满足2nf<br>更改：（分出来）<br><img src="/2021/10/15/sql-nf/sql-nf2.png"></p>
-</blockquote>
-<h2 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h2><blockquote>
-<p>确保数据表中的每一列数据都和主键直接相关，而不能间接相关<br>举例:<br><img src="/2021/10/15/sql-nf/sql-nf3.png"><br>班主任性别，年龄与 姓名 相关，不满足3nf<br>更改：（分出来）<br><img src="/2021/10/15/sql-nf/sql-nf4.png"></p>
-</blockquote>
+                <h1 id="Linux-基础"><a href="#Linux-基础" class="headerlink" title="Linux-基础"></a>Linux-基础</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="/2021/11/17/linux-1/linux-2.png"></p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p><img src="/2021/11/17/linux-1/linux-1.png"></p>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><pre class="line-numbers language-none"><code class="language-none">ab  - 对Apache服务器进行网站访问压力测试
+ab -n 1000 -c 100 https:&#x2F;&#x2F;www.baidu.com
+
+alias  - 定义或显示别名。
+# 显示全部已定义的别名
+alias -p
+# 定义或修改别名的值
+alias ls&#x3D;&#39;ls --color&#x3D;auto&#39;
+
+arp  - arp 命令用于显示和修改 IP 到 MAC 转换表
+#显示arp 缓冲区内容
+arp -v
+#添加静态 arp 映射
+arp -s 192.168.1.1 00:b1:b2:b3:b4:b5
+#删除 arp 缓存条目
+arp -d 192.168.1.1
+
+cal  - 显示当前日历或指定日期的日历
+cal -1
+cal -y
+
+clear  - 清除当前屏幕终端上的任何信息
+
+clockdiff  - 检测两台linux主机的时间差
+-o：使用IP时间戳选项来测量系统时间差。时间戳只用3个。
+-o1：使用IP时间戳选项来测量系统时间差。用4个时间戳。如果-o和-o1都没有设置，那么就是用ICMP时间戳来测试系统时间差。
+clockdiff -o 10.13.12.122
+
+cmp  - 比较两个文件是否有差异
+cmp testfile testfile1 
+注意：在比较结果中，只能够显示第一比较结果。
+
+command  - 调用并执行指定的命令
+#使用command命令调用执行echo Linux
+command echo Linux
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>用户相关：</p>
+<pre class="line-numbers language-none"><code class="language-none">adduser test       &#x2F;&#x2F;新建test用户
+passwd test        &#x2F;&#x2F;给test用户设置密码
+groupadd gr      &#x2F;&#x2F;新建gr工作组
+useradd -g gr test    &#x2F;&#x2F;新建test用户并增加到gr工作组
+usermod -G groupname username   &#x2F;&#x2F;给已有的用户增加工作组
+userdel username     &#x2F;&#x2F;删除用户(并没有删除该用户其中的配置文件)
+userdel -r username      &#x2F;&#x2F;删除用户身份及用户涉及的配置文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -496,8 +534,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                                    <span class="chip bg-color">数据库</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -545,13 +583,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/15/springboot-note/">
+                <a href="/2021/11/17/springboot-mail/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="SpringBoot注解篇">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Springboot使用JavaMail发送邮件">
                         
-                        <span class="card-title">SpringBoot注解篇</span>
+                        <span class="card-title">Springboot使用JavaMail发送邮件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -562,7 +600,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-17
                         </span>
                         <span class="publish-author">
                             
@@ -583,6 +621,10 @@
                         <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -594,13 +636,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/15/python-socket/">
+                <a href="/2021/11/16/git-1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="python使用socket编程">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Git命令">
                         
-                        <span class="card-title">python使用socket编程</span>
+                        <span class="card-title">Git命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -611,14 +653,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-category">
-                                    网络编程
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
@@ -628,12 +670,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
-                        <span class="chip bg-color">网络编程</span>
-                    </a>
-                    
-                    <a href="/tags/python/">
-                        <span class="chip bg-color">python</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
