@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Springboot使用JavaMail发送邮件, HTML,CSS,JavaScript,vue,java,linux,springboot等">
+    <meta name="keywords" content="Java-线程池, HTML,CSS,JavaScript,vue,java,linux,springboot等">
     <meta name="description" content="本网站是个人兴趣爱好，总结个人技术经验，记录生活工作的点滴，希望在学习总结中，提升能力。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Springboot使用JavaMail发送邮件 | ZwqBlog</title>
+    <title>Java-线程池 | ZwqBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Springboot使用JavaMail发送邮件</h1>
+                    <h1 class="description center-align post-title">Java-线程池</h1>
                 </div>
             </div>
         </div>
@@ -413,10 +413,6 @@
                                 <span class="chip bg-color">Java</span>
                             </a>
                         
-                            <a href="/tags/SpringBoot/">
-                                <span class="chip bg-color">SpringBoot</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -425,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/SpringBoot/" class="post-category">
-                                SpringBoot
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -438,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-17
+                    2021-12-01
                 </div>
                 
 
@@ -447,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    459
+                    3.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    15 分
                 </div>
                 
 
@@ -477,134 +473,209 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Springboot使用JavaMail发送邮件"><a href="#Springboot使用JavaMail发送邮件" class="headerlink" title="Springboot使用JavaMail发送邮件"></a>Springboot使用JavaMail发送邮件</h1><h2 id="开启邮箱POP3服务"><a href="#开启邮箱POP3服务" class="headerlink" title="开启邮箱POP3服务"></a>开启邮箱POP3服务</h2><p><img src="/2021/11/17/springboot-mail/mail-1.png"><br>记住授权码</p>
-<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>项目结构：<br><img src="/2021/11/17/springboot-mail/mail-2.png"><br>JavaMail依赖：</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;
-&lt;&#x2F;dependency&gt;
-
-&lt;!--lombok--&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;
-    &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;
-    &lt;optional&gt;true&lt;&#x2F;optional&gt;
-&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>配置yml:</p>
-<pre class="line-numbers language-none"><code class="language-none">spring:
-  mail:
-    #smtp服务主机  qq邮箱则为smtp.qq.com
-    host: smtp.qq.com
-    #服务协议
-    protocol: smtp
-    # 编码集
-    default-encoding: UTF-8
-    #发送邮件的账户
-    username: xxxx@qq.com
-    #授权码
-    password: xxxx
-    test-connection: true
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>定义一个邮件类MailSenderEntity：</p>
-<pre class="line-numbers language-none"><code class="language-none">import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-&#x2F;**
- * description: 邮件
- *
- * @author zwq
- * @date 2021&#x2F;11&#x2F;17 17:11
- *&#x2F;
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class MailSenderEntity &#123;
-
-    &#x2F;*发送方*&#x2F;
-    private String from;
-    &#x2F;*标题*&#x2F;
-    private String title;
-    &#x2F;*内容*&#x2F;
-    private String content;
-    &#x2F;*接收方*&#x2F;
-    private String[] tos;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Service层：</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.zwq.main.constant.MailSenderEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
-
-&#x2F;**
- * description: 发送邮件
- *
- * @author zwq
- * @date 2021&#x2F;11&#x2F;17 17:08
- *&#x2F;
-@Service
-public class MailService &#123;
-
-	&#x2F;* 注入JavaMail *&#x2F;
-    @Autowired
-    private JavaMailSender javaMailSender;
-
-    public void sendMail(MailSenderEntity mailSenderEntity)&#123;
-        SimpleMailMessage simpleMailMessage &#x3D; new SimpleMailMessage();
-        simpleMailMessage.setFrom(mailSenderEntity.getFrom());
-        simpleMailMessage.setSubject(mailSenderEntity.getTitle());
-        simpleMailMessage.setText(mailSenderEntity.getContent());
-        simpleMailMessage.setTo(mailSenderEntity.getTos());
-        javaMailSender.send(simpleMailMessage);
+                <h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><h2 id="java-uitl-concurrent-ThreadPoolExecutor-类"><a href="#java-uitl-concurrent-ThreadPoolExecutor-类" class="headerlink" title="java.uitl.concurrent.ThreadPoolExecutor 类"></a>java.uitl.concurrent.ThreadPoolExecutor 类</h2><p>ThreadPoolExecutor类中提供了四个构造方法：</p>
+<pre class="line-numbers language-none"><code class="language-none">public class ThreadPoolExecutor extends AbstractExecutorService &#123;
+    .....
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+            BlockingQueue&lt;Runnable&gt; workQueue);
+ 
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+            BlockingQueue&lt;Runnable&gt; workQueue,ThreadFactory threadFactory);
+ 
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+            BlockingQueue&lt;Runnable&gt; workQueue,RejectedExecutionHandler handler);
+ 
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+        BlockingQueue&lt;Runnable&gt; workQueue,ThreadFactory threadFactory,RejectedExecutionHandler handler);
+    ...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ThreadPoolExecutor继承了AbstractExecutorService类，并提供了四个构造器，事实上，通过观察每个构造器的源码具体实现，发现前面三个构造器都是调用的第四个构造器进行的初始化工作。</p>
+<ul>
+<li>corePoolSize：核心池的大小，这个参数跟后面讲述的线程池的实现原理有非常大的关系。在创建了线程池后，默认情况下，线程池中并没有任何线程，而是等待有任务到来才创建线程去执行任务，除非调用了prestartAllCoreThreads()或者prestartCoreThread()方法，从这2个方法的名字就可以看出，是预创建线程的意思，即在没有任务到来之前就创建corePoolSize个线程或者一个线程。默认情况下，在创建了线程池后，线程池中的线程数为0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中；</li>
+<li>maximumPoolSize：线程池最大线程数，这个参数也是一个非常重要的参数，它表示在线程池中最多能创建多少个线程；</li>
+<li>keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于corePoolSize时，keepAliveTime才会起作用，直到线程池中的线程数不大于corePoolSize，即当线程池中的线程数大于corePoolSize时，如果一个线程空闲的时间达到keepAliveTime，则会终止，直到线程池中的线程数不超过corePoolSize。但是如果调用了allowCoreThreadTimeOut(boolean)方法，在线程池中的线程数不大于corePoolSize时，keepAliveTime参数也会起作用，直到线程池中的线程数为0；</li>
+<li>unit：参数keepAliveTime的时间单位，有7种取值，在TimeUnit类中有7种静态属性：<pre class="line-numbers language-none"><code class="language-none">TimeUnit.DAYS;               &#x2F;&#x2F;天
+TimeUnit.HOURS;             &#x2F;&#x2F;小时
+TimeUnit.MINUTES;           &#x2F;&#x2F;分钟
+TimeUnit.SECONDS;           &#x2F;&#x2F;秒
+TimeUnit.MILLISECONDS;      &#x2F;&#x2F;毫秒
+TimeUnit.MICROSECONDS;      &#x2F;&#x2F;微妙
+TimeUnit.NANOSECONDS;       &#x2F;&#x2F;纳秒<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>workQueue：一个阻塞队列，用来存储等待执行的任务，这个参数的选择也很重要，会对线程池的运行过程产生重大影响，一般来说，这里的阻塞队列有以下几种选择：<ul>
+<li>ArrayBlockingQueue;</li>
+<li>LinkedBlockingQueue;</li>
+<li>SynchronousQueue;</li>
+<li>ArrayBlockingQueue和PriorityBlockingQueue使用较少，一般使用LinkedBlockingQueue和Synchronous。线程池的排队策略与BlockingQueue有关。</li>
+</ul>
+</li>
+<li>threadFactory：线程工厂，主要用来创建线程；</li>
+<li>handler：表示当拒绝处理任务时的策略，有以下四种取值：<pre class="line-numbers language-none"><code class="language-none">ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。 
+ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。 
+ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
+ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+ThreadPoolExecutor继承了AbstractExecutorService。AbstractExecutorService是一个抽象类，它实现了ExecutorService接口。ExecutorService继承了Executor接口<br>Executor是一个顶层接口，在它里面只声明了一个方法execute(Runnable)，返回值为void，参数为Runnable类型，从字面意思可以理解，就是用来执行传进去的任务的；<br>然后ExecutorService接口继承了Executor接口，并声明了一些方法：submit、invokeAll、invokeAny以及shutDown等；<br>抽象类AbstractExecutorService实现了ExecutorService接口，基本实现了ExecutorService中声明的所有方法；<br>然后ThreadPoolExecutor继承了类AbstractExecutorService。<br>在ThreadPoolExecutor类中有几个非常重要的方法：execute()submit()shutdown()shutdownNow()</li>
+<li>execute()方法实际上是Executor中声明的方法，在ThreadPoolExecutor进行了具体的实现，这个方法是ThreadPoolExecutor的核心方法，通过这个方法可以向线程池提交一个任务，交由线程池去执行。</li>
+<li>submit()方法是在ExecutorService中声明的方法，在AbstractExecutorService就已经有了具体的实现，在ThreadPoolExecutor中并没有对其进行重写，这个方法也是用来向线程池提交任务的，但是它和execute()方法不同，它能够返回任务执行的结果，去看submit()方法的实现，会发现它实际上还是调用的execute()方法，只不过它利用了Future来获取任务执行结果。</li>
+<li>shutdown()和shutdownNow()是用来关闭线程池的。</li>
+</ul>
+<h2 id="线程池实现原理"><a href="#线程池实现原理" class="headerlink" title="线程池实现原理"></a>线程池实现原理</h2><h3 id="线程池状态"><a href="#线程池状态" class="headerlink" title="线程池状态"></a>线程池状态</h3><p>在ThreadPoolExecutor中定义了一个volatile变量，另外定义了几个static final变量表示线程池的各个状态：</p>
+<pre class="line-numbers language-none"><code class="language-none">volatile int runState;
+static final int RUNNING    &#x3D; 0;
+static final int SHUTDOWN   &#x3D; 1;
+static final int STOP       &#x3D; 2;
+static final int TERMINATED &#x3D; 3;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>runState表示当前线程池的状态，它是一个volatile变量用来保证线程之间的可见性；<br>下面的几个static final变量表示runState可能的几个取值。<br>当创建线程池后，初始时，线程池处于RUNNING状态；<br>如果调用了shutdown()方法，则线程池处于SHUTDOWN状态，此时线程池不能够接受新的任务，它会等待所有任务执行完毕；<br>如果调用了shutdownNow()方法，则线程池处于STOP状态，此时线程池不能接受新的任务，并且会去尝试终止正在执行的任务；<br>当线程池处于SHUTDOWN或STOP状态，并且所有工作线程已经销毁，任务缓存队列已经清空或执行结束后，线程池被设置为TERMINATED状态。</p>
+<h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><pre class="line-numbers language-none"><code class="language-none">private final BlockingQueue&lt;Runnable&gt; workQueue;              &#x2F;&#x2F;任务缓存队列，用来存放等待执行的任务
+private final ReentrantLock mainLock &#x3D; new ReentrantLock();   &#x2F;&#x2F;线程池的主要状态锁，对线程池状态（比如线程池大小
+                                                              &#x2F;&#x2F;、runState等）的改变都要使用这个锁
+private final HashSet&lt;Worker&gt; workers &#x3D; new HashSet&lt;Worker&gt;();  &#x2F;&#x2F;用来存放工作集
+ 
+private volatile long  keepAliveTime;    &#x2F;&#x2F;线程存货时间   
+private volatile boolean allowCoreThreadTimeOut;   &#x2F;&#x2F;是否允许为核心线程设置存活时间
+private volatile int   corePoolSize;     &#x2F;&#x2F;核心池的大小（即线程池中的线程数目大于这个参数时，提交的任务会被放进任务缓存队列）
+private volatile int   maximumPoolSize;   &#x2F;&#x2F;线程池最大能容忍的线程数
+ 
+private volatile int   poolSize;       &#x2F;&#x2F;线程池中当前的线程数
+ 
+private volatile RejectedExecutionHandler handler; &#x2F;&#x2F;任务拒绝策略
+ 
+private volatile ThreadFactory threadFactory;   &#x2F;&#x2F;线程工厂，用来创建线程
+ 
+private int largestPoolSize;   &#x2F;&#x2F;用来记录线程池中曾经出现过的最大线程数
+ 
+private long completedTaskCount;   &#x2F;&#x2F;用来记录已经执行完毕的任务个数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>execute()方法的实现原理:</p>
+<pre class="line-numbers language-none"><code class="language-none">public void execute(Runnable command) &#123;
+    if (command &#x3D;&#x3D; null)		&#x2F;&#x2F; 首先，判断提交的任务command是否为null，若是null，则抛出空指针异常；
+        throw new NullPointerException();		
+    if (poolSize &gt;&#x3D; corePoolSize || !addIfUnderCorePoolSize(command)) &#123;		&#x2F;&#x2F; 如果线程池中当前线程数&gt;&#x3D;核心池大小
+        if (runState &#x3D;&#x3D; RUNNING &amp;&amp; workQueue.offer(command)) &#123;		&#x2F;&#x2F; 如果当前线程池处于RUNNING状态，则将任务放入任务缓存队列
+            if (runState !&#x3D; RUNNING || poolSize &#x3D;&#x3D; 0)		&#x2F;&#x2F; 为了防止在将此任务添加进任务缓存队列的同时其他线程突然调用shutdown或者shutdownNow方法关闭了线程池的一种应急措施
+                ensureQueuedTaskHandled(command);			&#x2F;&#x2F; 保证 添加到任务缓存队列中的任务得到处理
+        &#125;
+        else if (!addIfUnderMaximumPoolSize(command))
+            reject(command); &#x2F;&#x2F; is shutdown or saturated
     &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>Controller层：</p>
-<pre class="line-numbers language-none"><code class="language-none">import com.zwq.main.constant.MailSenderEntity;
-import com.zwq.main.service.MailService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-&#x2F;**
- * description: 发送邮件
- *
- * @author zwq
- * @date 2021&#x2F;11&#x2F;17 17:06
- *&#x2F;
-@RestController
-@RequestMapping(&quot;&#x2F;main&quot;)
-public class SendController &#123;
-
-    @Autowired
-    private MailService mailService;
-
-    @PostMapping(&quot;&#x2F;simple&quot;)
-    public void sendSimpleMail(@RequestBody MailSenderEntity mailSenderEntity)&#123;
-        mailService.sendMail(mailSenderEntity);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>addIfUnderCorePoolSize和addIfUnderMaximumPoolSize：</p>
+<pre class="line-numbers language-none"><code class="language-none">private boolean addIfUnderCorePoolSize(Runnable firstTask) &#123;
+    Thread t &#x3D; null;
+    final ReentrantLock mainLock &#x3D; this.mainLock;
+    mainLock.lock();
+    try &#123;
+        if (poolSize &lt; corePoolSize &amp;&amp; runState &#x3D;&#x3D; RUNNING)
+            t &#x3D; addThread(firstTask);        &#x2F;&#x2F;创建线程去执行firstTask任务   
+        &#125; finally &#123;
+        mainLock.unlock();
     &#125;
-
-	&#x2F;* 测试发送邮件请求 *&#x2F;
-    @GetMapping(&quot;&#x2F;test&quot;)
-    public void send()&#123;
-        MailSenderEntity mailSenderEntity &#x3D; new MailSenderEntity();
-        mailSenderEntity.setFrom(&quot;xxxx@qq.com&quot;);
-        mailSenderEntity.setTitle(&quot;测试&quot;);
-        mailSenderEntity.setContent(&quot;第一次发送邮件&quot;);
-        String[] strings &#x3D; &#123;&quot;xxxx@qq.com&quot;&#125;;
-        mailSenderEntity.setTos(strings);
-        mailService.sendMail(mailSenderEntity);
+    if (t &#x3D;&#x3D; null)
+        return false;
+    t.start();
+    return true;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>首先获取到锁，因为这地方涉及到线程池状态的变化，先通过if语句判断当前线程池中的线程数目是否小于核心池大小，有朋友也许会有疑问：前面在execute()方法中不是已经判断过了吗，只有线程池当前线程数目小于核心池大小才会执行addIfUnderCorePoolSize方法的，为何这地方还要继续判断？原因很简单，前面的判断过程中并没有加锁，因此可能在execute方法判断的时候poolSize小于corePoolSize，而判断完之后，在其他线程中又向线程池提交了任务，就可能导致poolSize不小于corePoolSize了，所以需要在这个地方继续判断。然后接着判断线程池的状态是否为RUNNING，原因也很简单，因为有可能在其他线程中调用了shutdown或者shutdownNow方法。然后就是执行t = addThread(firstTask);这个方法也非常关键，传进去的参数为提交的任务，返回值为Thread类型。然后接着在下面判断t是否为空，为空则表明创建线程失败（即poolSize&gt;=corePoolSize或者runState不等于RUNNING），否则调用t.start()方法启动线程。<br>&emsp;<br>addIfUnderMaximumPoolSize方法的实现:<br>这个方法的实现思想和addIfUnderCorePoolSize方法的实现思想非常相似，唯一的区别在于addIfUnderMaximumPoolSize方法是在线程池中的线程数达到了核心池大小并且往任务队列中添加任务失败的情况下执行的：</p>
+<pre class="line-numbers language-none"><code class="language-none">private boolean addIfUnderMaximumPoolSize(Runnable firstTask) &#123;
+    Thread t &#x3D; null;
+    final ReentrantLock mainLock &#x3D; this.mainLock;
+    mainLock.lock();
+    try &#123;
+        if (poolSize &lt; maximumPoolSize &amp;&amp; runState &#x3D;&#x3D; RUNNING)
+            t &#x3D; addThread(firstTask);
+    &#125; finally &#123;
+        mainLock.unlock();
     &#125;
-    
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    if (t &#x3D;&#x3D; null)
+        return false;
+    t.start();
+    return true;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>总结线程池策略：</p>
+<ol>
+<li>如果当前线程池中的线程数目小于corePoolSize，则每来一个任务，就会创建一个线程去执行这个任务；</li>
+<li>如果当前线程池中的线程数目&gt;=corePoolSize，则每来一个任务，会尝试将其添加到任务缓存队列当中，若添加成功，则该任务会等待空闲线程将其取出去执行；若添加失败（一般来说是任务缓存队列已满），则会尝试创建新的线程去执行这个任务；</li>
+<li>如果当前线程池中的线程数目达到maximumPoolSize，则会采取任务拒绝策略进行处理；</li>
+<li>如果线程池中的线程数量大于 corePoolSize时，如果某线程空闲时间超过keepAliveTime，线程将被终止，直至线程池中的线程数目不大于corePoolSize；如果允许为核心池中的线程设置存活时间，那么核心池中的线程空闲时间超过keepAliveTime，线程也会被终止。</li>
+</ol>
+<h3 id="线程池中的线程初始化"><a href="#线程池中的线程初始化" class="headerlink" title="线程池中的线程初始化"></a>线程池中的线程初始化</h3><p>默认情况下，创建线程池之后，线程池中是没有线程的，需要提交任务之后才会创建线程。<br>在实际中如果需要线程池创建之后立即创建线程，可以通过以下两个方法办到：</p>
+<pre class="line-numbers language-none"><code class="language-none">public boolean prestartCoreThread() &#123;
+    return addIfUnderCorePoolSize(null); &#x2F;&#x2F;注意传进去的参数是null
+&#125;
+
+public int prestartAllCoreThreads() &#123;
+    int n &#x3D; 0;
+    while (addIfUnderCorePoolSize(null))&#x2F;&#x2F;注意传进去的参数是null
+        ++n;
+    return n;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="任务缓存队列及排队策略"><a href="#任务缓存队列及排队策略" class="headerlink" title="任务缓存队列及排队策略"></a>任务缓存队列及排队策略</h3><p>任务缓存队列，即workQueue，它用来存放等待执行的任务。<br>workQueue的类型为BlockingQueue<Runnable>，通常可以取下面三种类型：</Runnable></p>
+<ol>
+<li>ArrayBlockingQueue：基于数组的先进先出队列，此队列创建时必须指定大小；</li>
+<li>LinkedBlockingQueue：基于链表的先进先出队列，如果创建时没有指定此队列大小，则默认为Integer.MAX_VALUE；</li>
+<li>synchronousQueue：这个队列比较特殊，它不会保存提交的任务，而是将直接新建一个线程来执行新来的任务。</li>
+</ol>
+<h3 id="任务拒绝策略"><a href="#任务拒绝策略" class="headerlink" title="任务拒绝策略"></a>任务拒绝策略</h3><p>当线程池的任务缓存队列已满并且线程池中的线程数目达到maximumPoolSize，如果还有任务到来就会采取任务拒绝策略，通常有以下四种策略：</p>
+<ol>
+<li>ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。</li>
+<li>ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。</li>
+<li>ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）</li>
+<li>ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务</li>
+</ol>
+<h3 id="线程池关闭"><a href="#线程池关闭" class="headerlink" title="线程池关闭"></a>线程池关闭</h3><p>shutdown()：不会立即终止线程池，而是要等所有任务缓存队列中的任务都执行完后才终止，但再也不会接受新的任务<br>shutdownNow()：立即终止线程池，并尝试打断正在执行的任务，并且清空任务缓存队列，返回尚未执行的任务</p>
+<h3 id="线程池容量的动态调整"><a href="#线程池容量的动态调整" class="headerlink" title="线程池容量的动态调整"></a>线程池容量的动态调整</h3><p>setCorePoolSize：设置核心池大小<br>setMaximumPoolSize：设置线程池最大能创建的线程数目大小<br>当上述参数从小变大时，ThreadPoolExecutor进行线程赋值，还可能立即创建新的线程来执行任务。</p>
+<h2 id="使用线程池"><a href="#使用线程池" class="headerlink" title="使用线程池"></a>使用线程池</h2><pre class="line-numbers language-none"><code class="language-none">public class Test &#123;
+     public static void main(String[] args) &#123;   
+         ThreadPoolExecutor executor &#x3D; new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
+                 new ArrayBlockingQueue&lt;Runnable&gt;(5));
+          
+         for(int i&#x3D;0;i&lt;15;i++)&#123;
+             MyTask myTask &#x3D; new MyTask(i);
+             executor.execute(myTask);
+             System.out.println(&quot;线程池中线程数目：&quot;+executor.getPoolSize()+&quot;，队列中等待执行的任务数目：&quot;+
+             executor.getQueue().size()+&quot;，已执行玩别的任务数目：&quot;+executor.getCompletedTaskCount());
+         &#125;
+         executor.shutdown();
+     &#125;
+&#125;
+ 
+ 
+class MyTask implements Runnable &#123;
+    private int taskNum;
+     
+    public MyTask(int num) &#123;
+        this.taskNum &#x3D; num;
+    &#125;
+     
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;正在执行task &quot;+taskNum);
+        try &#123;
+            Thread.currentThread().sleep(4000);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+        System.out.println(&quot;task &quot;+taskNum+&quot;执行完毕&quot;);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当线程池中线程的数目大于5时，便将任务放入任务缓存队列里面，当任务缓存队列满了之后，便创建新的线程。如果上面程序中，将for循环中改成执行20个任务，就会抛出任务拒绝异常了。<br>在java doc中，并不提倡我们直接使用ThreadPoolExecutor，而是使用Executors类中提供的几个静态方法来创建线程池：<br>Executors.newCachedThreadPool();        //创建一个缓冲池，缓冲池容量大小为Integer.MAX_VALUE<br>Executors.newSingleThreadExecutor();   //创建容量为1的缓冲池<br>Executors.newFixedThreadPool(int);    //创建固定容量大小的缓冲池</p>
+<pre class="line-numbers language-none"><code class="language-none">public static ExecutorService newFixedThreadPool(int nThreads) &#123;
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue&lt;Runnable&gt;());
+&#125;
+public static ExecutorService newSingleThreadExecutor() &#123;
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue&lt;Runnable&gt;()));
+&#125;
+public static ExecutorService newCachedThreadPool() &#123;
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                  60L, TimeUnit.SECONDS,
+                                  new SynchronousQueue&lt;Runnable&gt;());
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>它们实际上也是调用了ThreadPoolExecutor，只不过参数都已配置好了。<br>newFixedThreadPool创建的线程池corePoolSize和maximumPoolSize值是相等的，它使用的LinkedBlockingQueue；<br>newSingleThreadExecutor将corePoolSize和maximumPoolSize都设置为1，也使用的LinkedBlockingQueue；<br>newCachedThreadPool将corePoolSize设置为0，将maximumPoolSize设置为Integer.MAX_VALUE，使用的SynchronousQueue，也就是说来了任务就创建线程运行，当线程空闲超过60秒，就销毁线程。<br>实际中，如果Executors提供的三个静态方法能满足要求，就尽量使用它提供的三个方法，因为自己去手动配置ThreadPoolExecutor的参数有点麻烦，要根据实际任务的类型和数量来进行配置。<br>另外，如果ThreadPoolExecutor达不到要求，可以自己继承ThreadPoolExecutor类进行重写。<br>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3932921.html">https://www.cnblogs.com/dolphin0520/p/3932921.html</a></p>
+
                 
             </div>
             <hr/>
@@ -620,10 +691,6 @@ public class SendController &#123;
                             
                                 <a href="/tags/Java/">
                                     <span class="chip bg-color">Java</span>
-                                </a>
-                            
-                                <a href="/tags/SpringBoot/">
-                                    <span class="chip bg-color">SpringBoot</span>
                                 </a>
                             
                         </div>
@@ -667,9 +734,10 @@ public class SendController &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/12/01/thread-pool/">
                     <div class="card-image">
@@ -687,9 +755,9 @@ public class SendController &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -702,6 +770,7 @@ public class SendController &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -720,13 +789,13 @@ public class SendController &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/17/linux-1/">
+                <a href="/2021/11/17/springboot-mail/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Linux-基础">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Springboot使用JavaMail发送邮件">
                         
-                        <span class="card-title">Linux-基础</span>
+                        <span class="card-title">Springboot使用JavaMail发送邮件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -743,8 +812,8 @@ public class SendController &#123;
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/SpringBoot/" class="post-category">
+                                    SpringBoot
                                 </a>
                             
                             
@@ -754,8 +823,12 @@ public class SendController &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
                     </a>
                     
                 </div>
